@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\UmkmController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UmkmController;
 
 
 // Routes untuk Guest UMKM
