@@ -8,22 +8,20 @@ return new class extends Migration
 {
     public function up(): void
     {
-       Schema::create('umkm', function (Blueprint $table) {
-            $table->id('umkm_id');
-            $table->string('nama_usaha');
-            $table->foreignId('pemilik_warga_id')->constrained('warga', 'warga_id')->onDelete('cascade');
-            $table->text('alamat');
-            $table->string('rt');
-            $table->string('rw');
-            $table->string('kategori');
-            $table->string('kontak');
+        Schema::create('produk', function (Blueprint $table) {
+            $table->id('produk_id');
+            $table->foreignId('umkm_id')->constrained('umkm', 'umkm_id')->onDelete('cascade');
+            $table->string('nama_produk');
             $table->text('deskripsi')->nullable();
+            $table->decimal('harga', 15, 2);
+            $table->integer('stok')->default(0);
+            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('umkm');
+        Schema::dropIfExists('produk');
     }
 };

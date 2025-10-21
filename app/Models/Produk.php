@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Produk extends Model
 {
     use HasFactory;
+
     protected $table = 'produk';
     protected $primaryKey = 'produk_id';
     protected $fillable = ['umkm_id', 'nama_produk', 'deskripsi', 'harga', 'stok', 'status'];
@@ -20,5 +21,23 @@ class Produk extends Model
     public function media()
     {
         return $this->morphMany(Media::class, 'ref', 'ref_table', 'ref_id');
+    }
+
+    // Accessor untuk format harga
+    public function getHargaFormattedAttribute()
+    {
+        return 'Rp ' . number_format($this->harga, 0, ',', '.');
+    }
+
+    // Accessor untuk status badge
+    public function getStatusBadgeAttribute()
+    {
+        return $this->status == 'aktif' ? 'success' : 'danger';
+    }
+
+    // Accessor untuk status text
+    public function getStatusTextAttribute()
+    {
+        return $this->status == 'aktif' ? 'Aktif' : 'Nonaktif';
     }
 }

@@ -13,9 +13,9 @@ return new class extends Migration
             $table->foreignId('umkm_id')->constrained('umkm', 'umkm_id')->onDelete('cascade');
             $table->string('nama_produk');
             $table->text('deskripsi')->nullable();
-            $table->decimal('harga', 10, 2);
-            $table->integer('stok');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->decimal('harga', 15, 2);
+            $table->integer('stok')->default(0);
+            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
             $table->timestamps();
         });
     }

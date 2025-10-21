@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use App\Models\Produk;
 use App\Models\Umkm;
-use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,56 +11,74 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $produk = Produk::with('umkm')->get();
-        return view('admin.produk.index', compact('produk'));
+        $produk = Produk::with(['umkm', 'media'])->latest()->get();
+
+        // Hitung statistik untuk dashboard
+        $totalProduk = Produk::count();
+        $produkAktif = Produk::where('status', 'aktif')->count();
+        $totalStok   = Produk::sum('stok');
+        $produkBaru  = Produk::whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->count();
+
+        return view('admin.produk.index', compact(
+            'produk',
+            'totalProduk',
+            'produkAktif',
+            'totalStok',
+            'produkBaru'
+        ));
     }
 
     public function create()
     {
-        $umkm = Umkm::all();
+        $umkm = Umkm::with('pemilik')->orderBy('nama_usaha', 'asc')->get();
         return view('admin.produk.create', compact('umkm'));
     }
 
     public function store(Request $request)
     {
+        // Di method store
         $validated = $request->validate([
-            'umkm_id' => 'required|exists:umkm,umkm_id',
+            'umkm_id'     => 'required|exists:umkm,umkm_id',
             'nama_produk' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'harga' => 'required|numeric|min:0',
-            'stok' => 'required|integer|min:0',
-            'status' => 'required|in:active,inactive',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'deskripsi'   => 'nullable|string',
+            'harga'       => 'required|numeric|min:0',
+            'stok'        => 'required|integer|min:0',
+            'status'      => 'required|in:aktif,nonaktif', // Pastikan hanya menerima 'aktif' atau 'nonaktif'
+            'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        // Format harga
+        $validated['harga'] = (float) $validated['harga'];
 
         $produk = Produk::create($validated);
 
-        // Handle file upload untuk foto
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
+        // Handle file upload untuk foto produk
+        if ($request->hasFile('foto_produk')) {
+            $file = $request->file('foto_produk');
             $path = $file->store('produk', 'public');
             Media::create([
                 'ref_table' => 'produk',
-                'ref_id' => $produk->produk_id,
-                'file_url' => $path,
+                'ref_id'    => $produk->produk_id,
+                'file_url'  => $path,
                 'mime_type' => $file->getMimeType(),
-                'caption' => 'Foto Produk',
+                'caption'   => 'Foto Produk',
             ]);
         }
 
-        session()->flash('success', 'Produk berhasil ditambahkan.');
+        session()->flash('success', 'Data produk berhasil ditambahkan.');
         return redirect()->route('produk.index');
     }
 
     public function show(Produk $produk)
     {
-        $produk->load('umkm', 'media');
+        $produk->load(['umkm.pemilik', 'media']);
         return view('admin.produk.show', compact('produk'));
     }
 
     public function edit(Produk $produk)
     {
-        $umkm = Umkm::all();
+        $umkm = Umkm::with('pemilik')->orderBy('nama_usaha', 'asc')->get();
         $produk->load('media');
         return view('admin.produk.edit', compact('produk', 'umkm'));
     }
@@ -69,19 +86,22 @@ class ProdukController extends Controller
     public function update(Request $request, Produk $produk)
     {
         $validated = $request->validate([
-            'umkm_id' => 'required|exists:umkm,umkm_id',
+            'umkm_id'     => 'required|exists:umkm,umkm_id',
             'nama_produk' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'harga' => 'required|numeric|min:0',
-            'stok' => 'required|integer|min:0',
-            'status' => 'required|in:active,inactive',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'deskripsi'   => 'nullable|string',
+            'harga'       => 'required|numeric|min:0',
+            'stok'        => 'required|integer|min:0',
+            'status'      => 'required|in:aktif,nonaktif',
+            'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // Format harga
+        $validated['harga'] = (float) $validated['harga'];
 
         $produk->update($validated);
 
         // Handle file upload
-        if ($request->hasFile('foto')) {
+        if ($request->hasFile('foto_produk')) {
             // Hapus media lama jika ada
             $oldMedia = $produk->media()->where('caption', 'Foto Produk')->first();
             if ($oldMedia) {
@@ -89,18 +109,18 @@ class ProdukController extends Controller
                 $oldMedia->delete();
             }
 
-            $file = $request->file('foto');
+            $file = $request->file('foto_produk');
             $path = $file->store('produk', 'public');
             Media::create([
                 'ref_table' => 'produk',
-                'ref_id' => $produk->produk_id,
-                'file_url' => $path,
+                'ref_id'    => $produk->produk_id,
+                'file_url'  => $path,
                 'mime_type' => $file->getMimeType(),
-                'caption' => 'Foto Produk',
+                'caption'   => 'Foto Produk',
             ]);
         }
 
-        session()->flash('success', 'Produk berhasil diperbarui.');
+        session()->flash('success', 'Data produk berhasil diperbarui.');
         return redirect()->route('produk.index');
     }
 
@@ -111,9 +131,10 @@ class ProdukController extends Controller
             Storage::disk('public')->delete($media->file_url);
             $media->delete();
         }
+
         $produk->delete();
 
-        session()->flash('success', 'Produk berhasil dihapus.');
+        session()->flash('success', 'Data produk berhasil dihapus.');
         return redirect()->route('produk.index');
     }
 }
