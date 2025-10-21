@@ -21,7 +21,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('binadesa', BinadesaController::class);
-Route::resource('produk', ProdukController::class);
+
 Route::resource('warga', WargaController::class);
 Route::get('/api/warga', [WargaController::class, 'getWargaDropdown'])
     ->name('api.warga');

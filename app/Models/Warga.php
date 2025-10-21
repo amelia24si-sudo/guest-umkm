@@ -14,12 +14,6 @@ class Warga extends Model
         return $this->hasMany(Umkm::class, 'pemilik_warga_id', 'warga_id');
     }
 
-    // Relasi dengan Binadesa
-    public function binadesa()
-    {
-        return $this->hasMany(Binadesa::class, 'pemilik_warga_id', 'warga_id');
-    }
-
     // Accessor untuk menampilkan informasi lengkap
     public function getInfoLengkapAttribute()
     {
