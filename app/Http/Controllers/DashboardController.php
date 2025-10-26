@@ -9,6 +9,12 @@ class DashboardController extends Controller
     public function index()
     {
         return view('admin.dashboard');
+        
+        $userCount = User::count();
+        $adminCount = User::where('role', 'admin')->count();
+        $userCount = User::where('role', 'user')->count();
+
+        return view('dashboard.index', compact('userCount', 'adminCount', 'userCount'));
     }
 
     public function create()
