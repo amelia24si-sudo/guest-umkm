@@ -135,7 +135,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Alamat</strong></td>
-                                <td>{{ $binadesa->pemilik->alamat }}, RT {{ $binadesa->pemilik->rt }}/RW {{ $binadesa->pemilik->rw }}</td>
+                                <td>{{ $binadesa->alamat }}, RT {{ $binadesa->rt }}/RW {{ $binadesa->rw }}</td>
                             </tr>
                         </table>
                     </div>
