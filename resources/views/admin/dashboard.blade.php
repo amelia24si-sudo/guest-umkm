@@ -71,7 +71,7 @@
                         class="nav-item nav-link {{ request()->routeIs('warga.*') ? 'active' : '' }}">
                         <i class="fa fa-users me-2"></i>Data Warga
                     </a>
-                    
+
                     <div class="nav-item dropdown">
                         <!--<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                         <div class="dropdown-menu bg-transparent border-0">
