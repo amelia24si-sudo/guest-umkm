@@ -8,12 +8,11 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\BinadesaController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UlasanProdukController;
 
 
 // Routes untuk Guest UMKM
-Route::get('/umkm', [UmkmController::class, 'index']);
-Route::get('/umkm/detail/{id}', [UmkmController::class, 'show']);
+Route::get('/umkm', [UmkmController::class, 'index'])->name('umkm.index');
+Route::get('/umkm/detail/{id}', [UmkmController::class, 'show'])->name('umkm.show');
 
 // Routes untuk Auth
 Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -27,6 +26,6 @@ Route::resource('binadesa', BinadesaController::class);
 Route::resource('warga', WargaController::class);
 Route::get('/api/warga', [WargaController::class, 'getWargaDropdown'])
     ->name('api.warga');
-Route::resource('produk', ProdukController::class);
-Route::resource('pesanan', PesananController::class);
-Route::resource('ulasan', UlasanProdukController::class);
+// Route::resource('produk', ProdukController::class);
+// Route::resource('pesanan', PesananController::class);
+// Route::resource('ulasan', UlasanProdukController::class);

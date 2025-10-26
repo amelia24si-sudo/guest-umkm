@@ -17,10 +17,10 @@ class Umkm extends Model
         return $this->belongsTo(Warga::class, 'pemilik_warga_id', 'warga_id');
     }
 
-    public function produk()
-    {
-        return $this->hasMany(Produk::class, 'umkm_id', 'umkm_id');
-    }
+    // public function produk()
+    // {
+    //     return $this->hasMany(Produk::class, 'umkm_id', 'umkm_id');
+    // }
 
     public function media()
     {
