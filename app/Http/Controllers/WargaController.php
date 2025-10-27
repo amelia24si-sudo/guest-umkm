@@ -65,17 +65,11 @@ class WargaController extends Controller
         return view('admin.warga.show', compact('warga'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Warga $warga)
     {
         return view('admin.warga.edit', compact('warga'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Warga $warga)
     {
         $request->validate([
@@ -103,9 +97,6 @@ class WargaController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Warga $warga)
     {
         try {
