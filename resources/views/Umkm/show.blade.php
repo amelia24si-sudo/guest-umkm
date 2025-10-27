@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.guest.app')
 
 @section('title', $umkm->nama_usaha)
 
