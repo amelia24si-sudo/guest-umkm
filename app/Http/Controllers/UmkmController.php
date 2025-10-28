@@ -55,4 +55,32 @@ class UmkmController extends Controller
 
         return view('Umkm.show', compact('umkm', 'umkmLainnya'));
     }
+
+    public function layanan()
+    {
+        return view('Umkm.layanan');
+    }
+
+    // Menampilkan halaman kontak
+    public function kontak()
+    {
+        return view('Umkm.kontak');
+    }
+
+    // Proses form kontak
+    public function kirimPesan(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'email' => 'required|email|max:100',
+            'subjek' => 'required|string|max:200',
+            'pesan' => 'required|string|max:1000'
+        ]);
+
+        // Di sini Anda bisa menambahkan logika untuk mengirim email
+        // atau menyimpan pesan ke database
+
+        return redirect()->route('kontak')
+            ->with('success', 'Pesan Anda telah berhasil dikirim. Kami akan merespons secepatnya.');
+    }
 }

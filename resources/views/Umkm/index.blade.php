@@ -4,7 +4,7 @@
 @section('content')
 <div class="row mb-4">
     <div class="col-12">
-        <h2>Daftar UMKM Desa</h2>
+        <h2>Daftar UMKM Bina Desa</h2>
         <p class="text-muted">Temukan berbagai usaha mikro, kecil, dan menengah di desa kita</p>
     </div>
 </div>

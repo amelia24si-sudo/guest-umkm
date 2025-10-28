@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UMKM Desa - @yield('title')</title>
+    <title>UMKM Bina Desa - @yield('title')</title>
     {{-- START CSS  --}}
     @include('layout.guest.css')
     {{-- END CSS  --}}

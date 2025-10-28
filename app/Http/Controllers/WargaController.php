@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Warga;
 use App\Models\Umkm;
+use App\Models\Warga;
 use Illuminate\Http\Request;
 
 class WargaController extends Controller
@@ -14,7 +13,6 @@ class WargaController extends Controller
     public function index()
     {
         $warga = Warga::orderBy('nama', 'asc')->get();
-
         return view('admin.warga.index', compact('warga'));
     }
 
@@ -32,16 +30,16 @@ class WargaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_ktp' => 'required|unique:warga,no_ktp|max:16',
-            'nama' => 'required|max:255',
+            'no_ktp'        => 'required|unique:warga,no_ktp|max:16',
+            'nama'          => 'required|max:255',
             'jenis_kelamin' => 'required|in:L,P',
-            'agama' => 'required',
-            'pekerjaan' => 'required',
-            'telp' => 'required',
-            'email' => 'nullable|email',
-            'alamat' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
+            'agama'         => 'required',
+            'pekerjaan'     => 'required',
+            'telp'          => 'required',
+            'email'         => 'nullable|email',
+            'alamat'        => 'required',
+            'rt'            => 'required',
+            'rw'            => 'required',
         ]);
 
         try {
@@ -73,16 +71,16 @@ class WargaController extends Controller
     public function update(Request $request, Warga $warga)
     {
         $request->validate([
-            'no_ktp' => 'required|max:16|unique:warga,no_ktp,' . $warga->warga_id . ',warga_id',
-            'nama' => 'required|max:255',
+            'no_ktp'        => 'required|max:16|unique:warga,no_ktp,' . $warga->warga_id . ',warga_id',
+            'nama'          => 'required|max:255',
             'jenis_kelamin' => 'required|in:L,P',
-            'agama' => 'required',
-            'pekerjaan' => 'required',
-            'telp' => 'required',
-            'email' => 'nullable|email',
-            'alamat' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
+            'agama'         => 'required',
+            'pekerjaan'     => 'required',
+            'telp'          => 'required',
+            'email'         => 'nullable|email',
+            'alamat'        => 'required',
+            'rt'            => 'required',
+            'rw'            => 'required',
         ]);
 
         try {
@@ -133,8 +131,8 @@ class WargaController extends Controller
      */
     public function dashboard()
     {
-        $totalWarga = Warga::count();
-        $wargaLaki = Warga::where('jenis_kelamin', 'L')->count();
+        $totalWarga     = Warga::count();
+        $wargaLaki      = Warga::where('jenis_kelamin', 'L')->count();
         $wargaPerempuan = Warga::where('jenis_kelamin', 'P')->count();
 
         // Hitung pemilik UMKM dengan query yang benar
