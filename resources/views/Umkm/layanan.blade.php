@@ -155,14 +155,3 @@
     </div>
 </div>
 @endsection
-
-{{-- @push('styles')
-<style>
-
-</style>
-@endpush
-
-@push('scripts')
-<!-- Font Awesome untuk ikon -->
-
-@endpush --}}

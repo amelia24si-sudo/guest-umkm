@@ -201,10 +201,10 @@
                                 <a href="#" class="btn btn-outline-primary hover-lift">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="#" class="btn btn-outline-info hover-lift">
+                                <a href="#" class="btn btn-outline-primary hover-lift">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="#" class="btn btn-outline-danger hover-lift">
+                                <a href="#" class="btn btn-outline-primary hover-lift">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                                 <a href="#" class="btn btn-outline-primary hover-lift">
