@@ -12,24 +12,24 @@
     <link href="{{ asset('img/favicon.ico') }}" rel="icon">
 
     {{-- START CSS --}}
-    @include('layout.admin.css')
+    @include('layout.dashboard.css')
     {{-- END CSS  --}}
 </head>
 
 <body>
     <div class="container-fluid position-relative bg-white d-flex p-0">
         {{-- START LOAD --}}
-        @include('layout.admin.spinner')
+        @include('layout.dashboard.spinner')
         {{-- END LOAD  --}}
 
 
         {{-- START SIDEBAR --}}
-        @include('layout.admin.sidebar')
+        @include('layout.dashboard.sidebar')
         {{-- END SIDEBAR --}}
 
         <div class="content">
             <!-- Navbar Start -->
-            @include('layout.admin.navbar')
+            @include('layout.dashboard.navbar')
             <!-- Navbar End -->
 
             {{-- START CONTENT --}}
@@ -37,14 +37,14 @@
             {{-- END CONTENT --}}
 
             {{-- START FOOTER --}}
-            @include('layout.admin.footer')
+            @include('layout.dashboard.footer')
             {{-- END FOOTER  --}}
         </div>
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- START JS -->
-    @include('layout.admin.js')
+    @include('layout.dashboard.js')
     {{-- END JS --}}
 </body>
 

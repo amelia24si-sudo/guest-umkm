@@ -12,12 +12,12 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
+        return view('admin.user.index', compact('users'));
     }
 
     public function create()
     {
-        return view('users.create');
+        return view('admin.user.create');
     }
 
     public function store(Request $request)
@@ -26,7 +26,6 @@ class UsersController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
-            'role' => 'required|in:admin,user'
         ]);
 
         if ($validator->fails()) {
@@ -39,7 +38,6 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role
         ]);
 
         return redirect()->route('users.index')
@@ -62,7 +60,6 @@ class UsersController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6|confirmed',
-            'role' => 'required|in:admin,user'
         ]);
 
         if ($validator->fails()) {

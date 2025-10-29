@@ -13,15 +13,43 @@ class AuthController extends Controller
     // Menampilkan form login
     public function index()
     {
-        // Jika user sudah login, redirect berdasarkan role
-        if (Auth::check()) {
-            $user = Auth::user();
-            return $user->role === 'admin'
-                ? redirect()->route('dashboard')
-                : redirect()->route('umkm.index');
+        return view('auth.login');
+    }
+
+    // Menampilkan form registrasi
+    public function showRegister()
+    {
+        return view('auth.registrasi');
+    }
+
+    // Memproses registrasi
+    public function register(Request $request)
+    {
+        // Validasi form
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
-        return view('auth.login');
+        // Buat user baru
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // Login user setelah registrasi
+        Auth::login($user);
+
+        return redirect('/umkm')
+            ->with('success', 'Registrasi berhasil! Selamat datang ' . $user->name);
     }
 
     // Memproses form login
@@ -39,34 +67,28 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-        // Cari user berdasarkan email
-        $user = User::where('email', $request->email)->first();
+        // Coba login
+        $credentials = $request->only('email', 'password');
 
-        // Cek apakah user exists dan password cocok
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return redirect()->back()
-                ->withErrors(['email' => 'Email atau password salah!'])
-                ->withInput();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/umkm')
+                ->with('success', 'Login berhasil! Selamat datang ' . Auth::user()->name);
         }
 
-        // Login user
-        Auth::login($user);
-
-        // Redirect berdasarkan role
-        if ($user->role === 'admin') {
-            return redirect()->route('dashboard')
-                ->with('success', 'Login berhasil! Selamat datang ' . $user->name);
-        } else {
-            return redirect()->route('umkm.index')
-                ->with('success', 'Login berhasil! Selamat datang ' . $user->name);
-        }
+        return redirect()->back()
+            ->withErrors(['email' => 'Email atau password salah!'])
+            ->withInput();
     }
 
     // Logout
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect('/login')
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/umkm')
             ->with('success', 'Logout berhasil!');
     }
 }

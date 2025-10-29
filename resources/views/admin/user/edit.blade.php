@@ -1,4 +1,4 @@
-@extends('layout.admin.app')
+@extends('layout.dashboard.app')
 
 @section('content')
 <!-- Form Edit User Start -->
@@ -6,7 +6,7 @@
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Edit User</h6>
-            <a href="{{ route('user.index') }}" class="btn btn-secondary">
+            <a href="{{ route('users.index') }}" class="btn btn-secondary">
                 <i class="fa fa-arrow-left me-2"></i>Kembali
             </a>
         </div>
@@ -14,7 +14,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-12 col-xl-8">
                 <div class="bg-light rounded h-100 p-4">
-                    <form action="{{ route('user.update', $user->id) }}" method="POST">
+                    <form action="{{ route('users.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
@@ -78,7 +78,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save me-2"></i>Update User
                             </button>
-                            <a href="{{ route('user.index') }}" class="btn btn-secondary">
+                            <a href="{{ route('users.index') }}" class="btn btn-secondary">
                                 <i class="fa fa-times me-2"></i>Batal
                             </a>
                         </div>

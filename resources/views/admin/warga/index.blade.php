@@ -1,4 +1,4 @@
-@extends('layout.admin.app')
+@extends('layout.dashboard.app')
 
 @section('content')
 <!-- Sale & Revenue Start -->
@@ -72,10 +72,10 @@
             <table class="table text-start align-middle table-bordered table-hover mb-0">
                 <thead>
                     <tr class="text-dark">
-                        <th scope="col" style="width: 5%">#</th>
+                        <th scope="col" style="width: 5%">No</th>
                         <th scope="col" style="width: 15%">NIK</th>
                         <th scope="col" style="width: 20%">Nama</th>
-                        <th scope="col" style="width: 10%">Jenis Kelamin</th>
+                        <th scope="col" style="width: 20%">Jenis Kelamin</th>
                         <th scope="col" style="width: 10%">Agama</th>
                         <th scope="col" style="width: 15%">Pekerjaan</th>
                         <th scope="col" style="width: 15%">Kontak</th>

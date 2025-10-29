@@ -1,6 +1,6 @@
 <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
-        <a href="dashboard" class="navbar-brand mx-4 mb-3">
+        <a href="/umkm" class="navbar-brand mx-4 mb-3">
             <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Bina Desa</h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
@@ -26,19 +26,19 @@
                 <i class="fa fa-users me-2"></i>Data Warga
             </a>
 
-            <a href="{{ route('user.index') }}"
-                class="nav-item nav-link {{ request()->routeIs('user.*') ? 'active' : '' }}">
+            <a href="{{ route('users.index') }}"
+                class="nav-item nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
                 <i class="fa fa-users me-2"></i>User
             </a>
 
-            <div class="nav-item dropdown">
+            {{-- <div class="nav-item dropdown"> --}}
                 <!--<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{{ asset('assets-admin/icon/button.html') }}" class="dropdown-item">Buttons</a>
                             <a href="{{ asset('assets-admin/icon/typography.html') }}" class="dropdown-item">Typography</a>
                             <a href="{{ asset('assets-admin/icon/element.html') }}" class="dropdown-item">Other Elements</a>
                         </div>-->
-            </div>
+            {{-- </div> --}}
             <!--<a href="{{ asset('assets-admin/icon/widget.html') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="{{ asset('assets-admin/icon/form.html') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                     <a href="{{ asset('assets-admin/icon/table.html') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>

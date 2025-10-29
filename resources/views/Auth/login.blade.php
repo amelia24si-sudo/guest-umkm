@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,7 +61,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
             transform: rotate(30deg);
         }
 
@@ -202,10 +203,12 @@
                 transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
+
             50% {
                 transform: translateY(-20px) rotate(180deg);
                 opacity: 0.7;
             }
+
             100% {
                 transform: translateY(0) rotate(360deg);
                 opacity: 1;
@@ -223,6 +226,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="floating-elements">
         <div class="floating-element"></div>
@@ -240,11 +244,11 @@
                         <p class="mb-0">Masuk ke akun UMKM Anda</p>
                     </div>
                     <div class="card-body p-4">
-                        @if($errors->any())
+                        @if ($errors->any())
                             <div class="alert alert-danger">
                                 <i class="fas fa-exclamation-triangle me-2"></i>
                                 <ul class="mb-0">
-                                    @foreach($errors->all() as $error)
+                                    @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
@@ -257,30 +261,21 @@
                                 <label for="email" class="form-label">
                                     <i class="fas fa-envelope me-2"></i>Email
                                 </label>
-                                <input type="email"
-                                       class="form-control"
-                                       id="email"
-                                       name="email"
-                                       value="{{ old('email') }}"
-                                       placeholder="contoh: umkm@desa.id"
-                                       required>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="{{ old('email') }}" placeholder="contoh: umkm@desa.id" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">
                                     <i class="fas fa-lock me-2"></i>Password
                                 </label>
-                                <input type="password"
-                                       class="form-control"
-                                       id="password"
-                                       name="password"
-                                       placeholder="Masukkan password"
-                                       required>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Masukkan password" required>
                             </div>
 
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remember">
-                                <label class="form-check-label" for="remember">Ingat saya</label>
+                            <div class="text-center mt-3">
+                                <p>Belum punya akun? <a href="{{ route('register') }}"
+                                        class="text-decoration-none">Daftar di sini</a></p>
                             </div>
 
                             <button type="submit" class="btn btn-login w-100 py-2">
@@ -309,4 +304,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

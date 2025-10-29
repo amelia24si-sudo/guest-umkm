@@ -1,4 +1,4 @@
-@extends('layout.admin.app')
+@extends('layout.dashboard.app')
 
 @section('content')
     <!-- Statistics Start -->
@@ -13,24 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-user-shield fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <p class="mb-2">Admin</p>
-                        <h6 class="mb-0">{{ $users->where('role', 'admin')->count() }}</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-user fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <p class="mb-2">User Biasa</p>
-                        <h6 class="mb-0">{{ $users->where('role', 'user')->count() }}</h6>
-                    </div>
-                </div>
-            </div>
+
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-calendar-plus fa-3x text-primary"></i>
@@ -49,7 +32,7 @@
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">Daftar Semua User</h6>
-                <a href="{{ route('user.create') }}" class="btn btn-primary">
+                <a href="{{ route('users.create') }}" class="btn btn-primary">
                     <i class="fa fa-plus me-2"></i>Tambah User
                 </a>
             </div>
@@ -72,10 +55,9 @@
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                         <tr class="text-dark">
-                            <th scope="col" style="width: 5%">#</th>
+                            <th scope="col" style="width: 5%">No</th>
                             <th scope="col" style="width: 25%">Nama</th>
                             <th scope="col" style="width: 25%">Email</th>
-                            <th scope="col" style="width: 15%">Role</th>
                             <th scope="col" style="width: 20%">Tanggal Dibuat</th>
                             <th scope="col" style="width: 10%">Aksi</th>
                         </tr>
@@ -96,17 +78,6 @@
                                     </td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        @if ($user->role == 'admin')
-                                            <span class="badge bg-danger">
-                                                <i class="fa fa-user-shield me-1"></i>Admin
-                                            </span>
-                                        @else
-                                            <span class="badge bg-primary">
-                                                <i class="fa fa-user me-1"></i>User
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td>
                                         <small class="text-muted">
                                             <i class="fa fa-calendar me-1"></i>
                                             {{ $user->created_at->format('d/m/Y') }}
@@ -119,11 +90,11 @@
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm"
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"
                                                 title="Edit User" data-bs-toggle="tooltip">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                                 style="display:inline;"
                                                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus user {{ $user->name }}?')">
                                                 @csrf
@@ -145,7 +116,7 @@
                                         <i class="fa fa-users fa-4x text-muted mb-3"></i>
                                         <h5 class="text-muted">Belum Ada Data User</h5>
                                         <p class="text-muted mb-4">Mulai dengan menambahkan user pertama Anda</p>
-                                        <a href="{{ route('user.create') }}" class="btn btn-primary btn-lg">
+                                        <a href="{{ route('users.create') }}" class="btn btn-primary btn-lg">
                                             <i class="fa fa-plus me-2"></i>Tambah User Pertama
                                         </a>
                                     </div>
