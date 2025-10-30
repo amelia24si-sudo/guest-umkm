@@ -46,12 +46,12 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        return view('user.show', compact('user'));
     }
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('admin.user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
@@ -71,7 +71,6 @@ class UsersController extends Controller
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role
         ];
 
         if ($request->filled('password')) {

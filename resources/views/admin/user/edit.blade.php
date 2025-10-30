@@ -59,21 +59,6 @@
                             </div>
                         </div>
 
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <label for="role" class="form-label">Role <span class="text-danger">*</span></label>
-                                <select class="form-select @error('role') is-invalid @enderror"
-                                        id="role" name="role" required>
-                                    <option value="">Pilih Role</option>
-                                    <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
-                                    <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
-                                </select>
-                                @error('role')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save me-2"></i>Update User

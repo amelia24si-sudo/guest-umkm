@@ -11,7 +11,7 @@ use App\Http\Controllers\BinadesaController;
 use App\Http\Controllers\DashboardController;
 
 // Routes untuk Guest UMKM (Public)
-Route::get('/umkm', [UmkmController::class, 'index'])->name('umkm.index');
+Route::get('/beranda', [UmkmController::class, 'index'])->name('umkm.index');
 Route::get('/umkm/detail/{id}', [UmkmController::class, 'show'])->name('umkm.show');
 
 // Routes untuk Layanan dan Kontak (Public)

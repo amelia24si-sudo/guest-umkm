@@ -137,7 +137,7 @@
                     <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password" required>
                 </div>
 
-                <button type="submit" class="btn-register">Daftar</button>
+                <button type="submit" class="btn-register" action="/beranda">Daftar</button>
             </form>
 
             <div class="login-link">
