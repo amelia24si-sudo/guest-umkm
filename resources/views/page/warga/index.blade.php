@@ -5,64 +5,59 @@
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-sm-6 col-xl-3">
-            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-users fa-3x text-primary"></i>
-                <div class="ms-3">
-                    <p class="mb-2">Total Warga</p>
-                    <h6 class="mb-0">{{ $warga->count() }}</h6>
-                </div>
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Daftar Warga</h6>
+                <a href="{{ url('warga/create') }}" class="btn btn-primary">
+                    <i class="fa fa-plus me-2"></i>Tambah Warga
+                </a>
             </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-male fa-3x text-primary"></i>
-                <div class="ms-3">
-                    <p class="mb-2">Laki-laki</p>
-                    <h6 class="mb-0">{{ $warga->where('jenis_kelamin', 'L')->count() }}</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-female fa-3x text-primary"></i>
-                <div class="ms-3">
-                    <p class="mb-2">Perempuan</p>
-                    <h6 class="mb-0">{{ $warga->where('jenis_kelamin', 'P')->count() }}</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-store fa-3x text-primary"></i>
-                <div class="ms-3">
-                    <p class="mb-2">Pemilik UMKM</p>
-                    <h6 class="mb-0">{{ $warga->filter(function($w) { return $w->umkm->count() > 0; })->count() }}</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Sale & Revenue End -->
 
-<!-- Warga List Start -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-light text-center rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Daftar Warga</h6>
-            <a href="{{ route('warga.create') }}" class="btn btn-primary">
-                <i class="fa fa-plus me-2"></i>Tambah Warga
-            </a>
-        </div>
+            <!-- Card grid -->
+            @if(isset($wargas) && $wargas->count())
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @foreach($wargas as $warga)
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-start">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <h5 class="card-title mb-0">{{ $warga->nama }}</h5>
+                                    <small class="text-muted">NIK: {{ $warga->nik }}</small>
+                                </div>
+                                <div>
+                                    <span class="badge @if(strtolower($warga->jenis_kelamin) == 'perempuan') bg-success @else bg-primary @endif">{{ $warga->jenis_kelamin }}</span>
+                                </div>
+                            </div>
 
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <p class="mb-1"><strong>Agama:</strong> {{ $warga->agama ?? '-' }}</p>
+                            <p class="mb-1"><strong>Pekerjaan:</strong> {{ $warga->pekerjaan ?? '-' }}</p>
+                            <p class="mb-2 mb-md-3">
+                                <i class="fa fa-phone me-1"></i>{{ $warga->telepon ?? '-' }}<br>
+                                <i class="fa fa-envelope me-1"></i>{{ $warga->email ?? '-' }}
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-end">
+                            <div class="btn-group" role="group">
+                                <a href="{{ url('warga/'.$warga->id) }}" class="btn btn-sm btn-primary" title="View"><i class="fa fa-eye"></i></a>
+                                <a href="{{ url('warga/'.$warga->id.'/edit') }}" class="btn btn-sm btn-primary" title="Edit"><i class="fa fa-edit"></i></a>
+                                <form action="{{ url('warga/'.$warga->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus data warga ini?')">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
-        @endif
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @else
+            <div class="alert alert-info mb-0">Belum ada data warga. <a href="{{ url('warga/create') }}">Tambah Warga</a></div>
+            @endif
+        </div>
                 {{ session('error') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -107,7 +102,7 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('/umkm/detail/{{  }}', $w) }}" class="btn btn-primary" title="View">
+                                <a href="{{ route('warga.show', $w) }}" class="btn btn-primary" title="View">
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 <a href="{{ route('warga.edit', $w) }}" class="btn btn-primary" title="Edit">
