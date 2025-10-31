@@ -6,17 +6,17 @@
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Detail UMKM/Binadesa</h6>
             <div>
-                <a href="{{ route('binadesa.edit', $binadesa) }}" class="btn btn-warning btn-sm">
+                <a href="{{ route('binadesa.edit', $binadesa) }}" class="btn btn-primary">
                     <i class="fa fa-edit me-2"></i>Edit
                 </a>
                 <form action="{{ route('binadesa.destroy', $binadesa) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?')">
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?')">
                         <i class="fa fa-trash me-2"></i>Hapus
                     </button>
                 </form>
-                <a href="{{ route('binadesa.index') }}" class="btn btn-secondary btn-sm">
+                <a href="{{ route('binadesa.index') }}" class="btn btn-primary">
                     <i class="fa fa-arrow-left me-2"></i>Kembali
                 </a>
             </div>

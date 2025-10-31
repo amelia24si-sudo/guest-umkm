@@ -6,7 +6,7 @@
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">Tambah User Baru</h6>
-                <a href="{{ route('users.index') }}" class="btn btn-secondary">
+                <a href="{{ route('users.index') }}" class="btn btn-primary">
                     <i class="fa fa-arrow-left me-2"></i>Kembali
                 </a>
             </div>
@@ -63,7 +63,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-save me-2"></i>Simpan User
                                 </button>
-                                <a href="{{ route('users.index') }}" class="btn btn-secondary">
+                                <a href="{{ route('users.index') }}" class="btn btn-primary">
                                     <i class="fa fa-times me-2"></i>Batal
                                 </a>
                             </div>

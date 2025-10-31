@@ -25,7 +25,7 @@ class BinadesaController extends Controller
             ->whereYear('created_at', now()->year)
             ->count();
 
-        return view('admin.binadesa.index', compact(
+        return view('page.binadesa.index', compact(
             'binadesa',
             'totalUsaha',
             'usahaAktif',
@@ -37,7 +37,7 @@ class BinadesaController extends Controller
     public function create()
     {
         $warga = Warga::orderBy('nama', 'asc')->get();
-        return view('admin.binadesa.create', compact('warga'));
+        return view('page.binadesa.create', compact('warga'));
     }
 
     public function store(Request $request)
@@ -76,14 +76,14 @@ class BinadesaController extends Controller
     public function show(Umkm $binadesa)
     {
         $binadesa->load('pemilik', 'media');
-        return view('admin.binadesa.show', compact('binadesa'));
+        return view('page.binadesa.show', compact('binadesa'));
     }
 
     public function edit(Umkm $binadesa)
     {
         $warga = Warga::orderBy('nama', 'asc')->get();
         $binadesa->load('media');
-        return view('admin.binadesa.edit', compact('binadesa', 'warga'));
+        return view('page.binadesa.edit', compact('binadesa', 'warga'));
     }
 
     public function update(Request $request, Umkm $binadesa)

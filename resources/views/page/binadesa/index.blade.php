@@ -87,15 +87,15 @@
                         <td>{{ $b->alamat }}, RT {{ $b->rt }}/RW {{ $b->rw }}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('binadesa.show', $b) }}" class="btn btn-info btn-sm" title="View">
+                                <a href="{{ route('binadesa.show', $b) }}" class="btn btn-primary" title="View">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('binadesa.edit', $b) }}" class="btn btn-warning btn-sm" title="Edit">
+                                <a href="{{ route('binadesa.edit', $b) }}" class="btn btn-primary" title="Edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <form action="{{ route('binadesa.destroy', $b) }}" method="POST" style="display:inline;">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?')">
+                                    <button type="submit" class="btn btn-primary" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?')">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>

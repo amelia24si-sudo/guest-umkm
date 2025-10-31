@@ -284,7 +284,7 @@
                         </form>
 
                         <div class="text-center mt-3">
-                            <a href="/beranda" class="text-decoration-none">
+                            <a href="/" class="text-decoration-none">
                                 <i class="fas fa-arrow-left me-2"></i>Kembali ke Halaman UMKM
                             </a>
                         </div>

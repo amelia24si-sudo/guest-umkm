@@ -6,10 +6,10 @@
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Detail Data Warga</h6>
             <div>
-                <a href="{{ route('warga.edit', $warga) }}" class="btn btn-warning btn-sm">
+                <a href="{{ route('warga.edit', $warga) }}" class="btn btn-primary">
                     <i class="fa fa-edit me-2"></i>Edit
                 </a>
-                <a href="{{ route('warga.index') }}" class="btn btn-secondary btn-sm">
+                <a href="{{ route('warga.index') }}" class="btn btn-primary">
                     <i class="fa fa-arrow-left me-2"></i>Kembali
                 </a>
             </div>

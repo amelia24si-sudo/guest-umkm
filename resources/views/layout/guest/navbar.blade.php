@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="/beranda">
+        <a class="navbar-brand" href="/">
             <strong>UMKM BINA DESA</strong>
         </a>
         <div class="navbar-nav">
-            <a class="nav-link {{ request()->is('umkm') ? 'active' : '' }}" href="/beranda">Beranda</a>
+            <a class="nav-link {{ request()->is('umkm') ? 'active' : '' }}" href="/">Beranda</a>
             <a class="nav-link {{ request()->is('layanan') ? 'active' : '' }}" href="{{ route('layanan') }}">Layanan</a>
             <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}" href="{{ route('kontak') }}">Kontak</a>
             <a class="nav-link" href="/login">Login UMKM</a>

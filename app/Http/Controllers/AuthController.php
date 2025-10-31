@@ -48,7 +48,7 @@ class AuthController extends Controller
         // Login user setelah registrasi
         Auth::login($user);
 
-        return redirect('/beranda')
+        return redirect('/')
             ->with('success', 'Registrasi berhasil! Selamat datang ' . $user->name);
     }
 
@@ -72,7 +72,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/beranda')
+            return redirect()->intended('/')
                 ->with('success', 'Login berhasil! Selamat datang ' . Auth::user()->name);
         }
 
@@ -88,7 +88,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/beranda')
+        return redirect('/')
             ->with('success', 'Logout berhasil!');
     }
 }

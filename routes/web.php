@@ -11,7 +11,7 @@ use App\Http\Controllers\BinadesaController;
 use App\Http\Controllers\DashboardController;
 
 // Routes untuk Guest UMKM (Public)
-Route::get('/beranda', [UmkmController::class, 'index'])->name('umkm.index');
+Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');
 Route::get('/umkm/detail/{id}', [UmkmController::class, 'show'])->name('umkm.show');
 
 // Routes untuk Layanan dan Kontak (Public)
@@ -41,7 +41,3 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/binadesa', [BinadesaController::class, 'store'])->name('binadesa.store');
 });
 
-// Route fallback atau home
-Route::get('/', function () {
-    return redirect()->route('umkm.index');
-});

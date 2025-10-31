@@ -22,7 +22,7 @@
                         <button type="submit" class="dropdown-item">Log Out
                         </button>
                     </form>
-                    <a href="/umkm" class="dropdown-item">
+                    <a href="/" class="dropdown-item">
                         <h6 class="fw-normal mb-0">Beranda</h6>
                     </a>
                 </div>

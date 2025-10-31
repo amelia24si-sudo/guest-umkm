@@ -90,7 +90,7 @@
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary"
                                                 title="Edit User" data-bs-toggle="tooltip">
                                                 <i class="fa fa-edit"></i>
                                             </a>
@@ -99,7 +99,7 @@
                                                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus user {{ $user->name }}?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Hapus User"
+                                                <button type="submit" class="btn btn-primary" title="Hapus User"
                                                     data-bs-toggle="tooltip"
                                                     {{ auth()->id() == $user->id ? 'disabled' : '' }}>
                                                     <i class="fa fa-trash"></i>

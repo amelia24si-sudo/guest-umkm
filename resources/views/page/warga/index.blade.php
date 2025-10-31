@@ -107,15 +107,15 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('warga.show', $w) }}" class="btn btn-info btn-sm" title="View">
+                                <a href="{{ route('/umkm/detail/{{  }}', $w) }}" class="btn btn-primary" title="View">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('warga.edit', $w) }}" class="btn btn-warning btn-sm" title="Edit">
+                                <a href="{{ route('warga.edit', $w) }}" class="btn btn-primary" title="Edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <form action="{{ route('warga.destroy', $w) }}" method="POST" style="display:inline;">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus data warga ini?')">
+                                    <button type="submit" class="btn btn-primary" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus data warga ini?')">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
