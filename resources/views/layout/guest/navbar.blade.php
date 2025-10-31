@@ -10,10 +10,12 @@
             <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}" href="{{ route('kontak') }}">Kontak</a>
             <a class="nav-link {{ request()->is('login') ? 'active' : '' }}" href="/login">Login UMKM</a>
             <a class="nav-link {{ request()->is('register') ? 'active' : '' }}" href="/register">Daftar</a>
+             @auth
             <form method="POST" action="{{ route('logout') }}" class="d-inline">
                 @csrf
                 <button type="submit" class="nav-link border-0 bg-transparent">Log Out</button>
             </form>
+            @endauth
         </div>
     </div>
 </nav>

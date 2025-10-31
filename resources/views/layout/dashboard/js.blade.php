@@ -11,6 +11,7 @@
 <!-- Template Javascript -->
 <script src="{{ asset('assets-admin/js/main.js') }}"></script>
 <script>
+    // UMKM
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchInput');
         const categoryFilter = document.getElementById('categoryFilter');
@@ -72,35 +73,44 @@
         categoryFilter.addEventListener('change', filterAndSortCards);
         sortFilter.addEventListener('change', filterAndSortCards);
     });
+    // UMKM
+
+    // WARGA
     document.addEventListener('DOMContentLoaded', function() {
         const searchWarga = document.getElementById('searchWarga');
         const genderFilter = document.getElementById('genderFilter');
         const pekerjaanFilter = document.getElementById('pekerjaanFilter');
         const umkmFilter = document.getElementById('umkmFilter');
         const wargaCards = document.getElementById('wargaCards');
+
+        // If this page doesn't include warga elements, skip this block to avoid JS errors
+        if (!wargaCards || !searchWarga) {
+            return;
+        }
+
         const cards = Array.from(wargaCards.getElementsByClassName('warga-card'));
 
         function filterWargaCards() {
-            const searchTerm = searchWarga.value.toLowerCase();
-            const selectedGender = genderFilter.value;
-            const selectedPekerjaan = pekerjaanFilter.value;
-            const selectedUmkm = umkmFilter.value;
+            const searchTerm = (searchWarga.value || '').toLowerCase();
+            const selectedGender = genderFilter ? genderFilter.value : '';
+            const selectedPekerjaan = pekerjaanFilter ? pekerjaanFilter.value : '';
+            const selectedUmkm = umkmFilter ? umkmFilter.value : '';
 
             let visibleCards = [];
 
             cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                const gender = card.getAttribute('data-gender');
-                const pekerjaan = card.getAttribute('data-pekerjaan');
-                const umkmStatus = card.getAttribute('data-umkm');
+                const name = (card.getAttribute('data-name') || '').toLowerCase();
+                const gender = card.getAttribute('data-gender') || '';
+                const pekerjaan = card.getAttribute('data-pekerjaan') || '';
+                const umkmStatus = card.getAttribute('data-umkm') || '';
 
-                const matchesSearch = name.includes(searchTerm);
+                const matchesSearch = !searchTerm || name.includes(searchTerm);
                 const matchesGender = !selectedGender || gender === selectedGender;
                 const matchesPekerjaan = !selectedPekerjaan || pekerjaan === selectedPekerjaan;
                 const matchesUmkm = !selectedUmkm || umkmStatus === selectedUmkm;
 
                 if (matchesSearch && matchesGender && matchesPekerjaan && matchesUmkm) {
-                    card.style.display = 'block';
+                    card.style.display = '';
                     visibleCards.push(card);
                 } else {
                     card.style.display = 'none';
@@ -129,13 +139,15 @@
         }
 
         searchWarga.addEventListener('input', filterWargaCards);
-        genderFilter.addEventListener('change', filterWargaCards);
-        pekerjaanFilter.addEventListener('change', filterWargaCards);
-        umkmFilter.addEventListener('change', filterWargaCards);
+        if (genderFilter) genderFilter.addEventListener('change', filterWargaCards);
+        if (pekerjaanFilter) pekerjaanFilter.addEventListener('change', filterWargaCards);
+        if (umkmFilter) umkmFilter.addEventListener('change', filterWargaCards);
 
         updateWargaCountDisplay(cards.length);
     });
+    // WARGA
 
+    // USER
     document.addEventListener('DOMContentLoaded', function() {
         const searchUser = document.getElementById('searchUser');
         const sortUser = document.getElementById('sortUser');
@@ -230,4 +242,5 @@
             updateUserCountDisplay(cards.length);
         }
     });
+    // USER
 </script>
