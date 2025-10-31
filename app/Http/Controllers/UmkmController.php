@@ -61,6 +61,10 @@ class UmkmController extends Controller
         return view('Umkm.layanan');
     }
 
+    public function about()
+    {
+        return view('Umkm.about');
+    }
     // Menampilkan halaman kontak
     public function kontak()
     {

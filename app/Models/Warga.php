@@ -7,7 +7,7 @@ class Warga extends Model
     use HasFactory;
     protected $table = 'warga';
     protected $primaryKey = 'warga_id';
-    protected $fillable = ['no_ktp', 'nama', 'jenis_kelamin', 'agama', 'pekerjaan', 'telp', 'email'];
+    protected $fillable = ['no_ktp', 'nama', 'jenis_kelamin', 'agama', 'pekerjaan', 'telp', 'email', 'alamat', 'rt', 'rw'];
     // Relasi dengan UMKM/Binadesa
     public function umkm()
     {

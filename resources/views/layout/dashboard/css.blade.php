@@ -18,3 +18,95 @@
 <!-- Template Stylesheet -->
 <link href="{{ asset('assets-admin/css/style.css') }}" rel="stylesheet">
 {{-- END CSS  --}}
+<style>
+    .umkm-card {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .umkm-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .card-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .btn-group .btn {
+        border-radius: 0;
+    }
+
+    .btn-group .btn:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .btn-group .btn:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .warga-card {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .warga-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .btn-group .btn {
+        border-radius: 0;
+    }
+
+    .btn-group .btn:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .btn-group .btn:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .user-card {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .user-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .btn-group .btn {
+        border-radius: 0;
+    }
+
+    .btn-group .btn:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .btn-group .btn:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+</style>

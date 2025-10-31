@@ -5,10 +5,11 @@
         </a>
         <div class="navbar-nav">
             <a class="nav-link {{ request()->is('umkm') ? 'active' : '' }}" href="/">Beranda</a>
+            <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">About</a>
             <a class="nav-link {{ request()->is('layanan') ? 'active' : '' }}" href="{{ route('layanan') }}">Layanan</a>
             <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}" href="{{ route('kontak') }}">Kontak</a>
-            <a class="nav-link" href="/login">Login UMKM</a>
-            <a class="nav-link" href="/register">Daftar</a>
+            <a class="nav-link {{ request()->is('login') ? 'active' : '' }}" href="/login">Login UMKM</a>
+            <a class="nav-link {{ request()->is('register') ? 'active' : '' }}" href="/register">Daftar</a>
             <form method="POST" action="{{ route('logout') }}" class="d-inline">
                 @csrf
                 <button type="submit" class="nav-link border-0 bg-transparent">Log Out</button>

@@ -14,6 +14,9 @@ return new class extends Migration
             $table->string('nama');
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('agama');
+            $table->text('alamat');
+            $table->string('rt');
+            $table->string('rw');
             $table->string('pekerjaan');
             $table->string('telp');
             $table->string('email')->unique();
