@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use App\Models\Umkm;
 use App\Models\Warga;
-use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,8 +14,8 @@ class BinadesaController extends Controller
         $binadesa = Umkm::with('pemilik')->get();
 
         // Hitung statistik untuk dashboard
-        $totalUsaha = Umkm::count();
-        $usahaAktif = Umkm::count(); // Sesuaikan jika ada field status
+        $totalUsaha        = Umkm::count();
+        $usahaAktif        = Umkm::count(); // Sesuaikan jika ada field status
         $kategoriTerbanyak = Umkm::select('kategori')
             ->groupBy('kategori')
             ->orderByRaw('COUNT(*) DESC')
@@ -43,15 +42,15 @@ class BinadesaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_usaha' => 'required|string|max:255',
+            'nama_usaha'       => 'required|string|max:255',
             'pemilik_warga_id' => 'required|exists:warga,warga_id',
-            'alamat' => 'required|string',
-            'rt' => 'required|string|max:10',
-            'rw' => 'required|string|max:10',
-            'kategori' => 'required|string|max:255',
-            'kontak' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'alamat'           => 'required|string',
+            'rt'               => 'required|string|max:10',
+            'rw'               => 'required|string|max:10',
+            'kategori'         => 'required|string|max:255',
+            'kontak'           => 'required|string|max:255',
+            'deskripsi'        => 'nullable|string',
+            'logo'             => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $binadesa = Umkm::create($validated);
@@ -62,10 +61,10 @@ class BinadesaController extends Controller
             $path = $file->store('umkm', 'public');
             Media::create([
                 'ref_table' => 'umkm',
-                'ref_id' => $binadesa->umkm_id,
-                'file_url' => $path,
+                'ref_id'    => $binadesa->umkm_id,
+                'file_url'  => $path,
                 'mime_type' => $file->getMimeType(),
-                'caption' => 'Logo UMKM',
+                'caption'   => 'Logo UMKM',
             ]);
         }
 
@@ -85,19 +84,19 @@ class BinadesaController extends Controller
         $binadesa->load('media');
         return view('page.binadesa.edit', compact('binadesa', 'warga'));
     }
-
+    
     public function update(Request $request, Umkm $binadesa)
     {
         $validated = $request->validate([
-            'nama_usaha' => 'required|string|max:255',
+            'nama_usaha'       => 'required|string|max:255',
             'pemilik_warga_id' => 'required|exists:warga,warga_id',
-            'alamat' => 'required|string',
-            'rt' => 'required|string|max:10',
-            'rw' => 'required|string|max:10',
-            'kategori' => 'required|string|max:255',
-            'kontak' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'alamat'           => 'required|string',
+            'rt'               => 'required|string|max:10',
+            'rw'               => 'required|string|max:10',
+            'kategori'         => 'required|string|max:255',
+            'kontak'           => 'required|string|max:255',
+            'deskripsi'        => 'nullable|string',
+            'logo'             => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $binadesa->update($validated);
@@ -115,10 +114,10 @@ class BinadesaController extends Controller
             $path = $file->store('umkm', 'public');
             Media::create([
                 'ref_table' => 'umkm',
-                'ref_id' => $binadesa->umkm_id,
-                'file_url' => $path,
+                'ref_id'    => $binadesa->umkm_id,
+                'file_url'  => $path,
                 'mime_type' => $file->getMimeType(),
-                'caption' => 'Logo UMKM',
+                'caption'   => 'Logo UMKM',
             ]);
         }
 

@@ -63,7 +63,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save me-2"></i>Update User
                             </button>
-                            <a href="{{ route('users.index') }}" class="btn btn-primary">
+                            <a href="{{ route('users.index') }}" class="btn btn-secondary">
                                 <i class="fa fa-times me-2"></i>Batal
                             </a>
                         </div>

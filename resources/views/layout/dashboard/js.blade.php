@@ -63,16 +63,70 @@
                 }
             });
 
-            // Reorder cards in DOM
-            visibleCards.forEach(card => {
-                umkmCards.appendChild(card);
-            });
+            // Reorder cards in DOM - PERBAIKAN: Hapus dulu semua card yang visible
+            // Simpan card yang tidak visible
+            const hiddenCards = cards.filter(card => card.style.display === 'none');
+
+            // Hapus semua cards dari container
+            while (umkmCards.firstChild) {
+                umkmCards.removeChild(umkmCards.firstChild);
+            }
+
+            // Tambahkan kembali cards yang sudah diurutkan (visible dulu, kemudian hidden)
+            visibleCards.forEach(card => umkmCards.appendChild(card));
+            hiddenCards.forEach(card => umkmCards.appendChild(card));
         }
 
         searchInput.addEventListener('input', filterAndSortCards);
         categoryFilter.addEventListener('change', filterAndSortCards);
         sortFilter.addEventListener('change', filterAndSortCards);
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const pemilikSelect = document.getElementById('pemilik_warga_id');
+        const alamatField = document.getElementById('alamat');
+        const rtField = document.getElementById('rt');
+        const rwField = document.getElementById('rw');
+        const kontakField = document.getElementById('kontak');
+
+        pemilikSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+
+            if (selectedOption.value !== '') {
+                // Ambil data dari atribut data-*
+                const alamat = selectedOption.getAttribute('data-alamat');
+                const rt = selectedOption.getAttribute('data-rt');
+                const rw = selectedOption.getAttribute('data-rw');
+                const telp = selectedOption.getAttribute('data-telp');
+
+                // Isi field dengan data warga
+                alamatField.value = alamat || '';
+                rtField.value = rt || '';
+                rwField.value = rw || '';
+                kontakField.value = telp || '';
+            } else {
+                // Kosongkan field jika tidak ada yang dipilih
+                alamatField.value = '';
+                rtField.value = '';
+                rwField.value = '';
+                kontakField.value = '';
+            }
+        });
+
+        // Untuk edit form, jika ada data lama, isi otomatis
+        @if (old('pemilik_warga_id'))
+            const oldPemilikId = "{{ old('pemilik_warga_id') }}";
+            const oldOption = pemilikSelect.querySelector(`option[value="${oldPemilikId}"]`);
+            if (oldOption) {
+                pemilikSelect.value = oldPemilikId;
+
+                // Trigger change event untuk mengisi field
+                const event = new Event('change');
+                pemilikSelect.dispatchEvent(event);
+            }
+        @endif
+    });
+
     // UMKM
 
     // WARGA
@@ -163,7 +217,7 @@
             let visibleCards = [];
             const currentMonth = new Date().toISOString().slice(0, 7);
             const lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString().slice(0,
-            7);
+                7);
 
             cards.forEach(card => {
                 const name = card.getAttribute('data-name');

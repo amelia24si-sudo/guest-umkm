@@ -119,7 +119,7 @@ class WargaController extends Controller
      */
     public function getWargaDropdown()
     {
-        $warga = Warga::select('warga_id', 'nama', 'no_ktp', 'alamat')
+        $warga = Warga::select('warga_id', 'nama', 'no_ktp', 'alamat', 'rt', 'rw','telp')
             ->orderBy('nama', 'asc')
             ->get();
 

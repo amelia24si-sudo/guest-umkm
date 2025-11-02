@@ -5,7 +5,7 @@
     <div class="bg-light rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Edit UMKM/Binadesa</h6>
-            <a href="{{ route('binadesa.index') }}" class="btn btn-secondary btn-sm">
+            <a href="{{ route('binadesa.index') }}" class="btn btn-primary">
                 <i class="fa fa-arrow-left me-2"></i>Kembali
             </a>
         </div>
