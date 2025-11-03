@@ -88,12 +88,12 @@
                         <small class="text-muted d-block mt-2 text-center">
                             Respons cepat dalam 1x24 jam
                         </small>
-                        <div class="whatsapp-icon mb-3">
+                        {{-- <div class="whatsapp-icon mb-3">
                             <i class="fab fa-whatsapp fa-3x text-success"></i>
-                        </div>
+                        </div> --}}
                         <h5 class="gradient-text">Butuh Bantuan Cepat?</h5>
                         <p class="text-muted small mb-3">
-                            Gunakan tombol WhatsApp untuk konsultasi langsung dengan tim kami
+                            Gunakan WhatsApp untuk konsultasi langsung dengan tim kami
                         </p>
 
                         <!-- Multiple WhatsApp Buttons -->
@@ -106,11 +106,6 @@
                             <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20tanya%20tentang%20bantuan%20modal%20usaha"
                                 class="btn btn-outline-success btn-sm hover-lift" target="_blank">
                                 <i class="fab fa-whatsapp me-2"></i>Bantuan Modal
-                            </a>
-
-                            <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20membutuhkan%20informasi%20tentang%20pelatihan%20bisnis"
-                                class="btn btn-outline-success btn-sm hover-lift" target="_blank">
-                                <i class="fab fa-whatsapp me-2"></i>Info Pelatihan
                             </a>
                         </div>
                     </div>
@@ -179,7 +174,7 @@
                 </div>
             </div>
 
-            <!-- Map Lokasi & Info Tambahan -->
+            <!-- Map Lokasi -->
             <div class="card mt-4 border-0 custom-shadow">
                 <div class="card-body">
                     <div class="row">
@@ -209,21 +204,6 @@
                                 </a>
                                 <a href="#" class="btn btn-outline-primary hover-lift">
                                     <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </div>
-
-                            <div class="whatsapp-info bg-custom-light rounded p-3 mt-3">
-                                <h6 class="fw-bold text-custom-dark">
-                                    <i class="fab fa-whatsapp me-2 text-success"></i>
-                                    WhatsApp Business
-                                </h6>
-                                <p class="small text-muted mb-2">
-                                    Untuk pertanyaan mendesak, hubungi WhatsApp kami:
-                                </p>
-                                <a href="https://wa.me/6281234567890" class="btn btn-success btn-sm w-100 hover-lift"
-                                    target="_blank">
-                                    <i class="fab fa-whatsapp me-2"></i>
-                                    +62 812-3456-7890
                                 </a>
                             </div>
                         </div>

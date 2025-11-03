@@ -21,6 +21,16 @@
 
     {{-- START CONTENT --}}
     <div class="container mt-4">
+        <!-- Floating WhatsApp Button -->
+        <div class="whatsapp-float">
+            <div class="whatsapp-tooltip">
+                Hubungi Kami via WhatsApp
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%20UMKM%20Desa%2C%20saya%20ingin%20bertanya%20tentang%20layanan%20UMKM"
+                class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
         @yield('content')
     </div>
     {{-- END CONTENT  --}}
