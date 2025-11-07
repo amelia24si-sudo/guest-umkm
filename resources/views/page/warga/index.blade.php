@@ -1,4 +1,4 @@
-@extends('layout.dashboard.app')
+@extends('layout.guest.app')
 
 @section('content')
     <!-- Sale & Revenue Start -->
@@ -201,8 +201,10 @@
                                             title="Edit">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('warga.destroy', $w) }}" method="POST" class="d-inline">
-                                            @csrf @method('DELETE')
+                                        <form action="{{ route('warga.destroy', $w) }}" method="POST"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
                                             <button type="submit" class="btn btn-outline-primary btn-sm" title="Hapus"
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data warga ini?')">
                                                 <i class="fa fa-trash"></i>

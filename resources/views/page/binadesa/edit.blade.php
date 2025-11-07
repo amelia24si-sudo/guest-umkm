@@ -1,4 +1,4 @@
-@extends('layout.dashboard.app')
+@extends('layout.guest.app')
 
 @section('content')
 <div class="container-fluid pt-4 px-4">
@@ -41,13 +41,13 @@
                     <label class="form-label">Pemilik Warga <span class="text-danger">*</span></label>
                     <select name="pemilik_warga_id" class="form-control" required>
                         <option value="">Pilih Pemilik</option>
-                        @foreach($warga as $w)
-                            <option value="{{ $w->warga_id }}" {{ old('pemilik_warga_id', $binadesa->pemilik_warga_id) == $w->warga_id ? 'selected' : '' }}>
-                                {{ $w->nama }}
-                                @if($w->no_ktp) - NIK: {{ $w->no_ktp }} @endif
-                                @if($w->alamat) - Alamat: {{ $w->alamat }} @endif
-                            </option>
-                        @endforeach
+                        @foreach ($warga as $w)
+                                <option value="{{ $w->warga_id }}" data-alamat="{{ $w->alamat }}"
+                                    data-rt="{{ $w->rt }}" data-rw="{{ $w->rw }}"
+                                    data-telp="{{ $w->telp }}">
+                                    {{ $w->nama }} - {{ $w->no_ktp }}
+                                </option>
+                            @endforeach
                     </select>
                 </div>
             </div>

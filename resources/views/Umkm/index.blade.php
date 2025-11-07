@@ -2,14 +2,74 @@
 @section('title', 'Daftar UMKM')
 
 @section('content')
+
     <div class="row mb-4">
         <div class="col-12">
             <h2>Daftar UMKM Bina Desa</h2>
             <p class="text-muted">Temukan berbagai usaha mikro, kecil, dan menengah di desa kita</p>
         </div>
     </div>
+    <div class="row mb-4">
+        <!-- Statistik Dashboard -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-store fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total UMKM</p>
+                            <h6 class="mb-0">{{ \App\Models\Umkm::count() }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Usaha Aktif</p>
+                            <h6 class="mb-0">{{ \App\Models\Umkm::count() }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-tags fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Kategori Terbanyak</p>
+                            <h6 class="mb-0">
+                                @php
+                                    $kategoriTerbanyak = \App\Models\Umkm::select('kategori')
+                                        ->groupBy('kategori')
+                                        ->orderByRaw('COUNT(*) DESC')
+                                        ->value('kategori');
+                                @endphp
+                                {{ $kategoriTerbanyak ?? 'Belum ada data' }}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-plus-circle fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Usaha Baru (Bulan Ini)</p>
+                            <h6 class="mb-0">
+                                @php
+                                    $usahaBaru = \App\Models\Umkm::whereMonth('created_at', now()->month)
+                                        ->whereYear('created_at', now()->year)
+                                        ->count();
+                                @endphp
+                                {{ $usahaBaru }}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Search Box -->
+
     <div class="row mb-4">
         <div class="col-md-6">
             <form action="{{ route('umkm.index') }}" method="GET">
@@ -35,7 +95,8 @@
                         <option value="Peternakan" {{ request('kategori') == 'Peternakan' ? 'selected' : '' }}>Peternakan
                         </option>
                         <option value="Jasa" {{ request('kategori') == 'Jasa' ? 'selected' : '' }}>Jasa</option>
-                        <option value="Perdagangan" {{ request('kategori') == 'Perdagangan' ? 'selected' : '' }}>Perdagangan
+                        <option value="Perdagangan" {{ request('kategori') == 'Perdagangan' ? 'selected' : '' }}>
+                            Perdagangan
                         </option>
                         <option value="Industri Kecil" {{ request('kategori') == 'Industri Kecil' ? 'selected' : '' }}>
                             Industri Kecil</option>
@@ -45,14 +106,10 @@
                         <input type="hidden" name="search" value="{{ request('search') }}">
                     @endif
                 </form>
-                @auth
-                    <a href="{{ route('binadesa.index') }}" class="btn btn-success ms-2">
-                        <i class="fas fa-plus me-1"></i> Tambahkan UMKM
-                    </a>
-                @endauth
             </div>
         </div>
     </div>
+
 
     <!-- UMKM List -->
     @if ($umkms->count() > 0)

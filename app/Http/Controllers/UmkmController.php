@@ -5,55 +5,72 @@ namespace App\Http\Controllers;
 use App\Models\Umkm;
 use App\Models\Media;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UmkmController extends Controller
 {
     // Menampilkan semua UMKM
     public function index(Request $request)
     {
-        $query = Umkm::with(['pemilik', 'media'])
-                    ->whereHas('pemilik');
+        try {
+            $query = Umkm::with(['pemilik', 'media'])
+                        ->whereHas('pemilik');
 
-        // Filter berdasarkan pencarian
-        if ($request->has('search') && $request->search != '') {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('nama_usaha', 'like', "%{$search}%")
-                  ->orWhere('deskripsi', 'like', "%{$search}%")
-                  ->orWhere('kategori', 'like', "%{$search}%")
-                  ->orWhereHas('pemilik', function($q) use ($search) {
-                      $q->where('nama', 'like', "%{$search}%");
-                  });
-            });
+            // Filter berdasarkan pencarian
+            if ($request->has('search') && $request->search != '') {
+                $search = $request->search;
+                $query->where(function($q) use ($search) {
+                    $q->where('nama_usaha', 'like', "%{$search}%")
+                      ->orWhere('deskripsi', 'like', "%{$search}%")
+                      ->orWhere('kategori', 'like', "%{$search}%")
+                      ->orWhereHas('pemilik', function($q) use ($search) {
+                          $q->where('nama', 'like', "%{$search}%");
+                      });
+                });
+            }
+
+            // Filter berdasarkan kategori
+            if ($request->has('kategori') && $request->kategori != '') {
+                $query->where('kategori', $request->kategori);
+            }
+
+            $umkms = $query->orderBy('nama_usaha', 'asc')->get();
+
+            // Debug: Uncomment baris berikut jika masih ada masalah
+            // dd($umkms);
+
+            return view('layout.users.index3', compact('umkms'));
+
+        } catch (\Exception $e) {
+            // Fallback jika ada error
+            $umkms = collect(); // empty collection
+            return view('layout.users.index3', compact('umkms'));
         }
-
-        // Filter berdasarkan kategori
-        if ($request->has('kategori') && $request->kategori != '') {
-            $query->where('kategori', $request->kategori);
-        }
-
-        $umkms = $query->orderBy('nama_usaha', 'asc')->get();
-
-        return view('Umkm.index', compact('umkms'));
     }
 
     // Menampilkan detail UMKM
     public function show($id)
     {
-        // Ambil data UMKM dari database berdasarkan ID
-        $umkm = Umkm::with(['pemilik', 'media'])
-                    ->where('umkm_id', $id)
-                    ->firstOrFail();
+        try {
+            // Ambil data UMKM dari database berdasarkan ID
+            $umkm = Umkm::with(['pemilik', 'media'])
+                        ->where('umkm_id', $id)
+                        ->firstOrFail();
 
-        // Ambil UMKM lainnya untuk rekomendasi
-        $umkmLainnya = Umkm::with(['pemilik', 'media'])
-                          ->where('umkm_id', '!=', $id)
-                          ->whereHas('pemilik')
-                          ->inRandomOrder()
-                          ->limit(4)
-                          ->get();
+            // Ambil UMKM lainnya untuk rekomendasi
+            $umkmLainnya = Umkm::with(['pemilik', 'media'])
+                              ->where('umkm_id', '!=', $id)
+                              ->whereHas('pemilik')
+                              ->inRandomOrder()
+                              ->limit(4)
+                              ->get();
 
-        return view('Umkm.show', compact('umkm', 'umkmLainnya'));
+            return view('Umkm.show', compact('umkm', 'umkmLainnya'));
+
+        } catch (\Exception $e) {
+            return redirect()->route('umkm.index')
+                ->with('error', 'UMKM tidak ditemukan.');
+        }
     }
 
     public function layanan()
@@ -65,6 +82,7 @@ class UmkmController extends Controller
     {
         return view('Umkm.about');
     }
+
     // Menampilkan halaman kontak
     public function kontak()
     {

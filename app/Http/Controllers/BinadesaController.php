@@ -84,7 +84,7 @@ class BinadesaController extends Controller
         $binadesa->load('media');
         return view('page.binadesa.edit', compact('binadesa', 'warga'));
     }
-    
+
     public function update(Request $request, Umkm $binadesa)
     {
         $validated = $request->validate([

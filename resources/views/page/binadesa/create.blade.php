@@ -1,4 +1,4 @@
-@extends('layout.dashboard.app')
+@extends('layout.guest.app')
 
 @section('content')
     <div class="container-fluid pt-4 px-4">

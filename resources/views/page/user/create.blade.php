@@ -1,4 +1,4 @@
-@extends('layout.dashboard.app')
+@extends('layout.guest.app')
 
 @section('content')
     <!-- Form Create User Start -->

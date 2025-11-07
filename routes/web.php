@@ -12,7 +12,8 @@ use App\Http\Controllers\DashboardController;
 
 // Routes untuk Guest UMKM (Public)
 Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');
-Route::get('/umkm/detail/{id}', [UmkmController::class, 'show'])->name('umkm.show');
+Route::get('/umkm', [UmkmController::class, 'index'])->name('umkm.index'); // TAMBAH INI
+Route::get('/umkm/{id}', [UmkmController::class, 'show'])->name('umkm.show'); // PERBAIKI INI
 
 // Routes untuk Layanan dan Kontak (Public)
 Route::get('/layanan', [UmkmController::class, 'layanan'])->name('layanan');
@@ -23,11 +24,9 @@ Route::post('/kirim-pesan', [UmkmController::class, 'kirimPesan'])->name('kirim.
 // Routes untuk Auth (Public)
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register'); // TAMBAH INI
-Route::post('/register', [AuthController::class, 'register'])->name('register.post'); // TAMBAH INI
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Route::resource('user', UserControllers::class);
 
 // Routes untuk admin (protected)
 Route::middleware(['auth'])->group(function () {
@@ -36,9 +35,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('binadesa', BinadesaController::class);
     Route::resource('warga', WargaController::class);
     Route::get('/api/warga', [WargaController::class, 'getWargaDropdown'])->name('api.warga');
-
-    // Routes untuk UMKM yang membutuhkan login (TAMBAH INI)
     Route::get('/binadesa/create', [BinadesaController::class, 'create'])->name('binadesa.create');
     Route::post('/binadesa', [BinadesaController::class, 'store'])->name('binadesa.store');
 });
-
