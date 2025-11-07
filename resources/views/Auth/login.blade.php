@@ -6,26 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login UMKM</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="{{ asset('assets-admin/css/font-awesome.min.css') }}" rel="stylesheet" />
+    @include('layout.users.css')
     <style>
+        /* Variabel dan Import Font - SAMA PERSIS dengan CSS utama */
         :root {
-            --color1: #9FE7E7;
-            --color2: #6ECBD3;
-            --color3: #E8F8FF;
-            --color4: #289FB7;
-            --color5: #146B8C;
-            --color6: #0F1A1B;
+            --white: #ffffff;
+            --black: #000000;
+            --primary1: #ffbe33;
+            --primary2: #222831;
+            --textCol: #1f1f1f;
         }
+
+        /* import fonts - font-family: 'Open Sans', sans-serif and font-family: 'Dancing Script', cursive; */
 
         body {
-            background: linear-gradient(135deg, var(--color1) 0%, var(--color2) 50%, var(--color4) 100%);
-            height: 100vh;
+            font-family: "Open Sans", sans-serif;
+            color: #0c0c0c;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
         }
 
+
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Styles khusus untuk login page */
         .login-container {
             position: relative;
             z-index: 1;
@@ -33,20 +43,20 @@
 
         .login-card {
             border: none;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(15, 26, 27, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            background-color: var(--color3);
+            background-color: var(--white);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .login-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(15, 26, 27, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
         .login-header {
-            background: linear-gradient(135deg, var(--color4) 0%, var(--color5) 100%);
+            background-color: var(--primary2);
             color: white;
             padding: 30px;
             text-align: center;
@@ -54,76 +64,68 @@
             overflow: hidden;
         }
 
-        .login-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-            transform: rotate(30deg);
-        }
-
         .login-header h2 {
             font-weight: 700;
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
+            font-size: 2.5rem;
         }
 
         .login-header p {
             opacity: 0.9;
             position: relative;
             z-index: 1;
+            margin-bottom: 0;
+            font-family: "Open Sans", sans-serif;
         }
 
         .card-body {
             padding: 30px;
-            background-color: var(--color3);
+            background-color: var(--white);
         }
 
         .form-label {
             font-weight: 600;
-            color: var(--color6);
+            color: var(--textCol);
             margin-bottom: 8px;
+            font-family: "Open Sans", sans-serif;
         }
 
         .form-control {
-            border-radius: 10px;
-            padding: 12px 15px;
-            border: 2px solid #e1e8ed;
+            border-radius: 25px;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
             transition: all 0.3s ease;
             background-color: white;
+            font-family: "Open Sans", sans-serif;
         }
 
         .form-control:focus {
-            border-color: var(--color4);
-            box-shadow: 0 0 0 0.2rem rgba(40, 159, 183, 0.25);
+            border-color: var(--primary1);
+            box-shadow: 0 0 0 0.2rem rgba(255, 190, 51, 0.25);
             background-color: white;
         }
 
+
         .btn-login {
-            background: linear-gradient(135deg, var(--color4) 0%, var(--color5) 100%);
+            display: inline-block;
+            padding: 12px 45px;
+            background-color: var(--primary1);
+            color: var(--white);
+            border-radius: 45px;
+            transition: all 0.3s;
             border: none;
-            border-radius: 10px;
-            padding: 12px;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-            color: white;
+            width: 100%;
+            font-family: "Open Sans", sans-serif;
         }
 
         .btn-login:hover {
+            background-color: #e6a500;
+            color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 159, 183, 0.4);
-            background: linear-gradient(135deg, var(--color5) 0%, var(--color4) 100%);
-            color: white;
-        }
-
-        .form-check-input:checked {
-            background-color: var(--color4);
-            border-color: var(--color4);
         }
 
         .alert-danger {
@@ -131,88 +133,34 @@
             border: 1px solid rgba(231, 76, 60, 0.2);
             border-radius: 10px;
             color: #c0392b;
+            font-family: "Open Sans", sans-serif;
         }
 
         .bg-light {
-            background-color: rgba(232, 248, 255, 0.7) !important;
+            background-color: #f8f9fa !important;
             border-radius: 10px;
-            border-left: 3px solid var(--color4);
+            border-left: 3px solid var(--primary1);
         }
 
         .text-decoration-none {
-            color: var(--color5);
+            color: var(--primary2);
             transition: color 0.3s ease;
             font-weight: 500;
+            font-family: "Open Sans", sans-serif;
         }
 
         .text-decoration-none:hover {
-            color: var(--color4);
+            color: var(--primary1);
         }
 
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
+        .form-check-input:checked {
+            background-color: var(--primary1);
+            border-color: var(--primary1);
         }
 
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 70%;
-            left: 80%;
-            animation-delay: -5s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            top: 40%;
-            left: 85%;
-            animation-delay: -10s;
-        }
-
-        .floating-element:nth-child(4) {
-            width: 100px;
-            height: 100px;
-            top: 80%;
-            left: 15%;
-            animation-delay: -7s;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-                opacity: 0.7;
-            }
-
-            100% {
-                transform: translateY(0) rotate(360deg);
-                opacity: 1;
-            }
+        /* Pastikan semua elemen menggunakan font yang benar */
+        p, span, small, div, ul, li, a, input, button, label {
+            font-family: "Open Sans", sans-serif;
         }
 
         @media (max-width: 768px) {
@@ -223,24 +171,21 @@
             .card-body {
                 padding: 20px;
             }
+
+            .login-header h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="floating-elements">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-    </div>
-
     <div class="container login-container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
                 <div class="card login-card">
                     <div class="login-header">
-                        <h2><i class="fas fa-user-circle me-2"></i>Login UMKM Desa</h2>
+                        <h2>Login UMKM Desa</h2>
                         <p class="mb-0">Masuk ke akun UMKM Anda</p>
                     </div>
                     <div class="card-body p-4">
@@ -262,7 +207,7 @@
                                     <i class="fas fa-envelope me-2"></i>Email
                                 </label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    value="{{ old('email') }}" placeholder="contoh: umkm@desa.id" required>
+                                    value="{{ old('email') }}" placeholder="Email" required>
                             </div>
 
                             <div class="mb-3">
@@ -270,7 +215,7 @@
                                     <i class="fas fa-lock me-2"></i>Password
                                 </label>
                                 <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Masukkan password" required>
+                                    placeholder="Password" required>
                             </div>
 
                             <div class="text-center mt-3">
@@ -278,7 +223,7 @@
                                         class="text-decoration-none">Daftar di sini</a></p>
                             </div>
 
-                            <button type="submit" class="btn btn-login w-100 py-2">
+                            <button type="submit" class="btn-login w-100 py-2">
                                 <i class="fas fa-sign-in-alt me-2"></i>Login
                             </button>
                         </form>
@@ -287,14 +232,6 @@
                             <a href="/" class="text-decoration-none">
                                 <i class="fas fa-arrow-left me-2"></i>Kembali ke Halaman UMKM
                             </a>
-                        </div>
-
-                        <!-- Contoh email untuk testing -->
-                        <div class="mt-3 p-2 bg-light rounded">
-                            <small class="text-muted">
-                                <i class="fas fa-lightbulb me-2"></i>
-                                Contoh email: <strong>umkm@desa.id</strong> - Password: minimal 6 karakter
-                            </small>
                         </div>
                     </div>
                 </div>

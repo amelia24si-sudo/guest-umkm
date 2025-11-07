@@ -1,4 +1,4 @@
-@extends('layout.guest.app')
+@extends('layout.users.index')
 
 @section('content')
     <!-- Sale & Revenue Start -->
@@ -194,6 +194,5 @@
             </small>
         </div>
     </div>
-
     <!-- UMKM Card View End -->
 @endsection

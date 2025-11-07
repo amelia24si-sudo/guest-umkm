@@ -13,40 +13,93 @@
               </button>
 
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav  mx-auto ">
-                      <li class="nav-item active">
-                          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  <ul class="navbar-nav mx-auto">
+                      <li class="nav-item">
+                          <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Beranda</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="menu.html">Menu</a>
+                          <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">Tentang</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="about.html">About</a>
+                          <a class="nav-link {{ request()->is('layanan') ? 'active' : '' }}"
+                              href="{{ route('layanan') }}">Layanan</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="book.html">Book Table</a>
+                          <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}"
+                              href="{{ route('kontak') }}">Kontak</a>
                       </li>
+                      <li class="nav-item">
+                          <a class="nav-link {{ request()->is('umkm') ? 'active' : '' }}"
+                              href="{{ route('umkm') }}">umkm</a>
+                      </li>
+                      @auth
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="tambahUmkmDropdown" role="button"
+                                  data-toggle="dropdown" aria-expanded="false">
+                                  Tambah Data
+                              </a>
+                              <ul class="dropdown-menu" aria-labelledby="tambahUmkmDropdown">
+                                  <li>
+                                      <a class="dropdown-item" href="{{ route('binadesa.index') }}">
+                                          <i class="fa fa-store me-2"></i>Tambah UMKM
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <hr class="dropdown-divider">
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item" href="{{ route('users.index') }}">
+                                          <i class="fa fa-users me-2"></i>Kelola User
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item" href="{{ route('warga.index') }}">
+                                          <i class="fa fa-user-friends me-2"></i>Kelola Warga
+                                      </a>
+                                  </li>
+                              </ul>
+                          </li>
+                      @endauth
                   </ul>
+
                   <div class="user_option">
-                      <a href="" class="user_link">
-                          <i class="fa fa-user" aria-hidden="true"></i>
-                      </a>
-                      <a class="cart_link" href="#">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                              stroke-width="2">
-                              <circle cx="9" cy="21" r="1"></circle>
-                              <circle cx="20" cy="21" r="1"></circle>
-                              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                          </svg>
-                      </a>
-                      <form class="form-inline">
-                          <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                              <i class="fa fa-search" aria-hidden="true"></i>
+                      <!-- Dropdown Akun -->
+                      <div class="nav-item dropdown user_dropdown">
+                          <button class="btn btn-dropdown dropdown-toggle user_dropdown_toggle" type="button"
+                              id="akunDropdown" data-toggle="dropdown" aria-expanded="false">
+                              Daftar UMKM
+                             <i class="fas fa-user ml-2"></i>
                           </button>
-                      </form>
-                      <a href="" class="order_online">
-                          Order Online
-                      </a>
+                          <ul class="dropdown-menu user_dropdown_menu" aria-labelledby="akunDropdown">
+                              @auth
+                                  <li class="dropdown-header">
+                                      <small>Halo, {{ Auth::user()->name }}</small>
+                                  </li>
+                                  <li>
+                                      <hr class="dropdown-divider">
+                                  </li>
+                                  <li>
+                                      <form method="POST" action="{{ route('logout') }}">
+                                          @csrf
+                                          <button type="submit" class="dropdown-item border-0 bg-transparent">
+                                              <i class="fas fa-sign-in-alt me-2"></i>Log Out
+                                          </button>
+                                      </form>
+                                  </li>
+                              @else
+                                  <li>
+                                      <a class="dropdown-item" href="/login">
+                                          <i class="fas fa-sign-in-alt me-2"></i>Login
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item" href="/register">
+                                          <i class="fas fa-sign-in-alt me-2"></i>Daftar
+                                      </a>
+                                  </li>
+                              @endauth
+                          </ul>
+                      </div>
                   </div>
               </div>
           </nav>

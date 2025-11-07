@@ -6,7 +6,7 @@
                     <div class="col-md-6  ">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="{{ asset('assets-admin/img/o1.jpg') }}" alt="">
+                                <img src="{{ asset('assets-admin/img/traditional-japanese-food-court.jpg') }}" alt="">
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -22,13 +22,7 @@
                                 {{ $kategoriTerbanyak ?? 'Belum ada data' }}</span>
                                 </h6>
                                 <a href="">
-                                    Daftar <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2">
-                                        <circle cx="9" cy="21" r="1"></circle>
-                                        <circle cx="20" cy="21" r="1"></circle>
-                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                        </path>
-                                    </svg>
+                                    Daftar <i class="fas fa-user ml-2"></i>
                                 </a>
                             </div>
                         </div>
@@ -36,7 +30,7 @@
                     <div class="col-md-6  ">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="{{ asset('assets-admin/img/o2.jpg') }}" alt="">
+                                <img src="{{ asset('assets-admin/img/sales-assistant-handing-out-shopping-bag-customer.jpg') }}" alt="">
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -46,13 +40,7 @@
                                     <span>{{ \App\Models\Umkm::count() }}</span>
                                 </h6>
                                 <a href="">
-                                    Daftar <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2">
-                                        <circle cx="9" cy="21" r="1"></circle>
-                                        <circle cx="20" cy="21" r="1"></circle>
-                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                        </path>
-                                    </svg>
+                                    Daftar <i class="fas fa-user ml-2"></i>
                                 </a>
                             </div>
                         </div>

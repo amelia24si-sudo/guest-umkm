@@ -39,12 +39,12 @@ class UmkmController extends Controller
             // Debug: Uncomment baris berikut jika masih ada masalah
             // dd($umkms);
 
-            return view('layout.users.index3', compact('umkms'));
+            return view('layout.users.app', compact('umkms'));
 
         } catch (\Exception $e) {
             // Fallback jika ada error
             $umkms = collect(); // empty collection
-            return view('layout.users.index3', compact('umkms'));
+            return view('layout.users.app', compact('umkms'));
         }
     }
 
@@ -75,18 +75,23 @@ class UmkmController extends Controller
 
     public function layanan()
     {
-        return view('Umkm.layanan');
+        return view('layout.layanan.app');
     }
 
     public function about()
     {
-        return view('Umkm.about');
+        return view('layout.about.app');
     }
 
     // Menampilkan halaman kontak
     public function kontak()
     {
-        return view('Umkm.kontak');
+        return view('layout.kontak.app');
+    }
+
+    public function umkm()
+    {
+        return view('layout.umkm.app');
     }
 
     // Proses form kontak

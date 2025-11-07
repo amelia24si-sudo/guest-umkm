@@ -9,12 +9,12 @@
                                 <h1>
                                     BinaDesa
                                 </h1>
-                                <p>
+                                <p >
                                     UMKM Bina Desa adalah platform yang didedikasikan untuk memberdayakan
                                     Usaha Mikro, Kecil, dan Menengah (UMKM) di pedesaan Indonesia.
                                 </p>
                                 <div class="btn-box">
-                                    <a href="" class="btn1">
+                                    <a href="/register" class="btn1">
                                         Regis Sekarang
                                     </a>
                                 </div>
@@ -37,7 +37,7 @@
                                     UMKM desa dapat menjadi penggerak utama perekonomian lokal.
                                 </p>
                                 <div class="btn-box">
-                                    <a href="" class="btn1">
+                                    <a href="/register" class="btn1">
                                         Regis Sekarang
                                     </a>
                                 </div>
@@ -60,7 +60,7 @@
                                     digitalisasi dan pendampingan berkelanjutan.
                                 </p>
                                 <div class="btn-box">
-                                    <a href="" class="btn1">
+                                    <a href="/register" class="btn1">
                                         Regis Sekarang
                                     </a>
                                 </div>

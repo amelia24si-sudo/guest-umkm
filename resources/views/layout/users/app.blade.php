@@ -24,7 +24,7 @@
 
     <div class="hero_area">
         <div class="bg-box">
-            <img src="{{ asset('assets-admin/img/hero-bg.jpg') }}" alt="">
+            <img src="{{ asset('assets-admin/img/portrait-person-working-dried-flowers-shop.jpg') }}" alt="">
         </div>
         {{-- STAR HEADER --}}
         @include('layout.users.header')

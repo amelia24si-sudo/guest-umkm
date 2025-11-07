@@ -2,7 +2,7 @@
     <div class="container">
         <div class="heading_container">
             <h2>
-                Book A Table
+                Contact Us
             </h2>
         </div>
         <div class="row">

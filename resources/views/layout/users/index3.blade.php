@@ -7,309 +7,86 @@
          </div>
 
          <ul class="filters_menu">
-             <li class="active" data-filter="*">All</li>
-             <li data-filter=".burger">Burger</li>
-             <li data-filter=".pizza">Pizza</li>
-             <li data-filter=".pasta">Pasta</li>
-             <li data-filter=".fries">Fries</li>
+             <li class="active" data-filter="*">Semua</li>
+             <li data-filter=".makanan-minuman">Makanan & Minuman</li>
+             <li data-filter=".kerajinan-tangan">Kerajinan Tangan</li>
+             <li data-filter=".pertanian">Pertanian</li>
+             <li data-filter=".peternakan">Peternakan</li>
+             <li data-filter=".jasa">Jasa</li>
+             <li data-filter=".perdagangan">Perdagangan</li>
+             <li data-filter=".industri-kecil">Industri Kecil</li>
+             <li data-filter=".lainnya">Lainnya</li>
          </ul>
 
          <div class="filters-content">
-             <div class="row grid">
-                 <div class="col-sm-6 col-lg-4 all pizza">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f1.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     Delicious Pizza
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $20
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
+             <!-- Daftar UMKM -->
+             @if ($umkms->count() > 0)
+                 <div class="row grid">
+                     @foreach ($umkms as $umkm)
+                         @php
+                             // Map kategori ke class filter
+                             $filterClass = match ($umkm->kategori) {
+                                 'Makanan & Minuman' => 'makanan-minuman',
+                                 'Kerajinan Tangan' => 'kerajinan-tangan',
+                                 'Pertanian' => 'pertanian',
+                                 'Peternakan' => 'peternakan',
+                                 'Jasa' => 'jasa',
+                                 'Perdagangan' => 'perdagangan',
+                                 'Industri Kecil' => 'industri-kecil',
+                                 default => 'lainnya',
+                             };
+                         @endphp
+
+                         <div class="col-sm-6 col-lg-4 all {{ $filterClass }}">
+                             <div class="box">
+                                 <div>
+                                     <div class="img-box">
+                                         @if ($umkm->media->count() > 0)
+                                             <img src="{{ asset('storage/' . $umkm->media->first()->file_url) }}"
+                                                 alt="{{ $umkm->nama_usaha }}">
+                                         @else
+                                             <div class="bg-light d-flex align-items-center justify-content-center"
+                                                 style="height: 200px; width: 100%;">
+                                                 <span class="text-muted">Tidak ada gambar</span>
+                                             </div>
+                                         @endif
+                                     </div>
+                                     <div class="detail-box">
+                                         <h5>
+                                             {{ $umkm->nama_usaha }}
+                                         </h5>
+                                         <p>
+                                             <strong>Pemilik:</strong> {{ $umkm->pemilik->nama }}<br>
+                                             <strong>Kategori:</strong> {{ $umkm->kategori }}<br>
+                                             <strong>Kontak:</strong> {{ $umkm->kontak }}
+                                         </p>
+                                         <p class="small text-muted">
+                                             {{ $umkm->deskripsi ? Str::limit($umkm->deskripsi, 100) : 'Tidak ada deskripsi' }}
+                                         </p>
+                                         <div class="options">
+                                             <h6>
+                                                 {{ $umkm->kategori }}
+                                             </h6>
+                                             <a href="{{ route('umkm.show', $umkm->umkm_id) }}" class="view-icon">
+                                                <i class="fas fa-eye"></i>
+                                             </a>
+                                         </div>
+                                     </div>
                                  </div>
                              </div>
                          </div>
-                     </div>
+                     @endforeach
                  </div>
-                 <div class="col-sm-6 col-lg-4 all burger">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f2.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     Delicious Burger
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $15
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
-                                 </div>
-                             </div>
+             @else
+                 <div class="row">
+                     <div class="col-12">
+                         <div class="alert alert-info text-center">
+                             <h5>Tidak ada UMKM yang ditemukan</h5>
+                             <p class="mb-0">Belum ada data UMKM yang terdaftar di sistem.</p>
                          </div>
                      </div>
                  </div>
-                 <div class="col-sm-6 col-lg-4 all pizza">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f3.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     Delicious Pizza
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $17
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-sm-6 col-lg-4 all pasta">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f4.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     Delicious Pasta
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $18
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-sm-6 col-lg-4 all fries">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f5.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     French Fries
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $10
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-sm-6 col-lg-4 all pizza">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f6.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     Delicious Pizza
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $15
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-sm-6 col-lg-4 all burger">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f7.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     Tasty Burger
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $12
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-sm-6 col-lg-4 all burger">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f8.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     Tasty Burger
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $14
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-sm-6 col-lg-4 all pasta">
-                     <div class="box">
-                         <div>
-                             <div class="img-box">
-                                 <img src="{{ asset('assets-admin/img/f9.png') }}" alt="">
-                             </div>
-                             <div class="detail-box">
-                                 <h5>
-                                     Delicious Pasta
-                                 </h5>
-                                 <p>
-                                     Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                     voluptatem repellendus sed eaque
-                                 </p>
-                                 <div class="options">
-                                     <h6>
-                                         $10
-                                     </h6>
-                                     <a href="">
-                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                             stroke="currentColor" stroke-width="2">
-                                             <circle cx="9" cy="21" r="1"></circle>
-                                             <circle cx="20" cy="21" r="1"></circle>
-                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                             </path>
-                                         </svg>
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+             @endif
+
          </div>
-         <div class="btn-box">
-             <a href="">
-                 View More
-             </a>
-         </div>
-     </div>
  </section>
