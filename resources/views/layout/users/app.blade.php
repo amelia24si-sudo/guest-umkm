@@ -46,7 +46,7 @@
 
     @include('layout.users.index5')
 
-    @include('layout.users.index6')
+    {{-- @include('layout.users.index6') --}}
 
     {{-- END CONTENT --}}
 
