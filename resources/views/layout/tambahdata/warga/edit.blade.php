@@ -15,30 +15,32 @@
 
     <title> BinaDesa </title>
 
+
     {{-- START CSS --}}
     @include('layout.users.css')
     {{-- END CSS --}}
 </head>
 
 <body class="sub_page">
-
     <div class="hero_area">
         <div class="bg-box">
             <img src="{{ asset('assets-admin/img/portrait-person-working-dried-flowers-shop.jpg') }}" alt="">
         </div>
+        <!-- Floating WhatsApp Button -->
+        @include('layout.users.wa')
         {{-- STAR HEADER --}}
         @include('layout.users.header')
-        {{-- END HEADER --}}
     </div>
-    @yield('content')
-    {{-- START FOOTER --}}
-    @include('layout.users.footer')
-    {{-- END FOOTER --}}
 
-    {{-- START JS --}}
+    @include('page.warga.edit')
+    <br>
+    @include('layout.users.footer')
+    <!-- footer section -->
+
     <!-- jQery -->
-    @include('layout.users.js')
-    {{-- END JS --}}
+    @include('layout.users.js1')
+    @include('layout.users.js2')
+
 </body>
 
 </html>

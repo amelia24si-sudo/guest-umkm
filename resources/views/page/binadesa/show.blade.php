@@ -1,41 +1,39 @@
-@extends('layout.guest.app')
-
-@section('content')
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-light rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
+<section class="container-fluid pt-4 px-4">
+    <section class="bg-light rounded p-4">
+        <section class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Detail UMKM/Binadesa</h6>
-            <div>
+            <section>
                 <a href="{{ route('binadesa.edit', $binadesa) }}" class="btn btn-primary">
                     <i class="fa fa-edit me-2"></i>Edit
                 </a>
                 <form action="{{ route('binadesa.destroy', $binadesa) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?')">
+                    <button type="submit" class="btn btn-primary"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?')">
                         <i class="fa fa-trash me-2"></i>Hapus
                     </button>
                 </form>
                 <a href="{{ route('binadesa.index') }}" class="btn btn-primary">
                     <i class="fa fa-arrow-left me-2"></i>Kembali
                 </a>
-            </div>
-        </div>
+            </section>
+        </section>
 
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @if (session('success'))
+            <section class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            </section>
         @endif
 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
+        <section class="row">
+            <section class="col-md-8">
+                <section class="card mb-4">
+                    <section class="card-header bg-primary text-white">
                         <h6 class="mb-0">Informasi UMKM</h6>
-                    </div>
-                    <div class="card-body">
+                    </section>
+                    <section class="card-body">
                         <table class="table table-borderless">
                             <tr>
                                 <td width="30%"><strong>Nama Usaha</strong></td>
@@ -45,7 +43,7 @@
                                 <td><strong>Pemilik</strong></td>
                                 <td>
                                     {{ $binadesa->pemilik->nama }}
-                                    @if($binadesa->pemilik->no_ktp)
+                                    @if ($binadesa->pemilik->no_ktp)
                                         <br><small class="text-muted">NIK: {{ $binadesa->pemilik->no_ktp }}</small>
                                     @endif
                                 </td>
@@ -77,35 +75,34 @@
                                 <td>{{ $binadesa->updated_at->format('d F Y H:i') }}</td>
                             </tr>
                         </table>
-                    </div>
-                </div>
-            </div>
+                    </section>
+                </section>
+            </section>
 
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-header bg-success text-white">
+            <section class="col-md-4">
+                <section class="card mb-4">
+                    <section class="card-header bg-success text-white">
                         <h6 class="mb-0">Logo Usaha</h6>
-                    </div>
-                    <div class="card-body text-center">
-                        @if($binadesa->media->count() > 0)
+                    </section>
+                    <section class="card-body text-center">
+                        @if ($binadesa->media->count() > 0)
                             <img src="{{ asset('storage/' . $binadesa->media->first()->file_url) }}"
-                                 alt="Logo {{ $binadesa->nama_usaha }}"
-                                 style="max-width: 100%; max-height: 200px;"
-                                 class="img-fluid rounded">
+                                alt="Logo {{ $binadesa->nama_usaha }}" style="max-width: 100%; max-height: 200px;"
+                                class="img-fluid rounded">
                         @else
-                            <div class="text-muted">
+                            <section class="text-muted">
                                 <i class="fa fa-image fa-3x mb-2"></i>
                                 <p>Tidak ada logo</p>
-                            </div>
+                            </section>
                         @endif
-                    </div>
-                </div>
+                    </section>
+                </section>
 
-                <div class="card">
-                    <div class="card-header bg-info text-white">
+                <section class="card">
+                    <section class="card-header bg-info text-white">
                         <h6 class="mb-0">Informasi Pemilik</h6>
-                    </div>
-                    <div class="card-body">
+                    </section>
+                    <section class="card-body">
                         <table class="table table-sm table-borderless">
                             <tr>
                                 <td><strong>Nama</strong></td>
@@ -114,7 +111,7 @@
                             <tr>
                                 <td><strong>Jenis Kelamin</strong></td>
                                 <td>
-                                    @if($binadesa->pemilik->jenis_kelamin == 'L')
+                                    @if ($binadesa->pemilik->jenis_kelamin == 'L')
                                         <span class="badge bg-primary">Laki-laki</span>
                                     @else
                                         <span class="badge bg-success">Perempuan</span>
@@ -138,10 +135,9 @@
                                 <td>{{ $binadesa->alamat }}, RT {{ $binadesa->rt }}/RW {{ $binadesa->rw }}</td>
                             </tr>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>

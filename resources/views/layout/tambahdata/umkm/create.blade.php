@@ -15,12 +15,13 @@
 
     <title> BinaDesa </title>
 
+
     {{-- START CSS --}}
     @include('layout.users.css')
     {{-- END CSS --}}
 </head>
 
-<body>
+<body class="sub_page">
 
     <div class="hero_area">
         <div class="bg-box">
@@ -30,34 +31,18 @@
         @include('layout.users.wa')
         {{-- STAR HEADER --}}
         @include('layout.users.header')
-        {{-- END HEADER --}}
-
-        <!-- slider section -->
-
-        {{-- START CONTENT --}}
-        @include('layout.users.index1')
     </div>
+    @include('page.binadesa.create')
 
-    @include('layout.users.index2')
+    <br>
 
-    @include('layout.users.index3')
-
-    @include('layout.users.index4')
-
-    @include('layout.users.index5')
-
-    @include('layout.users.index6')
-
-    {{-- END CONTENT --}}
-
-    {{-- START FOOTER --}}
     @include('layout.users.footer')
-    {{-- END FOOTER --}}
+    <!-- footer section -->
 
-    {{-- START JS --}}
     <!-- jQery -->
     @include('layout.users.js1')
-    {{-- END JS --}}
+    @include('layout.users.js2')
+
 </body>
 
 </html>

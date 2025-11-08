@@ -1,27 +1,24 @@
-@extends('layout.guest.app')
-
-@section('content')
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-light rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
+<section class="container-fluid pt-4 px-4">
+    <section class="bg-light rounded p-4">
+        <section class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Detail Data Warga</h6>
-            <div>
+            <section>
                 <a href="{{ route('warga.edit', $warga) }}" class="btn btn-primary">
                     <i class="fa fa-edit me-2"></i>Edit
                 </a>
                 <a href="{{ route('warga.index') }}" class="btn btn-primary">
                     <i class="fa fa-arrow-left me-2"></i>Kembali
                 </a>
-            </div>
-        </div>
+            </section>
+        </section>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
+        <section class="row">
+            <section class="col-md-6">
+                <section class="card mb-4">
+                    <section class="card-header bg-primary text-white">
                         <h6 class="mb-0">Data Pribadi</h6>
-                    </div>
-                    <div class="card-body">
+                    </section>
+                    <section class="card-body">
                         <table class="table table-borderless">
                             <tr>
                                 <td width="30%"><strong>NIK</strong></td>
@@ -34,7 +31,7 @@
                             <tr>
                                 <td><strong>Jenis Kelamin</strong></td>
                                 <td>
-                                    @if($warga->jenis_kelamin == 'L')
+                                    @if ($warga->jenis_kelamin == 'L')
                                         Laki-laki
                                     @else
                                         Perempuan
@@ -50,16 +47,16 @@
                                 <td>{{ $warga->pekerjaan }}</td>
                             </tr>
                         </table>
-                    </div>
-                </div>
-            </div>
+                    </section>
+                </section>
+            </section>
 
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="card-header bg-success text-white">
+            <section class="col-md-6">
+                <section class="card mb-4">
+                    <section class="card-header bg-success text-white">
                         <h6 class="mb-0">Kontak & Alamat</h6>
-                    </div>
-                    <div class="card-body">
+                    </section>
+                    <section class="card-body">
                         <table class="table table-borderless">
                             <tr>
                                 <td width="30%"><strong>Telepon</strong></td>
@@ -78,19 +75,19 @@
                                 <td>{{ $warga->rt }}/{{ $warga->rw }}</td>
                             </tr>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </section>
+                </section>
+            </section>
+        </section>
 
         <!-- Data UMKM yang dimiliki -->
-        <div class="card">
-            <div class="card-header bg-info text-white">
+        <section class="card">
+            <section class="card-header bg-info text-white">
                 <h6 class="mb-0">UMKM yang Dimiliki</h6>
-            </div>
-            <div class="card-body">
-                @if($warga->umkm->count() > 0)
-                    <div class="table-responsive">
+            </section>
+            <section class="card-body">
+                @if ($warga->umkm->count() > 0)
+                    <section class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -101,22 +98,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($warga->umkm as $umkm)
-                                <tr>
-                                    <td>{{ $umkm->nama_usaha }}</td>
-                                    <td>{{ $umkm->kategori }}</td>
-                                    <td>{{ $umkm->kontak }}</td>
-                                    <td>{{ $umkm->alamat }}, RT {{ $umkm->rt }}/RW {{ $umkm->rw }}</td>
-                                </tr>
+                                @foreach ($warga->umkm as $umkm)
+                                    <tr>
+                                        <td>{{ $umkm->nama_usaha }}</td>
+                                        <td>{{ $umkm->kategori }}</td>
+                                        <td>{{ $umkm->kontak }}</td>
+                                        <td>{{ $umkm->alamat }}, RT {{ $umkm->rt }}/RW {{ $umkm->rw }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
+                    </section>
                 @else
                     <p class="text-muted mb-0">Warga ini belum memiliki UMKM.</p>
                 @endif
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+            </section>
+        </section>
+    </section>
+</section>

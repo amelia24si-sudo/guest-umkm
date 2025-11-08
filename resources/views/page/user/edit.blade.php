@@ -1,77 +1,72 @@
-@extends('layout.guest.app')
-
-@section('content')
-<!-- Form Edit User Start -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-light text-center rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
+<section class="container-fluid pt-4 px-4">
+    <section class="bg-light text-center rounded p-4">
+        <section class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Edit User</h6>
             <a href="{{ route('users.index') }}" class="btn btn-primary">
                 <i class="fa fa-arrow-left me-2"></i>Kembali
             </a>
-        </div>
+        </section>
 
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-xl-8">
-                <div class="bg-light rounded h-100 p-4">
+        <section class="row justify-content-center">
+            <section class="col-sm-12 col-xl-8">
+                <section class="bg-light rounded h-100 p-4">
                     <form action="{{ route('users.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="name" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+                        <section class="row mb-3">
+                            <section class="col-md-6">
+                                <label for="name" class="form-label">Nama Lengkap <span
+                                        class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                       id="name" name="name" value="{{ old('name', $user->name) }}" required
-                                       placeholder="Masukkan nama lengkap">
+                                    id="name" name="name" value="{{ old('name', $user->name) }}" required
+                                    placeholder="Masukkan nama lengkap">
                                 @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <section class="invalid-feedback">{{ $message }}</section>
                                 @enderror
-                            </div>
+                            </section>
 
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                            <section class="col-md-6">
+                                <label for="email" class="form-label">Email <span
+                                        class="text-danger">*</span></label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                       id="email" name="email" value="{{ old('email', $user->email) }}" required
-                                       placeholder="Masukkan email">
+                                    id="email" name="email" value="{{ old('email', $user->email) }}" required
+                                    placeholder="Masukkan email">
                                 @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <section class="invalid-feedback">{{ $message }}</section>
                                 @enderror
-                            </div>
-                        </div>
+                            </section>
+                        </section>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
+                        <section class="row mb-3">
+                            <section class="col-md-6">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                       id="password" name="password"
-                                       placeholder="Kosongkan jika tidak ingin mengubah">
-                                <small class="form-text text-muted">Biarkan kosong jika tidak ingin mengubah password</small>
+                                    id="password" name="password" placeholder="Kosongkan jika tidak ingin mengubah">
+                                <small class="form-text text-muted">Biarkan kosong jika tidak ingin mengubah
+                                    password</small>
                                 @error('password')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <section class="invalid-feedback">{{ $message }}</section>
                                 @enderror
-                            </div>
+                            </section>
 
-                            <div class="col-md-6">
+                            <section class="col-md-6">
                                 <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                                <input type="password" class="form-control"
-                                       id="password_confirmation" name="password_confirmation"
-                                       placeholder="Konfirmasi password">
-                            </div>
-                        </div>
+                                <input type="password" class="form-control" id="password_confirmation"
+                                    name="password_confirmation" placeholder="Konfirmasi password">
+                            </section>
+                        </section>
 
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <section class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save me-2"></i>Update User
                             </button>
                             <a href="{{ route('users.index') }}" class="btn btn-secondary">
                                 <i class="fa fa-times me-2"></i>Batal
                             </a>
-                        </div>
+                        </section>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Form Edit User End -->
-@endsection
+                </section>
+            </section>
+        </section>
+    </section>
+</section>

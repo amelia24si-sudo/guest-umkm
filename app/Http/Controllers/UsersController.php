@@ -12,12 +12,12 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('page.user.index', compact('users'));
+        return view('layout.tambahdata.user.index', compact('users'));
     }
 
     public function create()
     {
-        return view('page.user.create');
+        return view('layout.tambahdata.user.create');
     }
 
     public function store(Request $request)
@@ -46,12 +46,12 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('page.user.show', compact('user'));
+        return view('layout.tambahdata.user.show', compact('user'));
     }
 
     public function edit(User $user)
     {
-        return view('page.user.edit', compact('user'));
+        return view('layout.tambahdata.user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)

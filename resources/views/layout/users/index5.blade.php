@@ -12,7 +12,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="nama" class="form-label fw-bold">Nama Lengkap *</label>
+                            <label for="nama" class="form-label fw-bold">Nama Lengkap </label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                 id="nama" name="nama" value="{{ old('nama') }}" required
                                 placeholder="Nama Lengkap">
@@ -21,7 +21,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label fw-bold">Email *</label>
+                            <label for="email" class="form-label fw-bold">Email </label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                 id="email" name="email" value="{{ old('email') }}" required
                                 placeholder="Email">
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="subjek" class="form-label fw-bold">Subjek *</label>
+                        <label for="subjek" class="form-label fw-bold">Subjek </label>
                         <input type="text" class="form-control @error('subjek') is-invalid @enderror" id="subjek"
                             name="subjek" value="{{ old('subjek') }}" required
                             placeholder="Subject">
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="pesan" class="form-label fw-bold">Pesan *</label>
+                        <label for="pesan" class="form-label fw-bold">Pesan </label>
                         <textarea class="form-control @error('pesan') is-invalid @enderror" id="pesan" name="pesan" rows="6"
                             required placeholder="Pesan">{{ old('pesan') }}</textarea>
                         @error('pesan')
@@ -54,7 +54,7 @@
                         <button type="submit" class="btn1">
                             <i class="fas fa-paper-plane me-2"></i>Kirim Pesan
                         </button>
-
+                        &nbsp;
                         <button type="submit" class="btn1">
                             <a href="https://wa.me/6281234567890?text=Halo%20UMKM%20Desa%2C%20saya%20ingin%20bertanya%20tentang%3A%0A%0A"
                                  target="_blank">

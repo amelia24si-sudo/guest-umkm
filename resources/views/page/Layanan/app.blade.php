@@ -27,16 +27,17 @@
         <div class="bg-box">
             <img src="{{ asset('assets-admin/img/portrait-person-working-dried-flowers-shop.jpg') }}" alt="">
         </div>
-        <!-- header section strats -->
+        <!-- Floating WhatsApp Button -->
+        @include('layout.users.wa')
+        {{-- STAR HEADER --}}
         @include('layout.users.header')
-        <!-- end header section -->
     </div>
 
     <section class="hero_section layout_padding">
         <div class="container">
-        <h2>Layanan UMKM Desa Kita</h2>
-        <p >Berbagai layanan yang kami sediakan untuk mendukung perkembangan UMKM desa</p>
-    </div>
+            <h2>Layanan UMKM Desa Kita</h2>
+            <p>Berbagai layanan yang kami sediakan untuk mendukung perkembangan UMKM desa</p>
+        </div>
     </section>
 
     <!-- Layanan Utama -->
@@ -209,7 +210,7 @@
     <!-- footer section -->
 
     <!-- jQery -->
-    @include('layout.users.js')
+    @include('layout.users.js1')
 
 </body>
 

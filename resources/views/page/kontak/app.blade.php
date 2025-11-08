@@ -27,10 +27,18 @@
         <div class="bg-box">
             <img src="{{ asset('assets-admin/img/portrait-person-working-dried-flowers-shop.jpg') }}" alt="">
         </div>
-        <!-- header section strats -->
+        <!-- Floating WhatsApp Button -->
+        @include('layout.users.wa')
+        {{-- STAR HEADER --}}
         @include('layout.users.header')
-        <!-- end header section -->
     </div>
+    @if (session('success'))
+        <section class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </section>
+    @endif
+
     <section class="book_section layout_padding">
         <div class="container">
             <div class="heading_container">
@@ -110,7 +118,7 @@
     <!-- footer section -->
 
     <!-- jQery -->
-    @include('layout.users.js')
+    @include('layout.users.js1')
 
 </body>
 

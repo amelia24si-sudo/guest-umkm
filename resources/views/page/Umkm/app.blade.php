@@ -15,7 +15,6 @@
 
     <title> BinaDesa </title>
 
-
     {{-- START CSS --}}
     @include('layout.users.css')
     {{-- END CSS --}}
@@ -26,19 +25,20 @@
         <div class="bg-box">
             <img src="{{ asset('assets-admin/img/portrait-person-working-dried-flowers-shop.jpg') }}" alt="">
         </div>
-        <!-- header section strats -->
+        <!-- Floating WhatsApp Button -->
+        @include('layout.users.wa')
+
+        {{-- STAR HEADER --}}
         @include('layout.users.header')
-        <!-- end header section -->
     </div>
 
     <section class="food_section layout_padding-bottom">
         <div class="container">
             <div class="heading_container heading_center">
-                <h2>
-                    UMKM Kami
-                </h2>
+                <h2>UMKM Kami</h2>
             </div>
 
+            {{-- Filter Menu --}}
             <ul class="filters_menu">
                 <li class="active" data-filter="*">Semua</li>
                 <li data-filter=".makanan-minuman">Makanan & Minuman</li>
@@ -52,12 +52,11 @@
             </ul>
 
             <div class="filters-content">
-                <!-- Daftar UMKM -->
                 @if ($umkms->count() > 0)
                     <div class="row grid">
                         @foreach ($umkms as $umkm)
                             @php
-                                // Map kategori ke class filter
+                                // Map kategori ke class filter untuk isotope
                                 $filterClass = match ($umkm->kategori) {
                                     'Makanan & Minuman' => 'makanan-minuman',
                                     'Kerajinan Tangan' => 'kerajinan-tangan',
@@ -76,7 +75,7 @@
                                         <div class="img-box">
                                             @if ($umkm->media->count() > 0)
                                                 <img src="{{ asset('storage/' . $umkm->media->first()->file_url) }}"
-                                                    alt="{{ $umkm->nama_usaha }}">
+                                                    alt="{{ $umkm->nama_usaha }}" style="height: 200px; object-fit: cover; width: 100%;">
                                             @else
                                                 <div class="bg-light d-flex align-items-center justify-content-center"
                                                     style="height: 200px; width: 100%;">
@@ -85,11 +84,9 @@
                                             @endif
                                         </div>
                                         <div class="detail-box">
-                                            <h5>
-                                                {{ $umkm->nama_usaha }}
-                                            </h5>
+                                            <h5>{{ $umkm->nama_usaha }}</h5>
                                             <p>
-                                                <strong>Pemilik:</strong> {{ $umkm->pemilik->nama }}<br>
+                                                <strong>Pemilik:</strong> {{ $umkm->pemilik->nama ?? 'Tidak diketahui' }}<br>
                                                 <strong>Kategori:</strong> {{ $umkm->kategori }}<br>
                                                 <strong>Kontak:</strong> {{ $umkm->kontak }}
                                             </p>
@@ -97,9 +94,7 @@
                                                 {{ $umkm->deskripsi ? Str::limit($umkm->deskripsi, 100) : 'Tidak ada deskripsi' }}
                                             </p>
                                             <div class="options">
-                                                <h6>
-                                                    {{ $umkm->kategori }}
-                                                </h6>
+                                                <h6>{{ $umkm->kategori }}</h6>
                                                 <a href="{{ route('umkm.show', $umkm->umkm_id) }}" class="view-icon">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
@@ -120,16 +115,15 @@
                         </div>
                     </div>
                 @endif
-
             </div>
+        </div>
     </section>
 
     <!-- end about section -->
     @include('layout.users.footer')
-    <!-- footer section -->
 
     <!-- jQery -->
-    @include('layout.users.js')
+    @include('layout.users.js1')
 
 </body>
 

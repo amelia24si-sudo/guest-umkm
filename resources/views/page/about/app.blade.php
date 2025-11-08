@@ -27,9 +27,10 @@
         <div class="bg-box">
             <img src="{{ asset('assets-admin/img/portrait-person-working-dried-flowers-shop.jpg') }}" alt="">
         </div>
-        <!-- header section strats -->
+        <!-- Floating WhatsApp Button -->
+        @include('layout.users.wa')
+        {{-- STAR HEADER --}}
         @include('layout.users.header')
-        <!-- end header section -->
     </div>
 
     <!-- about section -->
@@ -40,7 +41,8 @@
             <div class="row">
                 <div class="col-md-6 ">
                     <div class="img-box">
-                        <img src="{{asset('assets-admin/img/Lovepik_com-401725292-old-man-selling-vegetables.png')}}" alt="">
+                        <img src="{{ asset('assets-admin/img/Lovepik_com-401725292-old-man-selling-vegetables.png') }}"
+                            alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -88,7 +90,7 @@
     <!-- footer section -->
 
     <!-- jQery -->
-    @include('layout.users.js')
+    @include('layout.users.js1')
 
 </body>
 

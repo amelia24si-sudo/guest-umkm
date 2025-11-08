@@ -16,13 +16,13 @@
                          <a href="">
                              <i class="fas fa-phone"></i>
                              <span>
-                                 Call +01 1234567890
+                                 Call +62-819-1669-4896
                              </span>
                          </a>
                          <a href="">
                              <i class="fas fa-envelope"></i>
                              <span>
-                                 demo@gmail.com
+                                 amelia24si@mahasiswa.pcr.ac.id
                              </span>
                          </a>
                      </div>

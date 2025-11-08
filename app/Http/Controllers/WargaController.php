@@ -13,7 +13,7 @@ class WargaController extends Controller
     public function index()
     {
         $warga = Warga::orderBy('nama', 'asc')->get();
-        return view('page.warga.index', compact('warga'));
+        return view('layout.tambahdata.warga.index', compact('warga'));
     }
 
     /**
@@ -21,7 +21,7 @@ class WargaController extends Controller
      */
     public function create()
     {
-        return view('page.warga.create');
+        return view('layout.tambahdata.warga.create');
     }
 
     /**
@@ -60,12 +60,12 @@ class WargaController extends Controller
     public function show(Warga $warga)
     {
         $warga->load('umkm');
-        return view('page.warga.show', compact('warga'));
+        return view('layout.tambahdata.warga.show', compact('warga'));
     }
 
     public function edit(Warga $warga)
     {
-        return view('page.warga.edit', compact('warga'));
+        return view('layout.tambahdata.warga.edit', compact('warga'));
     }
 
     public function update(Request $request, Warga $warga)

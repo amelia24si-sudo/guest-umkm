@@ -9,42 +9,38 @@ use Illuminate\Support\Str;
 
 class UmkmController extends Controller
 {
-    // Menampilkan semua UMKM
-    public function index(Request $request)
+    // Method untuk halaman beranda - tampilkan 6 UMKM terbaru
+    public function beranda()
     {
         try {
-            $query = Umkm::with(['pemilik', 'media'])
-                        ->whereHas('pemilik');
-
-            // Filter berdasarkan pencarian
-            if ($request->has('search') && $request->search != '') {
-                $search = $request->search;
-                $query->where(function($q) use ($search) {
-                    $q->where('nama_usaha', 'like', "%{$search}%")
-                      ->orWhere('deskripsi', 'like', "%{$search}%")
-                      ->orWhere('kategori', 'like', "%{$search}%")
-                      ->orWhereHas('pemilik', function($q) use ($search) {
-                          $q->where('nama', 'like', "%{$search}%");
-                      });
-                });
-            }
-
-            // Filter berdasarkan kategori
-            if ($request->has('kategori') && $request->kategori != '') {
-                $query->where('kategori', $request->kategori);
-            }
-
-            $umkms = $query->orderBy('nama_usaha', 'asc')->get();
-
-            // Debug: Uncomment baris berikut jika masih ada masalah
-            // dd($umkms);
+            $umkms = Umkm::with(['pemilik', 'media'])
+                        ->whereHas('pemilik')
+                        ->orderBy('created_at', 'desc')
+                        ->limit(6)
+                        ->get();
 
             return view('layout.users.app', compact('umkms'));
 
         } catch (\Exception $e) {
-            // Fallback jika ada error
-            $umkms = collect(); // empty collection
+            $umkms = collect();
             return view('layout.users.app', compact('umkms'));
+        }
+    }
+
+    // Method untuk halaman UMKM lengkap - tampilkan semua
+    public function index()
+    {
+        try {
+            $umkms = Umkm::with(['pemilik', 'media'])
+                        ->whereHas('pemilik')
+                        ->orderBy('nama_usaha', 'asc')
+                        ->get();
+
+            return view('page.Umkm.app', compact('umkms'));
+
+        } catch (\Exception $e) {
+            $umkms = collect();
+            return view('page.Umkm.app', compact('umkms'));
         }
     }
 
@@ -52,12 +48,10 @@ class UmkmController extends Controller
     public function show($id)
     {
         try {
-            // Ambil data UMKM dari database berdasarkan ID
             $umkm = Umkm::with(['pemilik', 'media'])
                         ->where('umkm_id', $id)
                         ->firstOrFail();
 
-            // Ambil UMKM lainnya untuk rekomendasi
             $umkmLainnya = Umkm::with(['pemilik', 'media'])
                               ->where('umkm_id', '!=', $id)
                               ->whereHas('pemilik')
@@ -65,7 +59,7 @@ class UmkmController extends Controller
                               ->limit(4)
                               ->get();
 
-            return view('Umkm.show', compact('umkm', 'umkmLainnya'));
+            return view('page.Umkm.show', compact('umkm', 'umkmLainnya'));
 
         } catch (\Exception $e) {
             return redirect()->route('umkm.index')
@@ -75,26 +69,19 @@ class UmkmController extends Controller
 
     public function layanan()
     {
-        return view('layout.layanan.app');
+        return view('page.Layanan.app');
     }
 
     public function about()
     {
-        return view('layout.about.app');
+        return view('page.about.app');
     }
 
-    // Menampilkan halaman kontak
     public function kontak()
     {
-        return view('layout.kontak.app');
+        return view('page.kontak.app');
     }
 
-    public function umkm()
-    {
-        return view('layout.umkm.app');
-    }
-
-    // Proses form kontak
     public function kirimPesan(Request $request)
     {
         $request->validate([
@@ -103,9 +90,6 @@ class UmkmController extends Controller
             'subjek' => 'required|string|max:200',
             'pesan' => 'required|string|max:1000'
         ]);
-
-        // Di sini Anda bisa menambahkan logika untuk mengirim email
-        // atau menyimpan pesan ke database
 
         return redirect()->route('kontak')
             ->with('success', 'Pesan Anda telah berhasil dikirim. Kami akan merespons secepatnya.');

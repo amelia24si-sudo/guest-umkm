@@ -11,15 +11,15 @@ use App\Http\Controllers\BinadesaController;
 use App\Http\Controllers\DashboardController;
 
 // Routes untuk Guest UMKM (Public)
-Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');
-Route::get('/umkm', [UmkmController::class, 'index'])->name('umkm.index'); // TAMBAH INI
-Route::get('/umkm/{id}', [UmkmController::class, 'show'])->name('umkm.show'); // PERBAIKI INI
+Route::get('/', [UmkmController::class, 'beranda'])->name('home');
+Route::get('/umkm', [UmkmController::class, 'index'])->name('umkm');
+Route::get('/umkm/{id}', [UmkmController::class, 'show'])->name('umkm.show');// PERBAIKI INI
 
 // Routes untuk Layanan dan Kontak (Public)
 Route::get('/layanan', [UmkmController::class, 'layanan'])->name('layanan');
 Route::get('/kontak', [UmkmController::class, 'kontak'])->name('kontak');
 Route::get('/about', [UmkmController::class, 'about'])->name('about');
-Route::get('/umkm', [UmkmController::class, 'umkm'])->name('umkm');
+// Route::get('/umkm', [UmkmController::class, 'umkm'])->name('umkm');
 Route::post('/kirim-pesan', [UmkmController::class, 'kirimPesan'])->name('kirim.pesan');
 
 // Routes untuk Auth (Public)
