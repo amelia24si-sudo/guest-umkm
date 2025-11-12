@@ -14,7 +14,7 @@
                         @csrf
                         <section class="row mb-3">
                             <section class="col-md-6">
-                                <label for="name" class="form-label">Nama Lengkap <span
+                                <label for="name" class="form-label">Nama Lengkap<span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     id="name" name="name" value="{{ old('name') }}" required
@@ -25,7 +25,7 @@
                             </section>
 
                             <section class="col-md-6">
-                                <label for="email" class="form-label">Email <span
+                                <label for="email" class="form-label">Email<span
                                         class="text-danger">*</span></label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     id="email" name="email" value="{{ old('email') }}" required
@@ -38,8 +38,8 @@
 
                         <section class="row mb-3">
                             <section class="col-md-6">
-                                <label for="password" class="form-label">Password <span
-                                        class="text-danger">*</span></label>
+                                <label for="password" class="form-label">Password<span
+                                        class="text-danger"></span></label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     id="password" name="password" required placeholder="Masukkan password">
                                 @error('password')
@@ -48,8 +48,8 @@
                             </section>
 
                             <section class="col-md-6">
-                                <label for="password_confirmation" class="form-label">Konfirmasi Password <span
-                                        class="text-danger">*</span></label>
+                                <label for="password_confirmation" class="form-label">Konfirmasi Password<span
+                                        class="text-danger"></span></label>
                                 <input type="password" class="form-control" id="password_confirmation"
                                     name="password_confirmation" required placeholder="Konfirmasi password">
                             </section>
@@ -60,7 +60,7 @@
                                 <i class="fa fa-save me-2"></i>Simpan User
                             </button>
                             <a href="{{ route('users.index') }}" class="btn btn-secondary">
-                                <i class="fa fa-times me-2"></i>Batal
+                               <i class="fa fa-times me-2"></i>Batal
                             </a>
                         </section>
                     </form>

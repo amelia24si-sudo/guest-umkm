@@ -456,12 +456,12 @@
         font-size: 2.2rem;
         font-weight: bold;
         margin-bottom: 1rem;
-        color: #ffffff;
+        color: #222831;
     }
 
     .cta-section .card p {
         font-size: 1.1rem;
-        color: #ffffff;
+        color: #222831;
         margin-bottom: 2rem;
     }
 
