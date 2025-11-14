@@ -114,7 +114,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-save me-2"></i>Update
                 </button>
-                <a href="{{ route('warga.index') }}" class="btn btn-secondary">
+                <a href="{{ route('warga.index') }}" class="btn btn-primary">
                     <i class="fa fa-times me-2"></i>Batal
                 </a>
             </section>
