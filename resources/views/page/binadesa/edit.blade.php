@@ -30,13 +30,13 @@
 
             <section class="row">
                 <section class="col-md-6 mb-3">
-                    <label class="form-label">Nama Usaha <span class="text-danger">*</span></label>
+                    <label class="form-label">Nama Usaha <span class="text-danger"></span></label>
                     <input type="text" name="nama_usaha" class="form-control"
                         value="{{ old('nama_usaha', $binadesa->nama_usaha) }}" placeholder="Nama Usaha" required>
                 </section>
 
                 <section class="col-md-6 mb-3">
-                    <label class="form-label">Pemilik Warga <span class="text-danger">*</span></label>
+                    <label class="form-label">Pemilik Warga <span class="text-danger"></span></label>
                     <select name="pemilik_warga_id" id="pemilik_warga_id" class="form-control" required>
                         <option value="">Pilih Pemilik</option>
                         @foreach ($warga as $w)
@@ -51,23 +51,23 @@
             </section>
 
             <section class="mb-3">
-                <label class="form-label">Alamat Usaha <span class="text-danger">*</span></label>
+                <label class="form-label">Alamat Usaha <span class="text-danger"></span></label>
                 <textarea name="alamat" id= "alamat" class="form-control" rows="3" placeholder="Alamat" required>{{ old('alamat', $binadesa->alamat) }}</textarea>
             </section>
 
             <section class="row">
                 <section class="col-md-3 mb-3">
-                    <label class="form-label">RT <span class="text-danger">*</span></label>
+                    <label class="form-label">RT <span class="text-danger"></span></label>
                     <input type="text" name="rt" id="rt" class="form-control" value="{{ old('rt', $binadesa->rt) }}"
                         placeholder="RT" required>
                 </section>
                 <section class="col-md-3 mb-3">
-                    <label class="form-label">RW <span class="text-danger">*</span></label>
+                    <label class="form-label">RW <span class="text-danger"></span></label>
                     <input type="text" name="rw" id="rw" class="form-control" value="{{ old('rw', $binadesa->rw) }}"
                         placeholder="RW" required>
                 </section>
                 <section class="col-md-6 mb-3">
-                    <label class="form-label">Kategori Usaha <span class="text-danger">*</span></label>
+                    <label class="form-label">Kategori Usaha <span class="text-danger"></span></label>
                     <select name="kategori" class="form-control" required>
                         <option value="">Pilih Kategori</option>
                         <option value="Makanan & Minuman"
@@ -98,7 +98,7 @@
 
             <section class="row">
                 <section class="col-md-6 mb-3">
-                    <label class="form-label">Kontak <span class="text-danger">*</span></label>
+                    <label class="form-label">Kontak <span class="text-danger"></span></label>
                     <input type="text" name="kontak" id="kontak" class="form-control"
                         value="{{ old('kontak', $binadesa->kontak) }}" placeholder="Nomor HP/WhatsApp" required>
                 </section>

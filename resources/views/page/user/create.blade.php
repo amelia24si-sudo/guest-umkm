@@ -15,7 +15,7 @@
                         <section class="row mb-3">
                             <section class="col-md-6">
                                 <label for="name" class="form-label">Nama Lengkap<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger"></span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     id="name" name="name" value="{{ old('name') }}" required
                                     placeholder="Masukkan nama lengkap">
@@ -26,7 +26,7 @@
 
                             <section class="col-md-6">
                                 <label for="email" class="form-label">Email<span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger"></span></label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     id="email" name="email" value="{{ old('email') }}" required
                                     placeholder="Masukkan email">
