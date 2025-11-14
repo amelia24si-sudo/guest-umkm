@@ -53,10 +53,15 @@
     </section>
 
     @if (session('success'))
-        <section class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </section>
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+            <div class="flex-grow-1 text-center">
+                {{ session('success') }}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                style="background: transparent; border: none; font-size: 1.5rem; line-height: 1; padding: 0.5rem; color: inherit;">
+                ×
+            </button>
+        </div>
     @endif
 
     <!-- Filter Options -->

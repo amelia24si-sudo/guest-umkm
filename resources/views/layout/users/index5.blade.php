@@ -14,7 +14,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="nama" class="form-label fw-bold">Nama Lengkap </label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                id="nama" name="nama" value="{{ old('nama') }}" required
+                                id="nama" name="nama" value="{{ old('nama') }}" 
                                 placeholder="Nama Lengkap">
                             @error('nama')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -23,7 +23,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label fw-bold">Email </label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                id="email" name="email" value="{{ old('email') }}" required
+                                id="email" name="email" value="{{ old('email') }}"
                                 placeholder="Email">
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -34,7 +34,7 @@
                     <div class="mb-3">
                         <label for="subjek" class="form-label fw-bold">Subjek </label>
                         <input type="text" class="form-control @error('subjek') is-invalid @enderror" id="subjek"
-                            name="subjek" value="{{ old('subjek') }}" required
+                            name="subjek" value="{{ old('subjek') }}"
                             placeholder="Subject">
                         @error('subjek')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -44,7 +44,7 @@
                     <div class="mb-4">
                         <label for="pesan" class="form-label fw-bold">Pesan </label>
                         <textarea class="form-control @error('pesan') is-invalid @enderror" id="pesan" name="pesan" rows="6"
-                            required placeholder="Pesan">{{ old('pesan') }}</textarea>
+                             placeholder="Pesan">{{ old('pesan') }}</textarea>
                         @error('pesan')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
