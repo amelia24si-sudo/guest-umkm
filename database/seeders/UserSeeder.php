@@ -14,14 +14,12 @@ class UserSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@umkmdesa.id',
             'password' => Hash::make('password123'),
-            'role' => 'admin'
         ]);
 
         User::create([
             'name' => 'User Biasa',
             'email' => 'user@umkmdesa.id',
             'password' => Hash::make('password123'),
-            'role' => 'user'
         ]);
     }
 }
