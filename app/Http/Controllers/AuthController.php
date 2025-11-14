@@ -13,13 +13,13 @@ class AuthController extends Controller
     // Menampilkan form login
     public function index()
     {
-        return view('auth.login');
+        return view('Auth.login');
     }
 
     // Menampilkan form registrasi
     public function showRegister()
     {
-        return view('auth.registrasi');
+        return view('Auth.registrasi');
     }
 
     // Memproses registrasi
