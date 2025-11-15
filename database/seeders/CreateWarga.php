@@ -18,7 +18,7 @@ class CreateWarga extends Seeder
             DB::table('warga')->insert([
                 'no_ktp'        => $faker->nik(), // Generate NIK Indonesia
                 'nama'          => $faker->name(), // Generate nama lengkap
-                'jenis_kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                'jenis_kelamin' => $faker->randomElement(['L', 'P']),
                 'agama'         => $faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu']),
                 'pekerjaan'     => $faker->jobTitle(),
                 'telp'          => $faker->phoneNumber(),
