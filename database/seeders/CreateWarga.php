@@ -26,8 +26,6 @@ class CreateWarga extends Seeder
                 'alamat'        => $faker->address(),
                 'rt'            => $faker->numberBetween(1, 10),
                 'rw'            => $faker->numberBetween(1, 5),
-                'created_at'    => now(),
-                'updated_at'    => now(),
             ]);
         }
     }
