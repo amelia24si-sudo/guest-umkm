@@ -218,7 +218,8 @@
 
                         <section class="card-footer bg-transparent">
                             <small class="text-muted">
-                                Terdaftar: {{ $w->created_at->format('d M Y') }}
+                                Terdaftar:
+                                {{ $w->created_at ? $w->created_at->format('d M Y') : 'Tanggal tidak tersedia' }}
                             </small>
                         </section>
                     </section>
