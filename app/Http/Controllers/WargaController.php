@@ -13,7 +13,8 @@ class WargaController extends Controller
     public function index()
     {
         $warga = Warga::orderBy('nama', 'asc')->get();
-        return view('page.tambahdata.warga.index', compact('warga'));
+        $data['dataWarga']= Warga::paginate(10);
+        return view('page.tambahdata.warga.index', compact('warga'), $data);
     }
 
     /**

@@ -191,5 +191,8 @@
             Menampilkan {{ $binadesa->count() }} UMKM
         </small>
     </section>
+    <section class="mt-3">
+        {{ $dataUmkm->links('pagination::bootstrap-5') }}
+    </section>
 </section>
 <!-- UMKM Card View End -->

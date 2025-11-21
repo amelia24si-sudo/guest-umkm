@@ -12,6 +12,7 @@ class BinadesaController extends Controller
     public function index()
     {
         $binadesa = Umkm::with('pemilik')->get();
+        $data['dataUmkm']= Umkm::paginate(10);
 
         // Hitung statistik untuk dashboard
         $totalUsaha        = Umkm::count();
@@ -30,7 +31,7 @@ class BinadesaController extends Controller
             'usahaAktif',
             'kategoriTerbanyak',
             'usahaBaru'
-        ));
+        ), $data);
     }
 
     public function create()

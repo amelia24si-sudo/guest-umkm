@@ -243,6 +243,9 @@
             <small class="text-muted">
                 Menampilkan {{ $warga->count() }} warga
             </small>
+            <section class="mt-3">
+                {{ $dataWarga->links('pagination::bootstrap-5') }}
+            </section>
         </section>
     </section>
 </section>
