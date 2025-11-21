@@ -3,6 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Umkm extends Model
 {
@@ -25,5 +26,38 @@ class Umkm extends Model
     public function media()
     {
         return $this->morphMany(Media::class, 'ref', 'ref_table', 'ref_id');
+    }
+
+    // Scope untuk filter
+    public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
+    {
+        foreach ($filterableColumns as $column) {
+            if ($request->filled($column)) {
+                $query->where($column, $request->input($column));
+            }
+        }
+        return $query;
+    }
+
+    // Scope untuk search
+    public function scopeSearch($query, $request, array $columns)
+    {
+        if ($request->filled('search')) {
+            $query->where(function($q) use ($request, $columns) {
+                foreach ($columns as $column) {
+                    $q->orWhere($column, 'LIKE', '%' . $request->search . '%');
+                }
+            });
+        }
+        return $query;
+    }
+
+    // Scope untuk filter kategori
+    public function scopeFilterByCategory($query, $category)
+    {
+        if ($category) {
+            return $query->where('kategori', $category);
+        }
+        return $query;
     }
 }

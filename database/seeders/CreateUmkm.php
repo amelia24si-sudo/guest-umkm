@@ -37,7 +37,7 @@ class CreateUmkm extends Seeder
             'Lainnya'
         ];
 
-        foreach ($wargas->take(15) as $warga) {
+        foreach ($wargas->take(90) as $warga) {
             // Generate nama usaha berdasarkan kategori random
             $kategori = $kategoriUmkm[array_rand($kategoriUmkm)];
             $namaUsaha = $this->generateNamaUsaha($faker, $kategori);

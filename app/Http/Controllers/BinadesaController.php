@@ -9,10 +9,40 @@ use Illuminate\Support\Facades\Storage;
 
 class BinadesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $binadesa = Umkm::with('pemilik')->get();
-        $data['dataUmkm']= Umkm::paginate(10);
+       $searchableColumns = ['nama_usaha', 'alamat', 'deskripsi'];
+        $filterableColumns = ['kategori'];
+
+        $umkmQuery = Umkm::with('pemilik', 'media');
+
+        // Apply search
+        $umkmQuery->search($request, $searchableColumns);
+
+        // Apply kategori filter
+        if ($request->filled('kategori')) {
+            $umkmQuery->filterByCategory($request->kategori);
+        }
+
+        // Apply sorting
+        $sort = $request->input('sort', 'newest');
+        switch ($sort) {
+            case 'oldest':
+                $umkmQuery->orderBy('created_at', 'asc');
+                break;
+            case 'name_asc':
+                $umkmQuery->orderBy('nama_usaha', 'asc');
+                break;
+            case 'name_desc':
+                $umkmQuery->orderBy('nama_usaha', 'desc');
+                break;
+            case 'newest':
+            default:
+                $umkmQuery->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $binadesa = $umkmQuery->paginate(12)->onEachSide(2)->withQueryString();
 
         // Hitung statistik untuk dashboard
         $totalUsaha        = Umkm::count();
@@ -25,13 +55,17 @@ class BinadesaController extends Controller
             ->whereYear('created_at', now()->year)
             ->count();
 
+        // Get unique categories for filter
+        $kategoriList = Umkm::distinct()->whereNotNull('kategori')->orderBy('kategori')->pluck('kategori');
+
         return view('page.tambahdata.umkm.index', compact(
             'binadesa',
             'totalUsaha',
             'usahaAktif',
             'kategoriTerbanyak',
-            'usahaBaru'
-        ), $data);
+            'usahaBaru',
+            'kategoriList'
+        ));
     }
 
     public function create()

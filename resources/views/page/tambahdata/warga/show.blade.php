@@ -40,7 +40,6 @@
 
     <!-- jQery -->
     @include('layout.users.js1')
-    @include('layout.users.js2')
 
 </body>
 

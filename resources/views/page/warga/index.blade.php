@@ -5,7 +5,7 @@
                 <i class="fa fa-users fa-3x text-primary"></i>
                 <section class="ms-3">
                     <p class="mb-2">Total Warga</p>
-                    <h6 class="mb-0">{{ $warga->count() }}</h6>
+                    <h6 class="mb-0">{{ $warga->total() }}</h6>
                 </section>
             </section>
         </section>
@@ -70,41 +70,76 @@
             </section>
         @endif
 
-        <!-- Filter Options -->
-        <section class="row mb-4">
-            <section class="col-md-4">
-                <input type="text" id="searchWarga" class="form-control" placeholder="Cari nama warga...">
+        <!-- Filter dan Search Form -->
+        <form method="GET" action="{{ route('warga.index') }}" class="mb-3">
+            <section class="row g-3 justify-content-center">
+                <!-- Search -->
+                <section class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" value="{{ request('search') }}"
+                            placeholder="Cari nama, NIK, alamat...">
+                        <button type="submit" class="input-group-text">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        @if (request('search'))
+                            <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}" class="btn-clear">
+                                Clear
+                            </a>
+                        @endif
+                    </div>
+                </section>
+
+                <!-- Filter Jenis Kelamin -->
+                <section class="col-md-2">
+                    <select name="jenis_kelamin" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua Jenis Kelamin</option>
+                        <option value="L" {{ request('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki
+                        </option>
+                        <option value="P" {{ request('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan
+                        </option>
+                    </select>
+                </section>
+
+                <!-- Filter Pekerjaan -->
+                <section class="col-md-2">
+                    <select name="pekerjaan" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua Pekerjaan</option>
+                        @foreach ($pekerjaanList as $pekerjaan)
+                            <option value="{{ $pekerjaan }}"
+                                {{ request('pekerjaan') == $pekerjaan ? 'selected' : '' }}>
+                                {{ $pekerjaan }}
+                            </option>
+                        @endforeach
+                    </select>
+                </section>
+
+                <!-- Filter UMKM -->
+                <section class="col-md-2">
+                    <select name="umkm_status" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua Status</option>
+                        <option value="pemilik" {{ request('umkm_status') == 'pemilik' ? 'selected' : '' }}>Pemilik
+                            UMKM</option>
+                        <option value="bukan" {{ request('umkm_status') == 'bukan' ? 'selected' : '' }}>Bukan Pemilik
+                        </option>
+                    </select>
+                </section>
+
+                <!-- Sorting -->
+                <section class="col-md-2">
+                    <select name="sort" class="form-select" onchange="this.form.submit()">
+                        <option value="nama_asc" {{ request('sort') == 'nama_asc' ? 'selected' : '' }}>A-Z</option>
+                        <option value="nama_desc" {{ request('sort') == 'nama_desc' ? 'selected' : '' }}>Z-A</option>
+                        <option value="terbaru" {{ request('sort') == 'terbaru' ? 'selected' : '' }}>Terbaru</option>
+                        <option value="terlama" {{ request('sort') == 'terlama' ? 'selected' : '' }}>Terlama</option>
+                    </select>
+                </section>
             </section>
-            <section class="col-md-3">
-                <select id="genderFilter" class="form-select">
-                    <option value="">Semua Jenis Kelamin</option>
-                    <option value="L">Laki-laki</option>
-                    <option value="P">Perempuan</option>
-                </select>
-            </section>
-            <section class="col-md-3">
-                <select id="pekerjaanFilter" class="form-select">
-                    <option value="">Semua Pekerjaan</option>
-                    @foreach ($warga->pluck('pekerjaan')->unique()->filter() as $pekerjaan)
-                        <option value="{{ $pekerjaan }}">{{ $pekerjaan }}</option>
-                    @endforeach
-                </select>
-            </section>
-            <section class="col-md-2">
-                <select id="umkmFilter" class="form-select">
-                    <option value="">Semua</option>
-                    <option value="pemilik">Pemilik UMKM</option>
-                    <option value="bukan">Bukan Pemilik</option>
-                </select>
-            </section>
-        </section>
+        </form>
 
         <!-- Card View -->
         <section class="row" id="wargaCards">
             @forelse($warga as $index => $w)
-                <section class="col-xl-4 col-lg-6 col-md-6 mb-4 warga-card" data-name="{{ strtolower($w->nama) }}"
-                    data-gender="{{ $w->jenis_kelamin }}" data-pekerjaan="{{ $w->pekerjaan }}"
-                    data-umkm="{{ $w->umkm->count() > 0 ? 'pemilik' : 'bukan' }}" data-created="{{ $w->created_at }}">
+                <section class="col-xl-4 col-lg-6 col-md-6 mb-4">
                     <section class="card h-100 shadow-sm">
                         <section class="card-body d-flex flex-column">
                             <!-- Header dengan Avatar dan Info Utama -->
@@ -149,6 +184,12 @@
                                     <small class="text-muted">
                                         <i class="fa fa-star me-1"></i>
                                         <strong>Agama:</strong> {{ $w->agama ?? '-' }}
+                                    </small>
+                                </section>
+                                <section class="mb-2">
+                                    <small class="text-muted">
+                                        <i class="fa fa-map-marker me-1"></i>
+                                        <strong>RT/RW:</strong> {{ $w->rt }}/{{ $w->rw }}
                                     </small>
                                 </section>
                             </section>
@@ -238,14 +279,17 @@
             @endforelse
         </section>
 
-        <!-- Info Jumlah Data -->
-        <section class="mt-3">
-            <small class="text-muted">
-                Menampilkan {{ $warga->count() }} warga
-            </small>
+        <!-- Pagination -->
+        @if ($warga->hasPages())
             <section class="mt-3">
-                {{ $dataWarga->links('pagination::bootstrap-5') }}
+                {{ $warga->links('pagination::bootstrap-5') }}
             </section>
-        </section>
+        @else
+            <section class="mt-3">
+                <small class="text-muted">
+                    Menampilkan {{ $warga->count() }} warga
+                </small>
+            </section>
+        @endif
     </section>
 </section>

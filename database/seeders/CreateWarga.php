@@ -14,7 +14,7 @@ class CreateWarga extends Seeder
     {
         $faker = Factory::create('id_ID'); // Gunakan locale Indonesia
 
-        foreach (range(1, 10) as $index) {
+        foreach (range(1, 100) as $index) {
             DB::table('warga')->insert([
                 'no_ktp'        => $faker->nik(),
                 'nama'          => $faker->name(),

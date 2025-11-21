@@ -10,13 +10,48 @@ class WargaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $warga = Warga::orderBy('nama', 'asc')->get();
-        $data['dataWarga']= Warga::paginate(10);
-        return view('page.tambahdata.warga.index', compact('warga'), $data);
-    }
+        $filterableColumns = ['jenis_kelamin', 'pekerjaan'];
+        $searchableColumns = ['nama', 'no_ktp', 'alamat', 'email'];
 
+        $wargaQuery = Warga::withCount('umkm')
+            ->with('umkm');
+
+        // Apply search
+        $wargaQuery->search($request, $searchableColumns);
+
+        // Apply filters
+        $wargaQuery->filter($request, $filterableColumns);
+
+        // Apply UMKM filter - pastikan nama parameter sama dengan form
+        if ($request->filled('umkm_status')) {
+            $wargaQuery->filterUmkm($request->umkm_status);
+        }
+
+        // Apply sorting
+        $sort = $request->input('sort', 'nama_asc');
+        switch ($sort) {
+            case 'terbaru':
+                $wargaQuery->orderBy('created_at', 'desc');
+                break;
+            case 'terlama':
+                $wargaQuery->orderBy('created_at', 'asc');
+                break;
+            case 'nama_desc':
+                $wargaQuery->orderBy('nama', 'desc');
+                break;
+            case 'nama_asc':
+            default:
+                $wargaQuery->orderBy('nama', 'asc');
+                break;
+        }
+
+        $warga         = $wargaQuery->paginate(12)->onEachSide(2)->withQueryString();
+        $pekerjaanList = Warga::distinct()->whereNotNull('pekerjaan')->orderBy('pekerjaan')->pluck('pekerjaan');
+
+        return view('page.tambahdata.warga.index', compact('warga', 'pekerjaanList'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -120,7 +155,7 @@ class WargaController extends Controller
      */
     public function getWargaDropdown()
     {
-        $warga = Warga::select('warga_id', 'nama', 'no_ktp', 'alamat', 'rt', 'rw','telp')
+        $warga = Warga::select('warga_id', 'nama', 'no_ktp', 'alamat', 'rt', 'rw', 'telp')
             ->orderBy('nama', 'asc')
             ->get();
 

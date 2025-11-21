@@ -758,32 +758,6 @@
         margin-bottom: 2rem !important;
     }
 
-    .form-control {
-        border: 1px solid #ced4da;
-        border-radius: 8px;
-        padding: 12px 15px;
-        font-size: 14px;
-        height: 48px;
-    }
-
-    .form-control:focus {
-        border-color: #ffbe33;
-        box-shadow: 0 0 0 0.2rem rgba(255, 190, 51, 0.25);
-    }
-
-    .form-select {
-        border: 1px solid #ced4da;
-        border-radius: 8px;
-        padding: 12px 15px;
-        font-size: 14px;
-        height: 48px;
-    }
-
-    .form-select:focus {
-        border-color: #ffbe33;
-        box-shadow: 0 0 0 0.2rem rgba(255, 190, 51, 0.25);
-    }
-
     /* Card Styles dengan Hover */
     .card {
         border: none;
@@ -973,12 +947,6 @@
         .card-body {
             padding: 1rem;
         }
-
-        .form-control,
-        .form-select {
-            height: 44px;
-            padding: 10px 12px;
-        }
     }
 
     /* ================= */
@@ -1074,57 +1042,6 @@
     textarea.form-control {
         resize: vertical;
         min-height: 100px;
-    }
-
-    /* Select Dropdown Styles */
-    .form-select {
-        border: 1px solid #ced4da;
-        border-radius: 8px;
-        padding: 12px 15px;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        color: #222831;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-        background-position: right 12px center;
-        background-repeat: no-repeat;
-        background-size: 16px;
-    }
-
-    .form-select:focus {
-        border-color: #ffbe33;
-        box-shadow: 0 0 0 0.2rem rgba(255, 190, 51, 0.25);
-    }
-
-    /* File Input Styles - Simple */
-    input[type="file"].form-control {
-        padding: 12px 15px;
-        background-color: #fff;
-        border: 1px solid #ced4da;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-
-    input[type="file"].form-control:focus {
-        border-color: #ffbe33;
-        box-shadow: 0 0 0 0.2rem rgba(255, 190, 51, 0.25);
-    }
-
-    input[type="file"].form-control::file-selector-button {
-        background-color: transparent;
-        border: none;
-        color: #222831;
-        padding: 0;
-        margin-right: 8px;
-        font-weight: normal;
-        cursor: pointer;
-    }
-
-    /* File Input Container Styling */
-    .form-control[type="file"]+.text-muted {
-        margin-top: 8px;
-        font-size: 12px;
-        color: #6c757d;
-        display: block;
     }
 
     /* Small Text Helper */
@@ -1959,13 +1876,6 @@
         border-radius: 0 6px 6px 0;
     }
 
-    /* Filter Section Specific */
-    #genderFilter,
-    #pekerjaanFilter,
-    #umkmFilter {
-        background-color: #fff;
-    }
-
     /* Warga Card Animation */
     .warga-card {
         animation: slideInUp 0.5s ease-out;
@@ -2130,16 +2040,6 @@
             opacity: 1;
             transform: scale(1) translateY(0);
         }
-    }
-
-    /* User Filter Specific */
-    #searchUser {
-        background-color: #f8f9fa;
-    }
-
-    #sortUser,
-    #monthFilter {
-        background-color: #fff;
     }
 
     /* User Action Buttons */
@@ -2674,4 +2574,257 @@
             display: none;
         }
     }
+
+    /* Base Form Styles - Digunakan oleh form-control, form-select, dan btn-clear */
+    .form-control,
+    .form-select,
+    .btn-clear .input-group-text {
+        border: 2px solid #222831;
+        border-radius: 8px;
+        padding: 8px 15px;
+        font-size: 14px;
+        color: #1f1f1f;
+        transition: all 0.3s ease;
+        background-color: #fff;
+        font-family: inherit;
+        line-height: 1.5;
+        width: 100%;
+        box-sizing: border-box;
+        height: 46px;
+        /* Height tetap untuk konsistensi */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Text alignment - SAMA untuk semua */
+    .form-control,
+    .form-select {
+        text-align: left;
+        /* Default text di kiri seperti normal */
+    }
+
+    /* Focus State untuk Form Elements */
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #ffbe33;
+        box-shadow: 0 0 0 0.2rem rgba(255, 190, 51, 0.25);
+        background-color: #fff;
+        outline: none;
+    }
+
+    /* Placeholder untuk Form Control */
+    .form-control::placeholder {
+        color: #6c757d;
+        opacity: 0.7;
+    }
+
+    /* Khusus untuk Form Select - STYLE SAMA PERSIS dengan form-control */
+    .form-select {
+        background-position: right 15px center;
+        background-repeat: no-repeat;
+        background-size: 16px;
+        padding-right: 45px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+    }
+
+    /* Form Select saat focus - arrow juga berubah warna */
+    .form-select:focus {}
+
+    /* Option styling */
+    .form-select option {
+        padding: 8px 8px;
+        background-color: #fff;
+        color: #1f1f1f;
+    }
+
+    /* Khusus untuk Clear Button */
+    .btn-clear {
+        background-color: transparent;
+        color: #222831;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-left: 10px;
+        min-width: 80px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: #222831 2px solid;
+    }
+
+    .btn-clear:hover {
+        background-color: #222831;
+        border-color: #222831;
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
+
+    /* Input Group Styles */
+    .input-group-text {
+        border: 2px solid #222831;
+        border-left: none;
+        background-color: #222831;
+        color: #ffffff;
+        border-radius: 0 8px 8px 0;
+        padding: 12px 15px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .input-group-text:hover {
+        background-color: #3a4250;
+        border-color: #3a4250;
+    }
+
+    /* Form Control dalam Input Group */
+    .input-group .form-control {
+        border-right: none;
+        border-radius: 8px 0 0 8px;
+    }
+
+    /* Hover state untuk semua */
+    .form-control:hover:not(:focus),
+    .form-select:hover:not(:focus) {
+        border-color: #3a4250;
+    }
+
+    /* Disabled state */
+    .form-control:disabled,
+    .form-select:disabled {
+        background-color: #f8f9fa;
+        border-color: #e9ecef;
+        color: #6c757d;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+
+        .form-control,
+        .form-select,
+        .btn-clear {
+            padding: 10px 12px;
+            font-size: 16px;
+        }
+
+        .form-select {
+            padding-right: 40px;
+            background-position: right 12px center;
+        }
+
+        .btn-clear {
+            margin-left: 8px;
+            min-width: 70px;
+        }
+    }
+
+    /* Khusus untuk Input Group Text (Tombol Search) */
+    .input-group-text {
+        border-left: none;
+        background-color: #222831;
+        color: #ffffff;
+        border-radius: 0 8px 8px 0;
+        min-width: 46px;
+        /* Sama dengan height */
+        cursor: pointer;
+        border-color: #222831;
+    }
+
+    .input-group-text:hover {
+        background-color: #3a4250;
+        border-color: #3a4250;
+    }
+
+    /* Form Control dalam Input Group */
+    .input-group .form-control {
+        border-right: none;
+        border-radius: 8px 0 0 8px;
+    }
+
+    /* Input Group container */
+    .input-group {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    /* Pagination Styles */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    margin: 0 2px;
+}
+
+.page-link {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #ffbe33;
+    background-color: #fff;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
+    display: block;
+    line-height: 1.25;
+}
+
+/* Hover State */
+.page-link:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    color: #ffbe33;
+}
+
+/* Active State */
+.page-item.active .page-link {
+    background-color: #ffbe33;
+    border-color: #ffbe33;
+    color: #fff;
+}
+
+/* Disabled State */
+.page-item.disabled .page-link {
+    color: #9c9586;
+    background-color: #fff;
+    border-color: #dee2e6;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Focus State */
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 196, 0, 0.25);
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .page-item {
+        margin: 1px;
+    }
+
+    .page-link {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}
 </style>
