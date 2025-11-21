@@ -100,19 +100,6 @@
                     </select>
                 </section>
 
-                <!-- Filter Pekerjaan -->
-                <section class="col-md-2">
-                    <select name="pekerjaan" class="form-select" onchange="this.form.submit()">
-                        <option value="">Semua Pekerjaan</option>
-                        @foreach ($pekerjaanList as $pekerjaan)
-                            <option value="{{ $pekerjaan }}"
-                                {{ request('pekerjaan') == $pekerjaan ? 'selected' : '' }}>
-                                {{ $pekerjaan }}
-                            </option>
-                        @endforeach
-                    </select>
-                </section>
-
                 <!-- Filter UMKM -->
                 <section class="col-md-2">
                     <select name="umkm_status" class="form-select" onchange="this.form.submit()">
