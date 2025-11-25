@@ -34,7 +34,7 @@ class UmkmController extends Controller
             $umkms = Umkm::with(['pemilik', 'media'])
                         ->whereHas('pemilik')
                         ->orderBy('nama_usaha', 'asc')
-                        ->get();
+                        ->paginate(9); // Tampilkan 9 UMKM per halaman
 
             return view('page.Umkm.app', compact('umkms'));
 

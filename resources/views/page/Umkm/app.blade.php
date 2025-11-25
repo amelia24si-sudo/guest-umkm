@@ -75,7 +75,8 @@
                                         <div class="img-box">
                                             @if ($umkm->media->count() > 0)
                                                 <img src="{{ asset('storage/' . $umkm->media->first()->file_url) }}"
-                                                    alt="{{ $umkm->nama_usaha }}" style="height: 200px; object-fit: cover; width: 100%;">
+                                                    alt="{{ $umkm->nama_usaha }}"
+                                                    style="height: 200px; object-fit: cover; width: 100%;">
                                             @else
                                                 <div class="bg-light d-flex align-items-center justify-content-center"
                                                     style="height: 200px; width: 100%;">
@@ -86,7 +87,8 @@
                                         <div class="detail-box">
                                             <h5>{{ $umkm->nama_usaha }}</h5>
                                             <p>
-                                                <strong>Pemilik:</strong> {{ $umkm->pemilik->nama ?? 'Tidak diketahui' }}<br>
+                                                <strong>Pemilik:</strong>
+                                                {{ $umkm->pemilik->nama ?? 'Tidak diketahui' }}<br>
                                                 <strong>Kategori:</strong> {{ $umkm->kategori }}<br>
                                                 <strong>Kontak:</strong> {{ $umkm->kontak }}
                                             </p>
@@ -105,6 +107,19 @@
                             </div>
                         @endforeach
                     </div>
+                    {{-- PAGINATION --}}
+                    @if ($umkms->hasPages())
+                        <section class="mt-4">
+                            {{ $umkms->links('pagination::bootstrap-5') }}
+                        </section>
+                    @else
+                        <section class="mt-4">
+                            <small class="text-muted">
+                                Menampilkan {{ $umkms->count() }} UMKM
+                            </small>
+                        </section>
+                    @endif
+                    {{-- END PAGINATION --}}
                 @else
                     <div class="row">
                         <div class="col-12">
