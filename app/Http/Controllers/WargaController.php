@@ -49,7 +49,7 @@ class WargaController extends Controller
 
         $warga         = $wargaQuery->paginate(12)->onEachSide(2)->withQueryString();
 
-        return view('page.tambahdata.warga.index', compact('warga', 'pekerjaanList'));
+        return view('page.tambahdata.warga.index', compact('warga'));
     }
     /**
      * Show the form for creating a new resource.
