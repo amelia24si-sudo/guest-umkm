@@ -11,7 +11,7 @@ class BinadesaController extends Controller
 {
     public function index(Request $request)
     {
-       $searchableColumns = ['nama_usaha', 'alamat', 'deskripsi'];
+        $searchableColumns = ['nama_usaha', 'alamat', 'deskripsi'];
         $filterableColumns = ['kategori'];
 
         $umkmQuery = Umkm::with('pemilik', 'media');

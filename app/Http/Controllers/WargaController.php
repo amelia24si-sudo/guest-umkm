@@ -48,7 +48,6 @@ class WargaController extends Controller
         }
 
         $warga         = $wargaQuery->paginate(12)->onEachSide(2)->withQueryString();
-        $pekerjaanList = Warga::distinct()->whereNotNull('pekerjaan')->orderBy('pekerjaan')->pluck('pekerjaan');
 
         return view('page.tambahdata.warga.index', compact('warga', 'pekerjaanList'));
     }
