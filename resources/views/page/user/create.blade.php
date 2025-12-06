@@ -1,71 +1,144 @@
-<section class="container-fluid pt-4 px-4">
-    <section class="bg-light text-center rounded p-4">
-        <section class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Tambah User Baru</h6>
-            <a href="{{ route('users.index') }}" class="btn btn-primary">
-                <i class="fa fa-arrow-left me-2"></i>Kembali
-            </a>
-        </section>
+<section class="py-4">
+    <div class="container-fluid">
+        <div class="card border-0 shadow-lg">
+            <!-- Header Card -->
+            <div class="card-header bg-white border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div>
+                        <nav aria-label="breadcrumb" class="mb-2">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{{ route('users.index') }}" class="text-decoration-none">
+                                        <i class="fa fa-user-friends me-1"></i>Manajemen User
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active">Tambah User</li>
+                            </ol>
+                        </nav>
+                        <h4 class="mb-0 fw-bold">
+                            <i class="fa fa-user-plus me-2 text-primary"></i>Tambah User Baru
+                        </h4>
+                    </div>
+                    <a href="{{ route('users.index') }}" class="btn btn-primary">
+                        <i class="fa fa-arrow-left me-2"></i>Kembali
+                    </a>
+                </div>
+                <p class="text-muted mb-0 mt-2">Lengkapi form di bawah untuk menambahkan user baru ke sistem</p>
+            </div>
 
-        <section class="row justify-content-center">
-            <section class="col-sm-12 col-xl-8">
-                <section class="bg-light rounded h-100 p-4">
-                    <form action="{{ route('users.store') }}" method="POST">
-                        @csrf
-                        <section class="row mb-3">
-                            <section class="col-md-6">
-                                <label for="name" class="form-label">Nama Lengkap<span
-                                        class="text-danger"></span></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" name="name" value="{{ old('name') }}" required
-                                    placeholder="Masukkan nama lengkap">
-                                @error('name')
-                                    <section class="invalid-feedback">{{ $message }}</section>
-                                @enderror
-                            </section>
+            <!-- Form Card -->
+            <div class="card-body p-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="p-4">
+                            <form action="{{ route('users.store') }}" method="POST">
+                                @csrf
 
-                            <section class="col-md-6">
-                                <label for="email" class="form-label">Email<span
-                                        class="text-danger"></span></label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                    id="email" name="email" value="{{ old('email') }}" required
-                                    placeholder="Masukkan email">
-                                @error('email')
-                                    <section class="invalid-feedback">{{ $message }}</section>
-                                @enderror
-                            </section>
-                        </section>
+                                <!-- Section 1: Informasi Dasar -->
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                            <i class="fa fa-user-circle fa-lg"></i>
+                                        </div>
+                                        &nbsp;
+                                        <h5 class="mb-0 fw-bold">Informasi Dasar User</h5>
+                                    </div>
+                                    <hr class="mb-4">
 
-                        <section class="row mb-3">
-                            <section class="col-md-6">
-                                <label for="password" class="form-label">Password<span
-                                        class="text-danger"></span></label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    id="password" name="password" required placeholder="Masukkan password">
-                                @error('password')
-                                    <section class="invalid-feedback">{{ $message }}</section>
-                                @enderror
-                            </section>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-semibold">
+                                                <i class="fa fa-user me-1"></i>Nama Lengkap <span class="text-danger"></span>
+                                            </label>
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                id="name" name="name" value="{{ old('name') }}"
+                                                placeholder="Masukkan nama lengkap" required>
+                                            @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                            <section class="col-md-6">
-                                <label for="password_confirmation" class="form-label">Konfirmasi Password<span
-                                        class="text-danger"></span></label>
-                                <input type="password" class="form-control" id="password_confirmation"
-                                    name="password_confirmation" required placeholder="Konfirmasi password">
-                            </section>
-                        </section>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-semibold">
+                                                <i class="fa fa-envelope me-1"></i>Email <span class="text-danger"></span>
+                                            </label>
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                                id="email" name="email" value="{{ old('email') }}"
+                                                placeholder="Masukkan alamat email" required>
+                                            @error('email')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <section class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-save me-2"></i>Simpan User
-                            </button>
-                            <a href="{{ route('users.index') }}" class="btn btn-primary">
-                               <i class="fa fa-times me-2"></i>Batal
-                            </a>
-                        </section>
-                    </form>
-                </section>
-            </section>
-        </section>
-    </section>
+                                <!-- Section 2: Keamanan Akun -->
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                            <i class="fa fa-shield-alt fa-lg"></i>
+                                        </div>
+                                        &nbsp;
+                                        <h5 class="mb-0 fw-bold">Keamanan Akun</h5>
+                                    </div>
+                                    <hr class="mb-4">
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-semibold">
+                                                <i class="fa fa-key me-1"></i>Password <span class="text-danger"></span>
+                                            </label>
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                                id="password" name="password"
+                                                placeholder="Masukkan password" required>
+                                            @error('password')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                            <small class="form-text text-muted">
+                                                <i class="fa fa-info-circle me-1"></i>
+                                                Minimal 8 karakter dengan kombinasi huruf dan angka
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-semibold">
+                                                <i class="fa fa-key me-1"></i>Konfirmasi Password <span class="text-danger"></span>
+                                            </label>
+                                            <input type="password" class="form-control" id="password_confirmation"
+                                                name="password_confirmation"
+                                                placeholder="Konfirmasi password" required>
+                                            <small class="form-text text-muted">
+                                                <i class="fa fa-check-circle me-1"></i>
+                                                Harus sama dengan password sebelumnya
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="mt-4 pt-4 border-top">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <p class="text-muted mb-0">
+                                                <i class="fa fa-exclamation-circle me-1"></i>
+                                                Field dengan tanda <span class="text-danger">*</span> wajib diisi
+                                            </p>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <a href="{{ route('users.index') }}" class="btn btn-primary">
+                                                <i class="fa fa-times me-2"></i>Batal
+                                            </a>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-save me-2"></i>Simpan User
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

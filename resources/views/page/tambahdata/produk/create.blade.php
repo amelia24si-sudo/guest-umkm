@@ -19,9 +19,11 @@
     {{-- START CSS --}}
     @include('layout.users.css')
     {{-- END CSS --}}
+   
 </head>
 
 <body class="sub_page">
+
     <div class="hero_area">
         <div class="bg-box">
             <img src="{{ asset('assets-admin/img/portrait-person-working-dried-flowers-shop.jpg') }}" alt="">
@@ -31,14 +33,14 @@
         {{-- STAR HEADER --}}
         @include('layout.users.header')
     </div>
-
-    @include('page.warga.edit')
+    @include('page.produk.create')
     <br>
     @include('layout.users.footer')
     <!-- footer section -->
 
     <!-- jQery -->
     @include('layout.users.js1')
+
 </body>
 
 </html>

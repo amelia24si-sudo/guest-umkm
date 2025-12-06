@@ -82,28 +82,36 @@
         sortFilter.addEventListener('change', filterAndSortCards);
     });
 
+    // Perbaikan script untuk auto-fill data warga
     document.addEventListener('DOMContentLoaded', function() {
-        const pemilikSelect = document.getElementById('pemilik_warga_id');
+        const pemilikSelect = document.getElementById('inputselect');
         const alamatField = document.getElementById('alamat');
         const rtField = document.getElementById('rt');
         const rwField = document.getElementById('rw');
-        const kontakField = document.getElementById('kontak');
+        const kontakField = document.getElementById('telp');
 
-        pemilikSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
+        function fillWargaData() {
+            const selectedOption = pemilikSelect.options[pemilikSelect.selectedIndex];
 
-            if (selectedOption.value !== '') {
+            if (selectedOption.value && selectedOption.value !== '') {
                 // Ambil data dari atribut data-*
-                const alamat = selectedOption.getAttribute('data-alamat');
-                const rt = selectedOption.getAttribute('data-rt');
-                const rw = selectedOption.getAttribute('data-rw');
-                const telp = selectedOption.getAttribute('data-telp');
+                const alamat = selectedOption.getAttribute('data-alamat') || '';
+                const rt = selectedOption.getAttribute('data-rt') || '';
+                const rw = selectedOption.getAttribute('data-rw') || '';
+                const telp = selectedOption.getAttribute('data-telp') || '';
+
+                console.log('Data warga:', {
+                    alamat,
+                    rt,
+                    rw,
+                    telp
+                }); // Debug log
 
                 // Isi field dengan data warga
-                alamatField.value = alamat || '';
-                rtField.value = rt || '';
-                rwField.value = rw || '';
-                kontakField.value = telp || '';
+                alamatField.value = alamat;
+                rtField.value = rt;
+                rwField.value = rw;
+                kontakField.value = telp;
             } else {
                 // Kosongkan field jika tidak ada yang dipilih
                 alamatField.value = '';
@@ -111,21 +119,31 @@
                 rwField.value = '';
                 kontakField.value = '';
             }
-        });
+        }
 
-        // Untuk edit form, jika ada data lama, isi otomatis
-        @if (old('pemilik_warga_id'))
-            const oldPemilikId = "{{ old('pemilik_warga_id') }}";
-            const oldOption = pemilikSelect.querySelector(`option[value="${oldPemilikId}"]`);
-            if (oldOption) {
-                pemilikSelect.value = oldPemilikId;
+        // Event listener untuk perubahan select
+        pemilikSelect.addEventListener('change', fillWargaData);
 
-                // Trigger change event untuk mengisi field
-                const event = new Event('change');
-                pemilikSelect.dispatchEvent(event);
+        // Trigger change event jika sudah ada value dari old() atau default
+        setTimeout(() => {
+            if (pemilikSelect.value !== '') {
+                fillWargaData();
             }
-        @endif
+        }, 100);
+
+        // Debug: Log semua options untuk memastikan data ada
+        console.log('Options count:', pemilikSelect.options.length);
+        Array.from(pemilikSelect.options).forEach((option, index) => {
+            console.log(`Option ${index}:`, {
+                value: option.value,
+                alamat: option.getAttribute('data-alamat'),
+                rt: option.getAttribute('data-rt'),
+                rw: option.getAttribute('data-rw'),
+                telp: option.getAttribute('data-telp')
+            });
+        });
     });
+
 
     // UMKM
 

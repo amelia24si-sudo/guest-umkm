@@ -38,4 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api/warga', [WargaController::class, 'getWargaDropdown'])->name('api.warga');
     Route::get('/binadesa/create', [BinadesaController::class, 'create'])->name('binadesa.create');
     Route::post('/binadesa', [BinadesaController::class, 'store'])->name('binadesa.store');
+    Route::resource('produk', ProdukController::class);
 });
+
+

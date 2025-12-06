@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets-admin/css/bootstrap.css') }}" />
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <!--owl slider stylesheet -->
 <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -2826,5 +2826,728 @@
         padding: 6px 10px;
         font-size: 13px;
     }
+}
+/* STATS CARD STYLES */
+/* STATS CARD STYLES */
+.stats-card {
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(34, 40, 49, 0.1);
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(34, 40, 49, 0.1);
+}
+
+.stats-card .card-icon {
+    background: rgba(255, 190, 51, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.stats-card .card-title {
+    font-size: 0.9rem;
+    color: #1f1f1f;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.stats-card .card-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222831;
+}
+
+.stats-card .card-subtitle {
+    font-size: 0.75rem;
+    color: #666666;
+}
+
+/* PRODUCT CARD STYLES - SEMUA TOMBOL #ffbe33 */
+.product-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: #ffbe33;
+}
+
+.product-card-image {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.product-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card-img {
+    transform: scale(1.05);
+}
+
+.product-card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card-img-placeholder i {
+    font-size: 3rem;
+    color: #cccccc;
+}
+
+/* Status Badge */
+.product-status-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4em 1em;
+    border-radius: 20px;
+    background: #ffbe33;
+    color: #222831;
+}
+
+/* Stock Badge */
+.product-card .badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4em 0.8em;
+    border-radius: 20px;
+    background: #ffbe33;
+    color: #222831;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card .badge i {
+    font-size: 0.7rem;
+    margin-right: 0.25rem;
+}
+
+/* Product Card Body */
+.product-card .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Product Name */
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #222831;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* UMKM Info */
+.product-card .umkm-info {
+    margin-bottom: 1rem;
+}
+
+.product-card .umkm-label {
+    font-size: 0.8rem;
+    color: #666666;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.product-card .umkm-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #222831;
+}
+
+/* Price Info */
+.product-card .price-info {
+    margin-bottom: 1.5rem;
+}
+
+.product-card .price-label {
+    font-size: 0.8rem;
+    color: #666666;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.product-card .price-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #222831;
+}
+
+/* Description Info */
+.product-card .description-info {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.product-card .description-label {
+    font-size: 0.8rem;
+    color: #666666;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.product-card .description-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #1f1f1f;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Action Buttons - SEMUA WARNA #ffbe33 */
+.product-actions {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.product-actions .btn-group {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* TOMBOL SAMA SEMUA - WARNA #ffbe33 */
+.product-actions .btn-detail,
+.product-actions .btn-edit,
+.product-actions .btn-delete {
+    flex: 0.5;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 2px solid #ffbe33;
+    background: #ffbe33;
+    color: #222831;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* HOVER EFFECT SAMA SEMUA */
+.product-actions .btn-detail:hover,
+.product-actions .btn-edit:hover,
+.product-actions .btn-delete:hover {
+    background: #ffaa00;
+    border-color: #ffaa00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 190, 51, 0.3);
+    color: #222831;
+}
+
+.product-actions .btn i {
+    font-size: 0.9rem;
+}
+
+/* Card Footer */
+.product-card .card-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    padding: 0.75rem 1.25rem;
+}
+
+.product-card .card-footer .date-info {
+    font-size: 0.8rem;
+    color: #666666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-card .card-footer .date-info i {
+    color: #666666;
+    margin-right: 0.5rem;
+}
+
+/* GENERAL CARD STYLES */
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+}
+
+.card-header {
+    background: #ffffff;
+    border-bottom: 2px solid #ffbe33;
+}
+
+/* BUTTON STYLES - UNTUK LAINNYA */
+.btn-primary,
+.btn-info,
+.btn-warning,
+.btn-danger {
+    background: #ffbe33;
+    border-color: #ffbe33;
+    color: #222831;
+}
+
+.btn-primary:hover,
+.btn-info:hover,
+.btn-warning:hover,
+.btn-danger:hover {
+    background: #ffaa00;
+    border-color: #ffaa00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 190, 51, 0.3);
+    color: #222831;
+}
+
+.btn-secondary {
+    background: #666666;
+    border-color: #666666;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background: #555555;
+    border-color: #555555;
+    color: #ffffff;
+}
+
+/* BADGE STYLES */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+}
+
+.bg-primary,
+.bg-success,
+.bg-danger,
+.bg-warning,
+.bg-info {
+    background-color: #ffbe33 !important;
+    color: #222831 !important;
+}
+
+/* SECTION BACKGROUNDS */
+.produk-section,
+.produk-detail-section,
+.create-produk-section,
+.edit-produk-section {
+    background: #ffffff;
+    min-height: calc(100vh - 76px);
+}
+
+/* PRODUCT DETAIL SECTION */
+.produk-detail-section .card {
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.2s ease;
+    background: #ffffff;
+}
+
+.produk-detail-section .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.produk-detail-section .card-header {
+    border-bottom: none;
+    border-radius: 12px 12px 0 0 !important;
+    background: #222831;
+    color: #ffffff;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ffbe33;
+    color: #222831;
+}
+
+/* Status Badge */
+.status-badge {
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 0.5em 1.5em;
+    background: #ffbe33;
+    color: #222831;
+}
+
+/* FORM SECTION STYLES */
+.create-produk-section .card-header {
+    background: #ffffff;
+    border-bottom: 2px solid #ffbe33;
+}
+
+/* Form Sections */
+.form-section {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.section-icon {
+    width: 48px;
+    height: 48px;
+    background: #ffbe33;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #222831;
+    font-size: 1.2rem;
+}
+
+.section-title {
+    color: #222831;
+    font-weight: 600;
+    margin: 0;
+}
+
+.section-divider {
+    height: 2px;
+    background: #ffbe33;
+    margin-top: 0.75rem;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    color: #222831;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.form-label i {
+    color: #ffbe33;
+    margin-right: 8px;
+    font-size: 1rem;
+}
+
+.form-control, .form-select {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    color: #1f1f1f;
+    background: #ffffff;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #ffbe33;
+    box-shadow: 0 0 0 0.25rem rgba(255, 190, 51, 0.25);
+    outline: none;
+}
+
+/* Input Groups */
+.input-group {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    border-color: #ffbe33;
+    box-shadow: 0 0 0 0.25rem rgba(255, 190, 51, 0.25);
+}
+
+.input-group-text {
+    background: #ffbe33;
+    border: none;
+    color: #222831;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    min-width: 45px;
+    justify-content: center;
+}
+
+.input-group-lg .input-group-text {
+    padding: 0.875rem 1.25rem;
+}
+
+/* Warna khusus untuk Harga & Stok */
+.input-group-text.bg-primary {
+    background: #ffbe33 !important;
+    color: #222831 !important;
+    border: none;
+}
+
+.input-group-text.bg-info {
+    background: #ffbe33 !important;
+    color: #222831 !important;
+    border: none;
+}
+
+/* Alert */
+.alert-warning {
+    background: #fff3cd;
+    color: #856404;
+    border-left-color: #ffbe33;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar-thumb {
+    background: #ffbe33;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffaa00;
+}
+
+/* MODAL STYLES */
+.modal-header {
+    background: #222831;
+    color: #ffffff;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-title i {
+    color: #ffbe33;
+}
+
+/* Action Buttons */
+.action-buttons .btn {
+    border-radius: 6px;
+    font-weight: 500;
+    border: 2px solid #ffbe33;
+    background: #ffbe33;
+    color: #222831;
+}
+
+.action-buttons .btn:hover {
+    background: #ffaa00;
+    border-color: #ffaa00;
+    color: #222831;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 768px) {
+    /* Responsive untuk Product Card */
+    .product-card-image {
+        height: 160px;
+    }
+
+    .product-name {
+        font-size: 1rem;
+    }
+
+    .product-card .price-value {
+        font-size: 1.1rem;
+    }
+
+    .product-actions .btn-detail,
+    .product-actions .btn-edit,
+    .product-actions .btn-delete {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+
+    .product-actions .btn-detail span,
+    .product-actions .btn-edit span,
+    .product-actions .btn-delete span {
+        display: none;
+    }
+
+    .product-actions .btn i {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Responsive untuk Product Card */
+    .product-card {
+        margin-bottom: 1rem;
+    }
+
+    .product-card-image {
+        height: 150px;
+    }
+
+    .product-card .card-body {
+        padding: 1rem;
+    }
+
+    .product-card .card-footer {
+        padding: 0.5rem 1rem;
+    }
+
+    .product-actions .btn-group {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .product-actions .btn-detail,
+    .product-actions .btn-edit,
+    .product-actions .btn-delete {
+        width: 90%;
+        margin: 0;
+        padding: 0.5rem;
+    }
+}
+
+/* UTILITY CLASSES */
+.text-primary-color {
+    color: #ffbe33 !important;
+}
+
+.border-primary {
+    border-color: #ffbe33 !important;
+}
+
+/* EMPTY STATE */
+.empty-state {
+    padding: 3rem 1rem;
+}
+
+.empty-state i {
+    opacity: 0.5;
+}
+
+/* FILTER DROPDOWN */
+.filter-dropdown .dropdown-menu {
+    border: 1px solid rgba(255, 190, 51, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(34, 40, 49, 0.1);
+}
+
+.filter-dropdown .dropdown-item {
+    color: #1f1f1f;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.filter-dropdown .dropdown-item:hover {
+    background-color: rgba(255, 190, 51, 0.1);
+    color: #222831;
+}
+
+.filter-dropdown .dropdown-item.active {
+    background-color: #ffbe33;
+    color: #222831;
+}
+
+/* Logo Upload Section Styles */
+.col-md-6.mb-3 {
+    position: relative;
+}
+
+.col-md-6.mb-3 .form-label {
+    color: #222831;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.col-md-6.mb-3 input[type="file"].form-control {
+    border: 2px solid rgba(34, 40, 49, 0.2);
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: #ffffff;
+    color: #1f1f1f;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.col-md-6.mb-3 input[type="file"].form-control:focus {
+    border-color: #ffbe33;
+    box-shadow: 0 0 0 0.1rem rgba(255, 190, 51, 0.25);
+    outline: none;
+}
+
+.col-md-6.mb-3 input[type="file"].form-control:hover {
+    border-color: #ffbe33;
+}
+
+.col-md-6.mb-3 small.text-muted {
+    font-size: 0.8rem;
+    color: #666666;
+    margin-top: 0.3rem;
+    display: block;
+    line-height: 1.3;
+}
+
+/* Remove background and border from "Choose File" button */
+.col-md-6.mb-3 input[type="file"].form-control::file-selector-button {
+    background: none;
+    color: #222831;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    margin-right: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.col-md-6.mb-3 input[type="file"].form-control::file-selector-button:hover {
+    color: #ffbe33;
+    background: none;
+    transform: none;
+}
+
+/* For WebKit browsers */
+.col-md-6.mb-3 input[type="file"].form-control::-webkit-file-upload-button {
+    background: none;
+    color: #222831;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    margin-right: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.col-md-6.mb-3 input[type="file"].form-control::-webkit-file-upload-button:hover {
+    color: #ffbe33;
+    background: none;
+    transform: none;
 }
 </style>

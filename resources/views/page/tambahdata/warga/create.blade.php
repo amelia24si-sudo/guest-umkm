@@ -39,7 +39,6 @@
 
     <!-- jQery -->
     @include('layout.users.js1')
-
 </body>
 
 </html>

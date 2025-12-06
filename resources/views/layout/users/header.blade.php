@@ -36,20 +36,51 @@
                           <li class="nav-item dropdown">
                               <a class="nav-link dropdown-toggle" href="#" id="tambahUmkmDropdown" role="button"
                                   data-toggle="dropdown" aria-expanded="false">
-                                  Tambah Data
+                                  <i></i>Tambah Data
                               </a>
                               <ul class="dropdown-menu" aria-labelledby="tambahUmkmDropdown">
+                                  <!-- Header Section -->
                                   <li>
-                                      <a class="dropdown-item" href="{{ route('binadesa.index') }}">
-                                          <i class="fa fa-store me-2"></i>Tambah UMKM
+                                      <h6 class="dropdown-header">
+                                          <i class="fa fa-box text-primary me-2"></i>Produk
+                                      </h6>
+                                  </li>
+
+                                  <li>
+                                      <a class="dropdown-item" href="{{ route('produk.index') }}">
+                                          <i class="fa fa-plus me-2"></i>Tambah Produk
                                       </a>
                                   </li>
+
                                   <li>
                                       <hr class="dropdown-divider">
                                   </li>
+
+                                  <!-- UMKM Section -->
+                                  <li>
+                                      <h6 class="dropdown-header">
+                                          <i class="fa fa-store text-warning me-2"></i>UMKM
+                                      </h6>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item" href="{{ route('binadesa.index') }}">
+                                          <i class="fa fa-plus me-2"></i>Tambah UMKM
+                                      </a>
+                                  </li>
+
+                                  <li>
+                                      <hr class="dropdown-divider">
+                                  </li>
+
+                                  <!-- User Management Section -->
+                                  <li>
+                                      <h6 class="dropdown-header">
+                                          <i class="fa fa-users text-info me-2"></i>Pengguna
+                                      </h6>
+                                  </li>
                                   <li>
                                       <a class="dropdown-item" href="{{ route('users.index') }}">
-                                          <i class="fa fa-users me-2"></i>Kelola User
+                                          <i class="fa fa-user-cog me-2"></i>Kelola User
                                       </a>
                                   </li>
                                   <li>
@@ -68,7 +99,7 @@
                           <button class="btn btn-dropdown dropdown-toggle user_dropdown_toggle" type="button"
                               id="akunDropdown" data-toggle="dropdown" aria-expanded="false">
                               Daftar UMKM
-                             <i class="fas fa-user ml-2"></i>
+                              <i class="fas fa-user ml-2"></i>
                           </button>
                           <ul class="dropdown-menu user_dropdown_menu" aria-labelledby="akunDropdown">
                               @auth

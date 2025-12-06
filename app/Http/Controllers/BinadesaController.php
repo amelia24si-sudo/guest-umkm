@@ -70,7 +70,9 @@ class BinadesaController extends Controller
 
     public function create()
     {
-        $warga = Warga::orderBy('nama', 'asc')->get();
+        $warga = Warga::select('warga_id', 'nama', 'no_ktp', 'alamat', 'rt', 'rw', 'telp')
+            ->orderBy('nama')
+            ->get();
         return view('page.tambahdata.umkm.create', compact('warga'));
     }
 
@@ -89,20 +91,23 @@ class BinadesaController extends Controller
         ]);
 
         $binadesa = Umkm::create($validated);
-
-        // Handle file upload untuk logo
+// Di method store
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $path = $file->store('umkm', 'public');
+
+            // Simpan dengan nama unik
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path     = $file->storeAs('umkm', $filename, 'public');
+
             Media::create([
-                'ref_table' => 'umkm',
-                'ref_id'    => $binadesa->umkm_id,
-                'file_url'  => $path,
-                'mime_type' => $file->getMimeType(),
-                'caption'   => 'Logo UMKM',
+                'ref_table'  => 'umkm',
+                'ref_id'     => $binadesa->umkm_id,
+                'file_url'   => $path, // Contoh: "umkm/1234567890_logo.jpg"
+                'mime_type'  => $file->getMimeType(),
+                'caption'    => 'Logo UMKM',
+                'sort_order' => 0,
             ]);
         }
-
         session()->flash('success', 'Data UMKM berhasil ditambahkan.');
         return redirect()->route('binadesa.index');
     }

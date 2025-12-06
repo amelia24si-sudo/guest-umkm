@@ -6,18 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
-    public function up(): void
+   public function up(): void
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id('media_id');
-            $table->string('ref_table'); // 'umkm' atau 'produk'
-            $table->unsignedBigInteger('ref_id'); // ID dari tabel referensi
+            $table->string('ref_table'); // 'umkm', 'produk', 'pesanan'
+            $table->unsignedBigInteger('ref_id');
             $table->string('file_url');
             $table->string('caption')->nullable();
             $table->string('mime_type');
             $table->integer('sort_order')->default(0);
             $table->timestamps();
+
+            $table->index(['ref_table', 'ref_id']);
         });
     }
 

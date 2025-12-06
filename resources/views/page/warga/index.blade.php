@@ -4,8 +4,8 @@
             <section class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-users fa-3x text-primary"></i>
                 <section class="ms-3">
-                    <p class="mb-2">Total Warga</p>
-                    <h6 class="mb-0">{{ $warga->total() }}</h6>
+                    <h5 class="card-title mb-1">Total Warga</h5>
+                    <h3 class="card-value mb-0">{{ $warga->total() }}</h3>
                 </section>
             </section>
         </section>
@@ -13,8 +13,8 @@
             <section class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-male fa-3x text-primary"></i>
                 <section class="ms-3">
-                    <p class="mb-2">Laki-laki</p>
-                    <h6 class="mb-0">{{ $warga->where('jenis_kelamin', 'L')->count() }}</h6>
+                    <h5 class="card-title mb-1">Laki-laki</h5>
+                    <h3 class="card-value mb-0">{{ $warga->where('jenis_kelamin', 'L')->count() }}</h3>
                 </section>
             </section>
         </section>
@@ -22,8 +22,8 @@
             <section class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-female fa-3x text-primary"></i>
                 <section class="ms-3">
-                    <p class="mb-2">Perempuan</p>
-                    <h6 class="mb-0">{{ $warga->where('jenis_kelamin', 'P')->count() }}</h6>
+                    <h5 class="card-title mb-1">Perempuan</h5>
+                    <h3 class="card-value mb-0">{{ $warga->where('jenis_kelamin', 'P')->count() }}</h3>
                 </section>
             </section>
         </section>
@@ -31,9 +31,9 @@
             <section class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-store fa-3x text-primary"></i>
                 <section class="ms-3">
-                    <p class="mb-2">Pemilik UMKM</p>
-                    <h6 class="mb-0">{{ $warga->filter(function ($w) {return $w->umkm->count() > 0;})->count() }}
-                    </h6>
+                    <h5 class="card-title mb-1">Pemilik UMKM</h5>
+                    <h3 class="card-value mb-0">{{ $warga->filter(function ($w) {return $w->umkm->count() > 0;})->count() }}
+                    </h3>
                 </section>
             </section>
         </section>
@@ -231,8 +231,7 @@
                                         title="Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('warga.destroy', $w) }}" method="POST"
-                                        style="display: inline-block;">
+                                    <form action="{{ route('warga.destroy', $w) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-outline-primary btn-sm" title="Hapus"
@@ -257,8 +256,8 @@
                     <section class="text-center py-5">
                         <i class="fa fa-users fa-4x text-muted mb-3"></i>
                         <h5 class="text-muted">Tidak ada data warga</h5>
-                        <p class="text-muted">Mulai dengan menambahkan warga baru</p>
-                        <a href="{{ route('warga.create') }}" class="btn btn-primary">
+                        <p class="text-muted">Mulai dengan menambah warga baru</p>
+                        <a href="{{ route('warga.create')}}" class= "card-value mb-0tn btn-primary">
                             <i class="fa fa-plus me-2"></i>Tambah Warga Pertama
                         </a>
                     </section>
