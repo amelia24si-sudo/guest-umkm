@@ -116,7 +116,7 @@
                         <!-- Logo/Gambar UMKM -->
                         <section class="position-relative">
                             @if ($b->media && $b->media->count() > 0)
-                                <img src="{{ Storage::url($b->media->first()->file_url) }}" class="card-img-top"
+                                <img src="{{ Storage::url($b->media->first()->file_nama) }}" class="card-img-top"
                                     alt="{{ $b->nama_usaha }}" style="height: 200px; object-fit: cover;">
                             @else
                                 <section
