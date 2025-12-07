@@ -226,12 +226,12 @@
                                     Field dengan tanda <span class="text-danger">*</span> wajib diisi
                                 </p>
                             </div>
-                            <div class="d-flex gap-2">
+                            <div class="action-buttons">
                                 <a href="{{ route('warga.index') }}" class="btn btn-primary">
                                     <i class="fa fa-times me-2"></i>Batal
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-save me-2"></i>Simpan
+                                    <i class="fa fa-save me-2"></i>Simpan Pesanan
                                 </button>
                             </div>
                         </div>

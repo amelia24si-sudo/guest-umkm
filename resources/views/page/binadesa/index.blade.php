@@ -21,7 +21,7 @@
         </div>
         <div class="col-sm-6 col-xl-3">
             <section class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-tags fa-3x text-primary"></i>&nbsp
+                <i class="fa fa-tags fa-3x text-primary"></i>&nbsp;
                 <div class="ms-3">
                     <p class="mb-2">Kategori Terbanyak</p>
                     <h6 class="mb-0">{{ $kategoriTerbanyak }}</h6>

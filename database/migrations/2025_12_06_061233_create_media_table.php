@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id('media_id');
             $table->string('ref_table'); // 'umkm', 'produk', 'pesanan'
             $table->unsignedBigInteger('ref_id');
-            $table->string('file_url');
+            $table->string('file_nama');
             $table->string('caption')->nullable();
             $table->string('mime_type');
             $table->integer('sort_order')->default(0);

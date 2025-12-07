@@ -58,14 +58,14 @@
                             <div class="d-flex align-items-center">
                                 <div class="section-icon">
                                     <i class="fa fa-info-circle"></i>
-                                </div>
+                                </div>&nbsp;
                                 <h5 class="section-title mb-0 ms-3">Informasi Dasar Produk</h5>
                             </div>
                             <div class="section-divider"></div>
                         </div>
 
-                        <div class="row g-4">
-                            <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label fw-semibold">
                                         <i class="fa fa-store me-1"></i>UMKM
@@ -95,7 +95,7 @@
                                         <span class="text-danger"></span>
                                     </label>
                                     <input type="text" name="nama_produk" class="form-control form-control-lg"
-                                        value="{{ old('nama_produk') }}" placeholder="Masukkan nama produk" required>
+                                        value="{{ old('nama_produk') }}" placeholder="Masukkan nama produk" required >
                                     <small class="form-text text-muted mt-2">
                                         <i class="fa fa-lightbulb me-1"></i>
                                         Gunakan nama yang deskriptif dan mudah diingat
@@ -111,7 +111,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="section-icon">
                                     <i class="fa fa-file-alt"></i>
-                                </div>
+                                </div>&nbsp;
                                 <h5 class="section-title mb-0 ms-3">Deskripsi Produk</h5>
                             </div>
                             <div class="section-divider"></div>
@@ -135,7 +135,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="section-icon">
                                     <i class="fa fa-chart-line"></i>
-                                </div>
+                                </div>&nbsp;
                                 <h5 class="section-title mb-0 ms-3">Harga & Stok</h5>
                             </div>
                             <div class="section-divider"></div>
@@ -189,10 +189,10 @@
                                     </label>
                                     <select name="status" class="form-select form-control-lg" required>
                                         <option value="aktif" {{ old('status') == 'aktif' ? 'selected' : '' }}>
-                                            <span class="badge bg-success me-2">●</span> Aktif
+                                            <span class="badge bg-success me-2"></span> Aktif
                                         </option>
                                         <option value="nonaktif" {{ old('status') == 'nonaktif' ? 'selected' : '' }}>
-                                            <span class="badge bg-danger me-2">●</span> Nonaktif
+                                            <span class="badge bg-danger me-2"></span> Nonaktif
                                         </option>
                                     </select>
                                     <small class="form-text text-muted mt-2">
@@ -209,7 +209,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="section-icon">
                                     <i class="fa fa-camera"></i>
-                                </div>
+                                </div>&nbsp;
                                 <h5 class="section-title mb-0 ms-3">Foto Produk</h5>
                             </div>
                             <div class="section-divider"></div>

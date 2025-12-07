@@ -13,13 +13,12 @@ use App\Http\Controllers\DashboardController;
 // Routes untuk Guest UMKM (Public)
 Route::get('/', [UmkmController::class, 'beranda'])->name('home');
 Route::get('/umkm', [UmkmController::class, 'index'])->name('umkm');
-Route::get('/umkm/{id}', [UmkmController::class, 'show'])->name('umkm.show');// PERBAIKI INI
+Route::get('/umkm/{id}', [UmkmController::class, 'show'])->name('umkm.show');
 
 // Routes untuk Layanan dan Kontak (Public)
 Route::get('/layanan', [UmkmController::class, 'layanan'])->name('layanan');
 Route::get('/kontak', [UmkmController::class, 'kontak'])->name('kontak');
 Route::get('/about', [UmkmController::class, 'about'])->name('about');
-// Route::get('/umkm', [UmkmController::class, 'umkm'])->name('umkm');
 Route::post('/kirim-pesan', [UmkmController::class, 'kirimPesan'])->name('kirim.pesan');
 
 // Routes untuk Auth (Public)
@@ -39,6 +38,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/binadesa/create', [BinadesaController::class, 'create'])->name('binadesa.create');
     Route::post('/binadesa', [BinadesaController::class, 'store'])->name('binadesa.store');
     Route::resource('produk', ProdukController::class);
+
+    // Routes untuk Pesanan
+    Route::resource('pesanan', PesananController::class);
+
+    // Tambahan routes untuk Pesanan (versi sederhana)
+    Route::post('/pesanan/{pesanan}/update-status', [PesananController::class, 'updateStatus'])->name('pesanan.update-status');
+    Route::post('/pesanan/{pesanan}/upload-bukti', [PesananController::class, 'uploadBuktiBayar'])->name('pesanan.upload-bukti');
+    Route::get('/pesanan/dashboard', [PesananController::class, 'dashboard'])->name('pesanan.dashboard');
+    Route::get('/pesanan/laporan', [PesananController::class, 'laporan'])->name('pesanan.laporan');
+    Route::get('/pesanan/warga/{warga}', [PesananController::class, 'getByWarga'])->name('pesanan.by-warga');
 });
-
-

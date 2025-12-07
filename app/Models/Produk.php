@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,9 +8,9 @@ class Produk extends Model
 {
     use HasFactory;
 
-    protected $table = 'produk';
+    protected $table      = 'produk';
     protected $primaryKey = 'produk_id';
-    protected $fillable = ['umkm_id', 'nama_produk', 'deskripsi', 'harga', 'stok', 'status'];
+    protected $fillable   = ['umkm_id', 'nama_produk', 'deskripsi', 'harga', 'stok', 'status'];
 
     public function umkm()
     {
@@ -39,5 +38,11 @@ class Produk extends Model
     public function getStatusTextAttribute()
     {
         return $this->status == 'aktif' ? 'Aktif' : 'Nonaktif';
+    }
+
+    // Scope untuk produk aktif
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'aktif');
     }
 }

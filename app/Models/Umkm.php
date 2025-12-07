@@ -1,9 +1,9 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class Umkm extends Model
 {
@@ -18,10 +18,10 @@ class Umkm extends Model
         return $this->belongsTo(Warga::class, 'pemilik_warga_id', 'warga_id');
     }
 
-    // public function produk()
-    // {
-    //     return $this->hasMany(Produk::class, 'umkm_id', 'umkm_id');
-    // }
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'umkm_id', 'umkm_id');
+    }
 
     public function media()
     {
@@ -43,7 +43,7 @@ class Umkm extends Model
     public function scopeSearch($query, $request, array $columns)
     {
         if ($request->filled('search')) {
-            $query->where(function($q) use ($request, $columns) {
+            $query->where(function ($q) use ($request, $columns) {
                 foreach ($columns as $column) {
                     $q->orWhere($column, 'LIKE', '%' . $request->search . '%');
                 }

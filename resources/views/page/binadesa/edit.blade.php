@@ -57,7 +57,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <div class="bg-primary text-white rounded-circle p-2 me-3">
                                 <i class="fa fa-info-circle fa-lg"></i>
-                            </div>
+                            </div>&nbsp;
                             <h5 class="mb-0 fw-bold text-dark">Informasi Dasar UMKM/Binadesa</h5>
                         </div>
                         <hr class="mb-4">
@@ -106,7 +106,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <div class="bg-primary text-white rounded-circle p-2 me-3">
                                 <i class="fa fa-map-marker-alt fa-lg"></i>
-                            </div>
+                            </div>&nbsp;
                             <h5 class="mb-0 fw-bold text-dark">Alamat Usaha</h5>
                         </div>
                         <hr class="mb-4">
@@ -148,7 +148,7 @@
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-semibold">
                                     <i class="fa fa-tags me-1"></i>Kategori Usaha
-                                    <span class="text-danger">*</span>
+                                    <span class="text-danger"></span>
                                 </label>
                                 <select name="kategori" class="form-select" required>
                                     <option value="" disabled>-- Pilih Kategori --</option>
@@ -197,7 +197,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <div class="bg-primary text-white rounded-circle p-2 me-3">
                                 <i class="fa fa-phone-alt fa-lg"></i>
-                            </div>
+                            </div>&nbsp;
                             <h5 class="mb-0 fw-bold text-dark">Kontak & Identitas</h5>
                         </div>
                         <hr class="mb-4">
@@ -234,7 +234,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <div class="bg-primary text-white rounded-circle p-2 me-3">
                                 <i class="fa fa-file-alt fa-lg"></i>
-                            </div>
+                            </div>&nbsp;
                             <h5 class="mb-0 fw-bold text-dark">Deskripsi Usaha</h5>
                         </div>
                         <hr class="mb-4">
@@ -260,12 +260,12 @@
                                     Field dengan tanda <span class="text-danger">*</span> wajib diisi
                                 </p>
                             </div>
-                            <div class="d-flex gap-2">
+                            <div class="action-buttons">
                                 <a href="{{ route('binadesa.index') }}" class="btn btn-primary">
                                     <i class="fa fa-times me-2"></i>Batal
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-save me-2"></i>Simpan
+                                    <i class="fa fa-save me-2"></i>Simpan Pesanan
                                 </button>
                             </div>
                         </div>

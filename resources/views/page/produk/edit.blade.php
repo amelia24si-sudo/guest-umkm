@@ -80,157 +80,160 @@
                     @method('PUT')
 
                     <!-- Basic Information Section -->
-                    <div class="row mb-4">
-                        <div class="col-12 mb-4">
-                            <div class="section-header bg-light p-3 rounded">
-                                <h5 class="mb-0">
-                                    <i class="fa fa-info-circle me-2 text-primary"></i>Informasi Dasar
-                                </h5>
+                    <div class="form-section mb-5">
+                        <div class="section-header mb-4">
+                            <div class="d-flex align-items-center">
+                                <div class="section-icon">
+                                    <i class="fa fa-info-circle"></i>
+                                </div>&nbsp;
+                                <h5 class="section-title mb-0 ms-3">Informasi Dasar Produk</h5>
+                            </div>
+                            <div class="section-divider"></div>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label fw-semibold">
+                                        <i class="fa fa-store me-1"></i>UMKM <span class="text-danger"></span>
+                                    </label>
+                                    <select name="umkm_id" class="form-select" required>
+                                        <option value="" disabled>-- Pilih UMKM --</option>
+                                        @foreach ($umkm as $u)
+                                            <option value="{{ $u->umkm_id }}"
+                                                {{ old('umkm_id', $produk->umkm_id) == $u->umkm_id ? 'selected' : '' }}>
+                                                {{ $u->nama_usaha }} - {{ $u->pemilik->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <small class="form-text text-muted">
+                                        Pilih UMKM pemilik produk ini
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label fw-semibold">
+                                        <i class="fa fa-tag me-1"></i>Nama Produk <span class="text-danger"></span>
+                                    </label>
+                                    <input type="text" name="nama_produk" class="form-control"
+                                        value="{{ old('nama_produk', $produk->nama_produk) }}"
+                                        placeholder="Masukkan nama produk" required>
+                                    <small class="form-text text-muted">
+                                        Nama produk yang akan ditampilkan
+                                    </small>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="form-label fw-semibold">
-                                    <i class="fa fa-store me-1"></i>UMKM <span class="text-danger"></span>
-                                </label>
-                                <select name="umkm_id" class="form-select" required>
-                                    <option value="" disabled>-- Pilih UMKM --</option>
-                                    @foreach ($umkm as $u)
-                                        <option value="{{ $u->umkm_id }}"
-                                            {{ old('umkm_id', $produk->umkm_id) == $u->umkm_id ? 'selected' : '' }}>
-                                            {{ $u->nama_usaha }} - {{ $u->pemilik->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <small class="form-text text-muted">
-                                    Pilih UMKM pemilik produk ini
-                                </small>
+                        <!-- Description Section -->
+                        <div class="form-section mb-5">
+                            <div class="section-header mb-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="section-icon">
+                                        <i class="fa fa-file-alt"></i>
+                                    </div>&nbsp;
+                                    <h5 class="section-title mb-0 ms-3">Deskripsi Produk</h5>
+                                </div>
+                                <div class="section-divider"></div>
                             </div>
-                        </div>
 
-                        <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label fw-semibold">
-                                    <i class="fa fa-tag me-1"></i>Nama Produk <span class="text-danger"></span>
-                                </label>
-                                <input type="text" name="nama_produk" class="form-control"
-                                    value="{{ old('nama_produk', $produk->nama_produk) }}"
-                                    placeholder="Masukkan nama produk" required>
-                                <small class="form-text text-muted">
-                                    Nama produk yang akan ditampilkan
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Description Section -->
-                    <div class="row mb-4">
-                        <div class="col-12 mb-3">
-                            <div class="section-header bg-light p-3 rounded">
-                                <h5 class="mb-0">
-                                    <i class="fa fa-align-left me-2 text-primary"></i>Deskripsi Produk
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <div class="form-group">
-                                <label class="form-label fw-semibold">
-                                    <i class="fa fa-file-alt me-1"></i>Deskripsi
+                                    <i class="fa fa-align-left me-1"></i>Deskripsi
                                 </label>
                                 <textarea name="deskripsi" class="form-control" rows="4" placeholder="Deskripsikan produk secara detail...">{{ old('deskripsi', $produk->deskripsi) }}</textarea>
-                                <small class="form-text text-muted">
-                                    Jelaskan spesifikasi, keunggulan, atau informasi penting lainnya
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Price, Stock & Status Section -->
-                    <div class="row mb-4">
-                        <div class="col-12 mb-3">
-                            <div class="section-header bg-light p-3 rounded">
-                                <h5 class="mb-0">
-                                    <i class="fa fa-chart-line me-2 text-primary"></i>Harga, Stok & Status
-                                </h5>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <div class="form-group">
-                                <label class="form-label fw-semibold">
-                                    <i class="fa fa-money-bill-wave me-1"></i>Harga <span class="text-danger">*</span>
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-primary text-white">
-                                        <i class="fa fa-rupiah-sign"></i>
-                                    </span>
-                                    <input type="number" name="harga" class="form-control"
-                                        value="{{ old('harga', $produk->harga) }}" min="0" step="0.01"
-                                        required>
+                                <div class="form-text mt-2">
+                                    <i class="fa fa-tips me-1"></i>
+                                    Jelaskan keunggulan, bahan, ukuran, atau informasi penting lainnya
                                 </div>
-                                <small class="form-text text-muted">
-                                    Harga produk dalam Rupiah
-                                </small>
                             </div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
-                            <div class="form-group">
-                                <label class="form-label fw-semibold">
-                                    <i class="fa fa-cubes me-1"></i>Stok <span class="text-danger">*</span>
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-info text-white">
-                                        <i class="fa fa-box"></i>
-                                    </span>
-                                    <input type="number" name="stok" class="form-control"
-                                        value="{{ old('stok', $produk->stok) }}" min="0" required>
+                        <!-- Price, Stock & Status Section -->
+                        <div class="form-section mb-5">
+                            <div class="section-header mb-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="section-icon">
+                                        <i class="fa fa-chart-line"></i>
+                                    </div>&nbsp;
+                                    <h5 class="section-title mb-0 ms-3">Harga & Stok</h5>
                                 </div>
-                                <small class="form-text text-muted">
-                                    Jumlah stok yang tersedia
-                                </small>
+                                <div class="section-divider"></div>
+                            </div>
+
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label fw-semibold">
+                                            <i class="fa fa-money-bill-wave me-1"></i>Harga
+                                            <span class="text-danger"></span>
+                                        </label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-primary text-white">
+                                                <i class="fa fa-rupiah-sign"></i>
+                                            </span>
+                                            <input type="number" name="harga" class="form-control"
+                                                value="{{ old('harga', $produk->harga) }}" min="0"
+                                                step="0.01" required>
+                                        </div>
+                                        <small class="form-text text-muted">
+                                            Harga produk dalam Rupiah
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label fw-semibold">
+                                            <i class="fa fa-cubes me-1"></i>Stok
+                                            <span class="text-danger"></span>
+                                        </label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-info text-white">
+                                                <i class="fa fa-box"></i>
+                                            </span>
+                                            <input type="number" name="stok" class="form-control"
+                                                value="{{ old('stok', $produk->stok) }}" min="0" required>
+                                        </div>
+                                        <small class="form-text text-muted">
+                                            Jumlah stok yang tersedia
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label fw-semibold">
+                                            <i class="fa fa-toggle-on me-1"></i>Status
+                                            <span class="text-danger"></span>
+                                        </label>
+                                        <select name="status" class="form-select" required>
+                                            <option value="aktif"
+                                                {{ old('status', $produk->status) == 'aktif' ? 'selected' : '' }}>
+                                                <i class="fa fa-circle text-success me-1"></i> Aktif
+                                            </option>
+                                            <option value="nonaktif"
+                                                {{ old('status', $produk->status) == 'nonaktif' ? 'selected' : '' }}>
+                                                <i class="fa fa-circle text-danger me-1"></i> Nonaktif
+                                            </option>
+                                        </select>
+                                        <small class="form-text text-muted">
+                                            Status tampilan produk
+                                        </small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
-                            <div class="form-group">
-                                <label class="form-label fw-semibold">
-                                    <i class="fa fa-toggle-on me-1"></i>Status <span class="text-danger"></span>
-                                </label>
-                                <select name="status" class="form-select" required>
-                                    <option value="aktif"
-                                        {{ old('status', $produk->status) == 'aktif' ? 'selected' : '' }}>
-                                        <i class="fa fa-circle text-success me-1"></i> Aktif
-                                    </option>
-                                    <option value="nonaktif"
-                                        {{ old('status', $produk->status) == 'nonaktif' ? 'selected' : '' }}>
-                                        <i class="fa fa-circle text-danger me-1"></i> Nonaktif
-                                    </option>
-                                </select>
-                                <small class="form-text text-muted">
-                                    Status tampilan produk
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Photo Section -->
-                    <div class="row mb-4">
-                        <div class="col-12 mb-3">
-                            <div class="section-header bg-light p-3 rounded">
-                                <h5 class="mb-0">
-                                    <i class="fa fa-camera me-2 text-primary"></i>Foto Produk
-                                </h5>
-                            </div>
-                        </div>
-
-                        <div class="col-12 mb-3">
+                        <!-- Product Photo Section -->
+                        <div class="form-section mb-5">
                             <div class="section-header mb-4">
                                 <div class="d-flex align-items-center">
                                     <div class="section-icon">
                                         <i class="fa fa-camera"></i>
-                                    </div>
+                                    </div>&nbsp;
                                     <h5 class="section-title mb-0 ms-3">Foto Produk</h5>
                                 </div>
                                 <div class="section-divider"></div>
@@ -301,12 +304,12 @@
                                         <i class="fa fa-exclamation-circle me-1"></i>
                                         Field dengan tanda <span class="text-danger">*</span> wajib diisi
                                     </div>
-                                    <div class="btn-group">
+                                    <div class="action-buttons">
                                         <a href="{{ route('produk.index') }}" class="btn btn-primary">
-                                            <i class="fa fa-times me-1"></i>Batal
+                                            <i class="fa fa-times me-2"></i>Batal
                                         </a>
                                         <button type="submit" class="btn btn-primary">
-                                            <i class="fa fa-save me-1"></i>Update Produk
+                                            <i class="fa fa-save me-2"></i>Simpan Produk
                                         </button>
                                     </div>
                                 </div>

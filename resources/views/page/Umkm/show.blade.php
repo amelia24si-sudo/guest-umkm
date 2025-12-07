@@ -110,6 +110,51 @@
                 </section>
             </section>
 
+            <!-- PRODUK YANG DIJUAL - TAMBAHAN -->
+            <section class="card info-section mb-4">
+                <section class="card-header">
+                    <i class="fas fa-box me-2"></i>Produk yang Dijual
+                </section>
+                <section class="card-body">
+                    @if($umkm->produk && $umkm->produk->where('status', 'aktif')->count() > 0)
+                        <section class="row">
+                            @foreach($umkm->produk->where('status', 'aktif') as $produk)
+                            <section class="col-md-6 mb-3">
+                                <section class="card h-100">
+                                    <section class="card-body">
+                                        <section class="d-flex justify-content-between align-items-start mb-2">
+                                            <h6 class="card-title mb-0 fw-bold">{{ $produk->nama_produk }}</h6>
+                                            <span class="badge bg-success">Rp {{ number_format($produk->harga, 0, ',', '.') }}</span>
+                                        </section>
+                                        <section class="d-flex justify-content-between align-items-center">
+                                            @php
+                                                $clean_phone = preg_replace('/[^0-9]/', '', $umkm->kontak);
+                                                if (substr($clean_phone, 0, 1) === '0') {
+                                                    $clean_phone = '62' . substr($clean_phone, 1);
+                                                }
+                                                $whatsapp_message = "Halo " . $umkm->nama_usaha . ", saya ingin bertanya tentang produk " . $produk->nama_produk . " dengan harga Rp " . number_format($produk->harga, 0, ',', '.');
+                                            @endphp
+                                            <a href="https://wa.me/{{ $clean_phone }}?text={{ urlencode($whatsapp_message) }}"
+                                               class="btn btn-sm btn-outline-success"
+                                               target="_blank">
+                                                <i class="fab fa-whatsapp me-1"></i> Pesan
+                                            </a>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                            @endforeach
+                        </section>
+                    @else
+                        <section class="text-center py-5">
+                            <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                            <p class="text-muted mb-0">Belum ada produk yang tersedia</p>
+                        </section>
+                    @endif
+                </section>
+            </section>
+            <!-- END PRODUK YANG DIJUAL -->
+
             <!-- Layanan/Jasa yang Ditawarkan -->
             <section class="card info-section mb-4">
                 <section class="card-header">

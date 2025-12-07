@@ -48,7 +48,7 @@ class UmkmController extends Controller
     public function show($id)
     {
         try {
-            $umkm = Umkm::with(['pemilik', 'media'])
+            $umkm = Umkm::with(['pemilik', 'media', 'produk'])
                         ->where('umkm_id', $id)
                         ->firstOrFail();
 
