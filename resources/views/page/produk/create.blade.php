@@ -88,7 +88,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label fw-semibold">
                                         <i class="fa fa-tag me-1"></i>Nama Produk

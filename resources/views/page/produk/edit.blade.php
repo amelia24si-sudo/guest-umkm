@@ -91,8 +91,8 @@
                             <div class="section-divider"></div>
                         </div>
 
-                        <div class="row g-4">
-                            <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label fw-semibold">
                                         <i class="fa fa-store me-1"></i>UMKM <span class="text-danger"></span>
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label fw-semibold">
                                         <i class="fa fa-tag me-1"></i>Nama Produk <span class="text-danger"></span>
