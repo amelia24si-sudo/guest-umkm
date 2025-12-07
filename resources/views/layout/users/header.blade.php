@@ -73,7 +73,7 @@
                                 </li>
 
                                 <!-- Pesanan Section -->
-                                <li>
+                                {{-- <li>
                                     <h6 class="dropdown-header">
                                         <i class="fa fa-shopping-cart text-success me-2"></i>Pesanan
                                     </h6>
@@ -82,7 +82,7 @@
                                     <a class="dropdown-item" href="{{ route('pesanan.index') }}">
                                         <i class="fa fa-plus me-2"></i>Tambah Pesanan
                                     </a>
-                                </li>
+                                </li> --}}
 
                                 <li>
                                     <hr class="dropdown-divider">
@@ -122,20 +122,7 @@
                                 <li class="dropdown-header">
                                     <small>Halo, {{ Auth::user()->name }}</small>
                                 </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
                                 <!-- Tambahkan link ke dashboard pesanan di dropdown -->
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('pesanan.dashboard') }}">
-                                        <i class="fas fa-chart-bar me-2"></i>Dashboard Pesanan
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('pesanan.laporan') }}">
-                                        <i class="fas fa-file-alt me-2"></i>Laporan Pesanan
-                                    </a>
-                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
