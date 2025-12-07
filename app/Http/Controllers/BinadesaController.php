@@ -102,7 +102,7 @@ class BinadesaController extends Controller
             Media::create([
                 'ref_table'  => 'umkm',
                 'ref_id'     => $binadesa->umkm_id,
-                'file_url'   => $path, // Contoh: "umkm/1234567890_logo.jpg"
+                'file_nama'   => $path, // Contoh: "umkm/1234567890_logo.jpg"
                 'mime_type'  => $file->getMimeType(),
                 'caption'    => 'Logo UMKM',
                 'sort_order' => 0,
