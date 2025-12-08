@@ -166,7 +166,7 @@
                                 <div class="form-group">
                                     <label class="form-label fw-semibold">
                                         <i class="fa fa-cubes me-1"></i>Stok
-                                        <span class="text-danger">*</span>
+                                        <span class="text-danger"></span>
                                     </label>
                                     <div class="input-group input-group-lg">
                                         <span class="input-group-text bg-info text-white">
@@ -219,7 +219,7 @@
                             <label class="form-label fw-semibold">
                                 <i class="fa fa-image me-1"></i>Upload Foto Produk
                             </label>
-                            <input type="file" name="logo" class="form-control" accept="image/*" style="width: 1120px">
+                            <input type="file" name="foto_produk" class="form-control" accept="image/*" style="width: 1120px">
                             <small class="text-muted">Format: JPG, PNG, JPEG, GIF. Maksimal 2MB</small>
                         </section>
                     </div>

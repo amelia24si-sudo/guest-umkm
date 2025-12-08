@@ -134,7 +134,7 @@
                     </section>
                     <section class="card-body text-center">
                         @if ($produk->media->count() > 0)
-                            <img src="{{ asset('storage/' . $produk->media->first()->file_url) }}"
+                            <img src="{{ asset('storage/' . $produk->media->first()->file_nama) }}"
                                 alt="{{ $produk->nama_produk }}" style="max-width: 100%; max-height: 200px;"
                                 class="img-fluid rounded mb-3">
                             <p class="text-muted small mb-0">

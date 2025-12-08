@@ -2,9 +2,9 @@
 namespace App\Models;
 
 use App\Models\Umkm;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Warga extends Model
 {
@@ -21,6 +21,10 @@ class Warga extends Model
     public function ulasan()
     {
         return $this->hasMany(UlasanProduk::class, 'warga_id', 'warga_id');
+    }
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class, 'warga_id', 'warga_id');
     }
     // Accessor untuk menampilkan informasi lengkap
     public function getInfoLengkapAttribute()

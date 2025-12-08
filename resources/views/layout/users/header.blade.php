@@ -73,7 +73,7 @@
                                 </li>
 
                                 <!-- Pesanan Section -->
-                                {{-- <li>
+                                <li>
                                     <h6 class="dropdown-header">
                                         <i class="fa fa-shopping-cart text-success me-2"></i>Pesanan
                                     </h6>
@@ -82,7 +82,7 @@
                                     <a class="dropdown-item" href="{{ route('pesanan.index') }}">
                                         <i class="fa fa-plus me-2"></i>Tambah Pesanan
                                     </a>
-                                </li> --}}
+                                </li>
 
                                 <li>
                                     <hr class="dropdown-divider">

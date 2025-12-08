@@ -146,7 +146,7 @@ class BinadesaController extends Controller
             // Hapus media lama jika ada
             $oldMedia = $binadesa->media()->where('caption', 'Logo UMKM')->first();
             if ($oldMedia) {
-                Storage::disk('public')->delete($oldMedia->file_url);
+                Storage::disk('public')->delete($oldMedia->file_nama);
                 $oldMedia->delete();
             }
 
@@ -155,7 +155,7 @@ class BinadesaController extends Controller
             Media::create([
                 'ref_table' => 'umkm',
                 'ref_id'    => $binadesa->umkm_id,
-                'file_url'  => $path,
+                'file_nama'  => $path,
                 'mime_type' => $file->getMimeType(),
                 'caption'   => 'Logo UMKM',
             ]);
@@ -169,7 +169,7 @@ class BinadesaController extends Controller
     {
         // Hapus media terkait
         foreach ($binadesa->media as $media) {
-            Storage::disk('public')->delete($media->file_url);
+            Storage::disk('public')->delete($media->file_nama);
             $media->delete();
         }
 

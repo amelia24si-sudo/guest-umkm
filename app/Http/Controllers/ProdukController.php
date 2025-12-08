@@ -94,11 +94,12 @@ class ProdukController extends Controller
             $file = $request->file('foto_produk');
             $path = $file->store('produk', 'public');
             Media::create([
-                'ref_table' => 'produk',
-                'ref_id'    => $produk->produk_id,
-                'file_url'  => $path,
-                'mime_type' => $file->getMimeType(),
-                'caption'   => 'Foto Produk',
+                'ref_table'  => 'produk',
+                'ref_id'     => $produk->produk_id,
+                'file_nama'   => $path, // Contoh: "umkm/1234567890_logo.jpg"
+                'mime_type'  => $file->getMimeType(),
+                'caption'    => 'Foto Produk',
+                'sort_order' => 0,
             ]);
         }
 
@@ -137,7 +138,7 @@ class ProdukController extends Controller
         if ($request->hasFile('foto_produk')) {
             $oldMedia = $produk->media()->where('caption', 'Foto Produk')->first();
             if ($oldMedia) {
-                Storage::disk('public')->delete($oldMedia->file_url);
+                Storage::disk('public')->delete($oldMedia->file_nama);
                 $oldMedia->delete();
             }
 
@@ -146,7 +147,7 @@ class ProdukController extends Controller
             Media::create([
                 'ref_table' => 'produk',
                 'ref_id'    => $produk->produk_id,
-                'file_url'  => $path,
+                'file_nama'  => $path,
                 'mime_type' => $file->getMimeType(),
                 'caption'   => 'Foto Produk',
             ]);
@@ -159,7 +160,7 @@ class ProdukController extends Controller
     public function destroy(Produk $produk)
     {
         foreach ($produk->media as $media) {
-            Storage::disk('public')->delete($media->file_url);
+            Storage::disk('public')->delete($media->file_name);
             $media->delete();
         }
 

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Produk;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Media extends Model
 {
@@ -52,11 +53,11 @@ class Media extends Model
     }
 
     /**
-     * Aksesor untuk URL lengkap
+     * Aksesor untuk nama lengkap
      */
     public function getFullUrlAttribute()
     {
-        return asset('storage/' . $this->file_url);
+        return asset('storage/' . $this->file_nama);
     }
 
     /**
@@ -72,6 +73,6 @@ class Media extends Model
      */
     public function getFileNameAttribute()
     {
-        return basename($this->file_url);
+        return basename($this->file_nama);
     }
 }

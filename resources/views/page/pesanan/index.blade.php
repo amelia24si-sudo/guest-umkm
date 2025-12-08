@@ -1,261 +1,197 @@
-<!-- Sale & Revenue Start -->
-<section class="stats-section py-4">
-    <div class="container-fluid">
-        <div class="row g-4">
-            <!-- Card Total Pesanan -->
-            <div class="col-sm-6 col-xl-3">
-                <div class="card stats-card border-0 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="card-icon">
-                                <i class="fa fa-shopping-cart fa-3x text-primary"></i>
-                            </div>
-                            <div class="card-content ms-3 text-end">
-                                <h5 class="card-title mb-1">Total Pesanan</h5>
-                                <h3 class="card-value mb-0">{{ $totalPesanan }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Card Pesanan Baru -->
-            <div class="col-sm-6 col-xl-3">
-                <div class="card stats-card border-0 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="card-icon">
-                                <i class="fa fa-plus-circle fa-3x text-primary"></i>
-                            </div>
-                            <div class="card-content ms-3 text-end">
-                                <h5 class="card-title mb-1">Pesanan Baru</h5>
-                                <h6 class="card-subtitle mb-2">Bulan Ini</h6>
-                                <h3 class="card-value mb-0">{{ $pesananBaru ?? '0' }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card Pesanan Diproses -->
-            <div class="col-sm-6 col-xl-3">
-                <div class="card stats-card border-0 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="card-icon">
-                                <i class="fa fa-sync-alt fa-3x text-primary"></i>
-                            </div>
-                            <div class="card-content ms-3 text-end">
-                                <h5 class="card-title mb-1">Sedang Diproses</h5>
-                                <h3 class="card-value mb-0">{{ $pesananDiproses ?? '0' }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Pesanan Table Start -->
+<section class="container-fluid pt-4 px-4">
+    <section class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Daftar Pesanan</h6>
+            <a href="{{ route('pesanan.create') }}" class="btn btn-primary">
+                <i class="fa fa-plus me-2"></i>Tambah Pesanan
+            </a>
         </div>
-    </div>
-</section>
-<!-- Sale & Revenue End -->
 
-<!-- Pesanan List Start -->
-<section class="pesanan-section py-4">
-    <div class="container-fluid">
-        <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white border-bottom py-3">
-                <div class="d-flex align-items-center justify-content-between">
-                    <h5 class="card-title mb-0">Daftar Pesanan</h5>
-                    <div class="d-flex gap-2">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-filter me-2"></i>Filter
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('pesanan.index') }}">Semua Pesanan</a></li>
-                                <li><a class="dropdown-item"
-                                       href="{{ route('pesanan.index') }}?status=menunggu_pembayaran">Menunggu Pembayaran</a></li>
-                                <li><a class="dropdown-item"
-                                       href="{{ route('pesanan.index') }}?status=diproses">Diproses</a></li>
-                                <li><a class="dropdown-item"
-                                       href="{{ route('pesanan.index') }}?status=dikirim">Dikirim</a></li>
-                                <li><a class="dropdown-item"
-                                       href="{{ route('pesanan.index') }}?status=selesai">Selesai</a></li>
-                                <li><a class="dropdown-item"
-                                       href="{{ route('pesanan.index') }}?status=dibatalkan">Dibatalkan</a></li>
-                            </ul>
-                        </div>
-                        <a href="{{ route('pesanan.create') }}" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus me-2"></i>Tambah Pesanan
-                        </a>
-                    </div>
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+                <div class="flex-grow-1 text-center">
+                    {{ session('success') }}
                 </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                    style="background: transparent; border: none; font-size: 1.5rem; line-height: 1; padding: 0.5rem; color: inherit;">
+                    ×
+                </button>
             </div>
+        @endif
 
-            <div class="card-body">
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center"
-                        role="alert">
-                        <div class="flex-grow-1 text-center">
-                            {{ session('success') }}
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-                            style="background: transparent; border: none; font-size: 1.5rem; line-height: 1; padding: 0.5rem; color: inherit;">
-                            ×
+        <!-- Filter dan Search Form -->
+        <form method="GET" action="{{ route('pesanan.index') }}" class="mb-4">
+            <section class="row g-3 justify-content-center">
+                <!-- Search -->
+                <section class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" value="{{ request('search') }}"
+                            placeholder="Cari no pesanan, nama warga, alamat...">
+                        <button type="submit" class="input-group-text">
+                            <i class="fa fa-search"></i>
                         </button>
-                    </div>
-                @endif
-
-                @if ($pesanan->count() > 0)
-                    <div class="row g-4">
-                        @foreach ($pesanan as $p)
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <div class="card pesanan-card border-0 shadow-sm h-100">
-                                    <!-- Card Header -->
-                                    <div class="card-header bg-light border-bottom py-3">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <h6 class="mb-1 fw-bold">#{{ $p->nomor_pesanan }}</h6>
-                                                <small class="text-muted">
-                                                    {{ $p->created_at->format('d M Y H:i') }}
-                                                </small>
-                                            </div>
-                                            <span class="badge bg-{{ $p->status == 'selesai' ? 'success' : ($p->status == 'dibatalkan' ? 'danger' : ($p->status == 'diproses' ? 'warning' : ($p->status == 'dikirim' ? 'info' : 'secondary'))) }}">
-                                                {{ $p->status_lengkap }}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Card Body -->
-                                    <div class="card-body d-flex flex-column">
-                                        <!-- Customer Info -->
-                                        <div class="mb-3">
-                                            <small class="text-muted d-block">
-                                                <i class="fa fa-user me-1"></i>Pelanggan
-                                            </small>
-                                            <p class="mb-0 fw-medium">{{ $p->warga->nama }}</p>
-                                            <small class="text-muted">{{ $p->warga->telp }}</small>
-                                        </div>
-
-                                        <!-- Address -->
-                                        <div class="mb-3">
-                                            <small class="text-muted d-block">
-                                                <i class="fa fa-map-marker-alt me-1"></i>Alamat Kirim
-                                            </small>
-                                            <p class="mb-0 text-muted small">
-                                                {{ $p->alamat_kirim }}, RT {{ $p->rt }}/RW {{ $p->rw }}
-                                            </p>
-                                        </div>
-
-                                        <!-- Payment Method & Total -->
-                                        <div class="row mb-3">
-                                            <div class="col-6">
-                                                <small class="text-muted d-block">
-                                                    <i class="fa fa-credit-card me-1"></i>Pembayaran
-                                                </small>
-                                                <p class="mb-0">{{ $p->metode_bayar_lengkap }}</p>
-                                            </div>
-                                            <div class="col-6 text-end">
-                                                <small class="text-muted d-block">Total</small>
-                                                <h5 class="mb-0 text-primary fw-bold">
-                                                    Rp {{ number_format($p->total, 0, ',', '.') }}
-                                                </h5>
-                                            </div>
-                                        </div>
-
-                                        <!-- Tracking Info -->
-                                        <div class="mb-3">
-                                            @if($p->resi_pengiriman)
-                                                <small class="text-muted d-block">
-                                                    <i class="fa fa-truck me-1"></i>Resi Pengiriman
-                                                </small>
-                                                <p class="mb-0 fw-medium">{{ $p->resi_pengiriman }}</p>
-                                            @endif
-                                            @if($p->bukti_bayar)
-                                                <small class="text-muted d-block mt-2">
-                                                    <i class="fa fa-receipt me-1"></i>Bukti Bayar
-                                                </small>
-                                                <a href="{{ asset('storage/' . $p->bukti_bayar) }}"
-                                                   target="_blank"
-                                                   class="text-decoration-none">
-                                                    <i class="fa fa-eye me-1"></i>Lihat Bukti
-                                                </a>
-                                            @endif
-                                        </div>
-
-                                        <!-- Action Buttons -->
-                                        <div class="mt-auto pt-3 border-top">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group w-100" role="group">
-                                                    <a href="{{ route('pesanan.show', $p) }}"
-                                                        class="btn btn-outline-warning btn-sm flex-fill" title="Detail">
-                                                        <i class="fa fa-eye"></i>
-                                                        <span class="d-none d-md-inline ms-1">Detail</span>
-                                                    </a>
-                                                    <a href="{{ route('pesanan.edit', $p) }}"
-                                                        class="btn btn-outline-warning btn-sm flex-fill mx-2"
-                                                        title="Edit">
-                                                        <i class="fa fa-edit"></i>
-                                                        <span class="d-none d-md-inline ms-1">Edit</span>
-                                                    </a>
-                                                    <form action="{{ route('pesanan.destroy', $p) }}" method="POST"
-                                                        class="d-inline flex-fill">
-                                                        @csrf @method('DELETE')
-                                                        <button type="submit"
-                                                            class="btn btn-outline-warning btn-sm w-100" title="Hapus"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?')">
-                                                            <i class="fa fa-trash"></i>
-                                                            <span class="d-none d-md-inline ms-1">Hapus</span>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Card Footer -->
-                                    <div class="card-footer bg-white border-top py-2">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <small class="text-muted">
-                                                <i class="fa fa-clock me-1"></i>
-                                                {{ $p->updated_at->diffForHumans() }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @else
-                    <!-- Empty State -->
-                    <div class="text-center py-5">
-                        <div class="empty-state">
-                            <i class="fa fa-shopping-cart fa-4x text-muted mb-3"></i>
-                            <h4 class="text-muted mb-3">Belum Ada Pesanan</h4>
-                            <p class="text-muted mb-4">
-                                Mulai dengan menambahkan pesanan pertama Anda
-                            </p>
-                            <a href="{{ route('pesanan.create') }}" class="btn btn-primary btn-lg">
-                                <i class="fa fa-plus me-2"></i>Tambah Pesanan Pertama
+                        @if (request('search'))
+                            <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}" class="btn-clear ms-2">
+                                Clear
                             </a>
-                        </div>
+                        @endif
                     </div>
-                @endif
-            </div>
+                </section>
 
-            <!-- Pagination -->
-            @if ($pesanan->hasPages())
-                <div class="card-footer bg-white border-top py-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="text-muted">
-                            Menampilkan {{ $pesanan->firstItem() }} - {{ $pesanan->lastItem() }} dari
-                            {{ $pesanan->total() }} pesanan
-                        </div>
-                        <div>
-                            {{ $pesanan->links() }}
-                        </div>
-                    </div>
-                </div>
-            @endif
+                <!-- Status Filter -->
+                <section class="col-md-3">
+                    <select name="status" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua Status</option>
+                        <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Menunggu Pembayaran</option>
+                        <option value="diproses" {{ request('status') == 'diproses' ? 'selected' : '' }}>Sedang Diproses</option>
+                        <option value="dikirim" {{ request('status') == 'dikirim' ? 'selected' : '' }}>Sedang Dikirim</option>
+                        <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                        <option value="dibatalkan" {{ request('status') == 'dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
+                    </select>
+                </section>
+
+                <!-- Warga Filter -->
+                <section class="col-md-3">
+                    <select name="warga_id" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua Warga</option>
+                        @foreach($warga as $w)
+                            <option value="{{ $w->warga_id }}" {{ request('warga_id') == $w->warga_id ? 'selected' : '' }}>
+                                {{ $w->nama }}
+                            </option>
+                        @endforeach
+                    </select>
+                </section>
+
+                <!-- Sorting -->
+                <section class="col-md-2">
+                    <select name="sort" class="form-select" onchange="this.form.submit()">
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Terbaru</option>
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Terlama</option>
+                        <option value="total_asc" {{ request('sort') == 'total_asc' ? 'selected' : '' }}>Total Terendah</option>
+                        <option value="total_desc" {{ request('sort') == 'total_desc' ? 'selected' : '' }}>Total Tertinggi</option>
+                    </select>
+                </section>
+            </section>
+        </form>
+
+        <!-- Table View -->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No Pesanan</th>
+                        <th>Warga</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Alamat</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($pesanan as $p)
+                        <tr>
+                            <td>
+                                <strong>{{ $p->nomor_pesanan }}</strong>
+                            </td>
+                            <td>
+                                {{ $p->warga->nama }}
+                                <br>
+                                <small class="text-muted">{{ $p->warga->telp }}</small>
+                            </td>
+                            <td>
+                                <span class="fw-bold text-primary">Rp {{ number_format($p->total, 0, ',', '.') }}</span>
+                            </td>
+                            <td>
+                                @if($p->status == 'pending')
+                                    <span class="badge bg-warning">Menunggu Pembayaran</span>
+                                @elseif($p->status == 'diproses')
+                                    <span class="badge bg-info">Sedang Diproses</span>
+                                @elseif($p->status == 'dikirim')
+                                    <span class="badge bg-primary">Sedang Dikirim</span>
+                                @elseif($p->status == 'selesai')
+                                    <span class="badge bg-success">Selesai</span>
+                                @else
+                                    <span class="badge bg-danger">Dibatalkan</span>
+                                @endif
+                            </td>
+                            <td>
+                                {{ Str::limit($p->alamat_kirim, 30) }}
+                                <br>
+                                <small class="text-muted">RT {{ $p->rt }}/RW {{ $p->rw }}</small>
+                            </td>
+                            <td>
+                                {{ $p->created_at->format('d/m/Y') }}
+                                <br>
+                                <small class="text-muted">{{ $p->created_at->format('H:i') }}</small>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('pesanan.show', $p->pesanan_id) }}"
+                                       class="btn btn-outline-primary btn-sm" title="Lihat Detail">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('pesanan.edit', $p->pesanan_id) }}"
+                                       class="btn btn-outline-primary btn-sm" title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('pesanan.update-status', $p->pesanan_id) }}"
+                                          method="POST" class="d-inline">
+                                        @csrf
+                                        <select name="status" class="form-select form-select-sm"
+                                                onchange="this.form.submit()">
+                                            <option value="" disabled>Ubah Status</option>
+                                            <option value="pending" {{ $p->status == 'pending' ? 'selected disabled' : '' }}>
+                                                Menunggu Pembayaran
+                                            </option>
+                                            <option value="diproses" {{ $p->status == 'diproses' ? 'selected disabled' : '' }}>
+                                                Sedang Diproses
+                                            </option>
+                                            <option value="dikirim" {{ $p->status == 'dikirim' ? 'selected disabled' : '' }}>
+                                                Sedang Dikirim
+                                            </option>
+                                            <option value="selesai" {{ $p->status == 'selesai' ? 'selected disabled' : '' }}>
+                                                Selesai
+                                            </option>
+                                            <option value="dibatalkan" {{ $p->status == 'dibatalkan' ? 'selected disabled' : '' }}>
+                                                Dibatalkan
+                                            </option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center py-5">
+                                <i class="fa fa-shopping-cart fa-4x text-muted mb-3"></i>
+                                <h5 class="text-muted">Belum Ada Pesanan</h5>
+                                <p class="text-muted">Mulai dengan menambahkan pesanan pertama Anda</p>
+                                <a href="{{ route('pesanan.create') }}" class="btn btn-primary">
+                                    <i class="fa fa-plus me-2"></i>Tambah Pesanan Pertama
+                                </a>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-    </div>
+
+        <!-- Pagination -->
+        @if ($pesanan->hasPages())
+            <section class="mt-3">
+                {{ $pesanan->links('pagination::bootstrap-5') }}
+            </section>
+        @else
+            <section class="mt-3">
+                <small class="text-muted">
+                    Menampilkan
+                    {{ $pesanan->firstItem() ? $pesanan->firstItem() . ' - ' . $pesanan->lastItem() . ' dari ' . $pesanan->total() : $pesanan->count() }}
+                    pesanan
+                </small>
+            </section>
+        @endif
+    </section>
 </section>
+<!-- Pesanan Table End -->

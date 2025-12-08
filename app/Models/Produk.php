@@ -30,6 +30,22 @@ class Produk extends Model
         return $this->hasMany(UlasanProduk::class, 'produk_id', 'produk_id');
     }
 
+    public function detailPesanan()
+{
+    return $this->hasMany(DetailPesanan::class, 'produk_id', 'produk_id');
+}
+
+    /**
+     * Relasi ke Pesanan melalui Detail Pesanan (BARU)
+     */
+    public function pesanan()
+{
+    return $this->belongsToMany(Pesanan::class, 'detail_pesanan', 'produk_id', 'pesanan_id')
+                ->withPivot('qty', 'harga_satuan', 'subtotal')
+                ->withTimestamps()
+                ->using(DetailPesanan::class);
+}
+
     public function getAverageRatingAttribute()
     {
         if ($this->ulasan->count() > 0) {

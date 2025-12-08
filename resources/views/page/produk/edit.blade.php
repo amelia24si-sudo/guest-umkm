@@ -243,7 +243,7 @@
                                 <label class="form-label fw-semibold">
                                     <i class="fa fa-image me-1"></i>Upload Foto Produk
                                 </label>
-                                <input type="file" name="logo" class="form-control" accept="image/*"
+                                <input type="file" name="foto_produk" class="form-control" accept="image/*"
                                     style="width: 1120px">
                                 <small class="text-muted">Format: JPG, PNG, JPEG, GIF. Maksimal 2MB</small>
                             </section>
@@ -257,7 +257,7 @@
                                     </label>
                                     <div class="d-flex align-items-start">
                                         <div class="me-3">
-                                            <img src="{{ asset('storage/' . $produk->media->first()->file_url) }}"
+                                            <img src="{{ asset('storage/' . $produk->media->first()->file_nama) }}"
                                                 alt="{{ $produk->nama_produk }}"
                                                 class="img-thumbnail border border-3 border-primary"
                                                 style="width: 150px; height: 150px; object-fit: cover;">
@@ -267,7 +267,7 @@
                                                 <strong>Foto produk saat ini</strong>
                                             </p>
                                             <div class="btn-group">
-                                                <a href="{{ asset('storage/' . $produk->media->first()->file_url) }}"
+                                                <a href="{{ asset('storage/' . $produk->media->first()->file_nama) }}"
                                                     target="_blank" class="btn btn-sm btn-outline-info">
                                                     <i class="fa fa-expand me-1"></i>Lihat Full
                                                 </a>
@@ -338,7 +338,7 @@
                 <div class="modal-body">
                     <p>Apakah Anda yakin ingin menghapus foto produk ini?</p>
                     <div class="text-center my-3">
-                        <img src="{{ asset('storage/' . $produk->media->first()->file_url) }}"
+                        <img src="{{ asset('storage/' . $produk->media->first()->file_nama) }}"
                             alt="{{ $produk->nama_produk }}" class="img-fluid rounded border"
                             style="max-height: 200px;">
                     </div>
