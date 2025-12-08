@@ -1,9 +1,12 @@
 <?php
 namespace App\Models;
 
+use App\Models\Media;
+use App\Models\Warga;
+use App\Models\Produk;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Umkm extends Model
 {

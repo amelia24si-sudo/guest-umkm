@@ -1,22 +1,27 @@
 <?php
 namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use App\Models\Umkm;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Warga extends Model
 {
     use HasFactory;
-    protected $table = 'warga';
+    protected $table      = 'warga';
     protected $primaryKey = 'warga_id';
-    protected $fillable = ['no_ktp', 'nama', 'jenis_kelamin', 'agama', 'pekerjaan', 'telp', 'email', 'alamat', 'rt', 'rw'];
+    protected $fillable   = ['no_ktp', 'nama', 'jenis_kelamin', 'agama', 'pekerjaan', 'telp', 'email', 'alamat', 'rt', 'rw'];
 
     // Relasi dengan UMKM/Binadesa
     public function umkm()
     {
         return $this->hasMany(Umkm::class, 'pemilik_warga_id', 'warga_id');
     }
-
+    public function ulasan()
+    {
+        return $this->hasMany(UlasanProduk::class, 'warga_id', 'warga_id');
+    }
     // Accessor untuk menampilkan informasi lengkap
     public function getInfoLengkapAttribute()
     {
@@ -45,7 +50,7 @@ class Warga extends Model
     public function scopeSearch($query, $request, array $columns)
     {
         if ($request->filled('search')) {
-            $query->where(function($q) use ($request, $columns) {
+            $query->where(function ($q) use ($request, $columns) {
                 foreach ($columns as $column) {
                     $q->orWhere($column, 'LIKE', '%' . $request->search . '%');
                 }

@@ -14,6 +14,18 @@ Route::get('/', [UmkmController::class, 'beranda'])->name('home');
 Route::get('/umkm', [UmkmController::class, 'index'])->name('umkm');
 Route::get('/umkm/{id}', [UmkmController::class, 'show'])->name('umkm.show');
 
+// Routes untuk Ulasan Produk
+Route::get('/produk/{produk}/ulasan/form', [UmkmController::class, 'showFormUlasan'])
+    ->name('umkm.form-ulasan')
+    ->middleware('auth');
+
+Route::post('/produk/{produk}/ulasan', [UmkmController::class, 'tambahUlasan'])
+    ->name('umkm.tambah-ulasan')
+    ->middleware('auth');
+
+Route::get('/produk/{produk}/ulasan', [UmkmController::class, 'tampilUlasan'])
+    ->name('umkm.tampil-ulasan');
+
 // Routes untuk Layanan dan Kontak (Public)
 Route::get('/layanan', [UmkmController::class, 'layanan'])->name('layanan');
 Route::get('/kontak', [UmkmController::class, 'kontak'])->name('kontak');

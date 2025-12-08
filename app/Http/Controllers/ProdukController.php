@@ -9,19 +9,65 @@ use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $produk = Produk::with(['umkm', 'media'])->paginate(10);
+        // Query dasar dengan eager loading
+        $query = Produk::with(['umkm', 'media']);
 
-        // Hitung statistik untuk dashboard
+        // SEARCH: Filter berdasarkan keyword (nama produk atau deskripsi)
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('nama_produk', 'like', '%' . $search . '%')
+                  ->orWhere('deskripsi', 'like', '%' . $search . '%');
+            });
+        }
+
+        // FILTER: Filter berdasarkan status
+        if ($request->has('status') && !empty($request->status)) {
+            $query->where('status', $request->status);
+        }
+
+        // SORTING: Urutkan berdasarkan pilihan
+        if ($request->has('sort')) {
+            switch ($request->sort) {
+                case 'oldest':
+                    $query->orderBy('created_at', 'asc');
+                    break;
+                case 'name_asc':
+                    $query->orderBy('nama_produk', 'asc');
+                    break;
+                case 'name_desc':
+                    $query->orderBy('nama_produk', 'desc');
+                    break;
+                case 'price_low':
+                    $query->orderBy('harga', 'asc');
+                    break;
+                case 'price_high':
+                    $query->orderBy('harga', 'desc');
+                    break;
+                case 'newest':
+                default:
+                    $query->orderBy('created_at', 'desc');
+                    break;
+            }
+        } else {
+            $query->orderBy('created_at', 'desc'); // Default sort by newest
+        }
+
+        // Paginate hasil query
+        $produk = $query->paginate(10);
+
+        // Hitung statistik untuk dashboard (TANPA filter)
         $totalProduk = Produk::count();
         $produkAktif = Produk::where('status', 'aktif')->count();
         $totalStok   = Produk::sum('stok');
         $produkBaru  = Produk::whereMonth('created_at', date('m'))->count();
 
         return view('page.tambahdata.produk.index', compact('produk', 'totalProduk', 'produkAktif', 'totalStok', 'produkBaru'));
-
     }
+
+    // ... (method-method lain tetap sama) ...
 
     public function create()
     {
@@ -31,22 +77,19 @@ class ProdukController extends Controller
 
     public function store(Request $request)
     {
-        // Di method store
         $validated = $request->validate([
             'umkm_id'     => 'required|exists:umkm,umkm_id',
             'nama_produk' => 'required|string|max:255',
             'deskripsi'   => 'nullable|string',
             'harga'       => 'required|numeric|min:0',
             'stok'        => 'required|integer|min:0',
-            'status'      => 'required|in:aktif,nonaktif', // Pastikan hanya menerima 'aktif' atau 'nonaktif'
+            'status'      => 'required|in:aktif,nonaktif',
             'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        // Format harga
-        $validated['harga'] = (float) $validated['harga'];
 
+        $validated['harga'] = (float) $validated['harga'];
         $produk = Produk::create($validated);
 
-        // Handle file upload untuk foto produk
         if ($request->hasFile('foto_produk')) {
             $file = $request->file('foto_produk');
             $path = $file->store('produk', 'public');
@@ -88,14 +131,10 @@ class ProdukController extends Controller
             'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Format harga
         $validated['harga'] = (float) $validated['harga'];
-
         $produk->update($validated);
 
-        // Handle file upload
         if ($request->hasFile('foto_produk')) {
-            // Hapus media lama jika ada
             $oldMedia = $produk->media()->where('caption', 'Foto Produk')->first();
             if ($oldMedia) {
                 Storage::disk('public')->delete($oldMedia->file_url);
@@ -119,7 +158,6 @@ class ProdukController extends Controller
 
     public function destroy(Produk $produk)
     {
-        // Hapus media terkait
         foreach ($produk->media as $media) {
             Storage::disk('public')->delete($media->file_url);
             $media->delete();
