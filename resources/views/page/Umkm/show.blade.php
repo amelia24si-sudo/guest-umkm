@@ -278,7 +278,7 @@
             </section>
             <!-- END PRODUK YANG DIJUAL -->
 
-            <!-- ULASAN SEMUA PRODUK - DI SATUKAN -->
+            <!-- ULASAN SEMUA PRODUK -->
             @if ($umkm->produk->where('status', 'aktif')->count() > 0)
                 <section class="card info-section mb-4">
                     <section class="card-header">
