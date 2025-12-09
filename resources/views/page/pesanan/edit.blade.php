@@ -844,7 +844,7 @@
                                                 </div>
                                                 <small class="form-text text-muted mt-2">
                                                     <i class="fa fa-lightbulb me-1"></i>
-                                                    Jumlah barang yang dipesan
+                                                    Jmlh barang yang dipesan
                                                 </small>
                                             </div>
 
@@ -973,7 +973,7 @@
                                             </div>
                                             <small class="form-text text-muted mt-2">
                                                 <i class="fa fa-lightbulb me-1"></i>
-                                                Jumlah barang yang dipesan
+                                                Jmlh barang yang dipesan
                                             </small>
                                         </div>
 

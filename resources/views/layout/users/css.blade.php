@@ -3550,5 +3550,9 @@
     background: none;
     transform: none;
 }
-
+.logo-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 2px dashed #dee2e6;
+    padding: 5px;
 </style>

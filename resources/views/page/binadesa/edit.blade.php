@@ -265,7 +265,7 @@
                                     <i class="fa fa-times me-2"></i>Batal
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-save me-2"></i>Simpan Pesanan
+                                    <i class="fa fa-save me-2"></i>Simpan UMKM
                                 </button>
                             </div>
                         </div>

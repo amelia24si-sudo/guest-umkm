@@ -498,5 +498,36 @@
             });
         }
     });
-    
+
+    document.querySelector('input[name="logo"]').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Buat preview
+            let preview = document.querySelector('.logo-preview');
+            if (!preview) {
+                preview = document.createElement('div');
+                preview.className = 'logo-preview mt-3 text-center';
+                e.target.parentNode.appendChild(preview);
+            }
+            preview.innerHTML = `
+                <img src="${e.target.result}" class="img-thumbnail" style="max-height: 150px;">
+                <p class="text-muted mt-2">Preview logo</p>
+            `;
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+// Auto-fill alamat dari pemilik yang dipilih
+document.getElementById('inputselect').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    if (selectedOption) {
+        document.getElementById('alamat').value = selectedOption.dataset.alamat || '';
+        document.getElementById('rt').value = selectedOption.dataset.rt || '';
+        document.getElementById('rw').value = selectedOption.dataset.rw || '';
+        document.getElementById('telp').value = selectedOption.dataset.telp || '';
+    }
+});
 </script>

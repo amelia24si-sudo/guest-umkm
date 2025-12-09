@@ -146,7 +146,7 @@
                                 <div class="form-group">
                                     <label class="form-label fw-semibold">
                                         <i class="fa fa-money-bill-wave me-1"></i>Harga
-                                        <span class="text-danger"></span>
+                                        <span class="text-danger">*</span>
                                     </label>
                                     <div class="input-group input-group-lg">
                                         <span class="input-group-text bg-primary text-white">
@@ -166,7 +166,7 @@
                                 <div class="form-group">
                                     <label class="form-label fw-semibold">
                                         <i class="fa fa-cubes me-1"></i>Stok
-                                        <span class="text-danger"></span>
+                                        <span class="text-danger">*</span>
                                     </label>
                                     <div class="input-group input-group-lg">
                                         <span class="input-group-text bg-info text-white">
