@@ -32,81 +32,80 @@
                         <a class="nav-link {{ request()->is('umkm') ? 'active' : '' }}"
                             href="{{ route('umkm') }}">UMKM</a>
                     </li>
-                    @auth
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="tambahUmkmDropdown" role="button"
-                                data-toggle="dropdown" aria-expanded="false">
-                                <i></i>Tambah Data
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="tambahUmkmDropdown">
-                                <!-- Header Section -->
-                                <li>
-                                    <h6 class="dropdown-header">
-                                        <i class="fa fa-box text-primary me-2"></i>Produk
-                                    </h6>
-                                </li>
 
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('produk.index') }}">
-                                        <i class="fa fa-plus me-2"></i>Tambah Produk
-                                    </a>
-                                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="tambahUmkmDropdown" role="button"
+                            data-toggle="dropdown" aria-expanded="false">
+                            <i></i>Tambah Data
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="tambahUmkmDropdown">
+                            <!-- Header Section -->
+                            <li>
+                                <h6 class="dropdown-header">
+                                    <i class="fa fa-box text-primary me-2"></i>Produk
+                                </h6>
+                            </li>
 
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('produk.index') }}">
+                                    <i class="fa fa-plus me-2"></i>Tambah Produk
+                                </a>
+                            </li>
 
-                                <!-- UMKM Section -->
-                                <li>
-                                    <h6 class="dropdown-header">
-                                        <i class="fa fa-store text-warning me-2"></i>UMKM
-                                    </h6>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('binadesa.index') }}">
-                                        <i class="fa fa-plus me-2"></i>Tambah UMKM
-                                    </a>
-                                </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                            <!-- UMKM Section -->
+                            <li>
+                                <h6 class="dropdown-header">
+                                    <i class="fa fa-store text-warning me-2"></i>UMKM
+                                </h6>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('binadesa.index') }}">
+                                    <i class="fa fa-plus me-2"></i>Tambah UMKM
+                                </a>
+                            </li>
 
-                                <!-- Pesanan Section -->
-                                <li>
-                                    <h6 class="dropdown-header">
-                                        <i class="fa fa-shopping-cart text-success me-2"></i>Pesanan
-                                    </h6>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('pesanan.index') }}">
-                                        <i class="fa fa-plus me-2"></i>Tambah Pesanan
-                                    </a>
-                                </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                            <!-- Pesanan Section -->
+                            <li>
+                                <h6 class="dropdown-header">
+                                    <i class="fa fa-shopping-cart text-success me-2"></i>Pesanan
+                                </h6>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('pesanan.index') }}">
+                                    <i class="fa fa-plus me-2"></i>Tambah Pesanan
+                                </a>
+                            </li>
 
-                                <!-- User Management Section -->
-                                <li>
-                                    <h6 class="dropdown-header">
-                                        <i class="fa fa-users text-info me-2"></i>Pengguna
-                                    </h6>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('users.index') }}">
-                                        <i class="fa fa-user-cog me-2"></i>Kelola User
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('warga.index') }}">
-                                        <i class="fa fa-user-friends me-2"></i>Kelola Warga
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    @endauth
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <!-- User Management Section -->
+                            <li>
+                                <h6 class="dropdown-header">
+                                    <i class="fa fa-users text-info me-2"></i>Pengguna
+                                </h6>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('users.index') }}">
+                                    <i class="fa fa-user-cog me-2"></i>Kelola User
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('warga.index') }}">
+                                    <i class="fa fa-user-friends me-2"></i>Kelola Warga
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <div class="user_option">
