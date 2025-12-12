@@ -56,7 +56,7 @@ class ProdukController extends Controller
         }
 
         // Paginate hasil query
-        $produk = $query->paginate(10);
+        $produk = $query->paginate(12);
 
         // Hitung statistik untuk dashboard (TANPA filter)
         $totalProduk = Produk::count();

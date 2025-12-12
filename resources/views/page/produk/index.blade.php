@@ -133,12 +133,6 @@
                                     <i class="fa fa-image fa-3x"></i>
                                 </section>
                             @endif
-                            <!-- Status Badge -->
-                            <section class="position-absolute top-0 end-0 m-2">
-                                <span class="badge bg-{{ $p->status_badge }}">
-                                    {{ $p->status_text }}
-                                </span>
-                            </section>
                             <!-- Stock Badge -->
                             <section class="position-absolute top-0 start-0 m-2">
                                 <span class="badge bg-{{ $p->stok > 0 ? 'success' : 'danger' }}">
