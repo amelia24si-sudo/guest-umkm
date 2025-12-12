@@ -773,8 +773,7 @@
                                                 <span class="text-danger"></span>
                                             </label>
                                             <div class="form-group">
-                                                <select name="produk_id[]" class="form-select produk-select"
-                                                    required>
+                                                <select name="produk_id[]" class="form-select produk-select" required>
                                                     <option value="" selected disabled>-- Pilih Produk --
                                                     </option>
                                                     @foreach ($produk as $p)
@@ -954,30 +953,17 @@
                                     </small>
                                 </div>
                             </div>
+                             <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-semibold">
+                                        <i class="fa fa-image me-1"></i>Upload Bukti Bayar (Opsional)
+                                    </label>
+                                    <input type="file" name="bukti_bayar" class="form-control" accept="image/*">
+                                    <small class="form-text text-muted">Format: JPG, PNG, JPEG. Maksimal 2MB</small>
+                                </div>
+                            <div>
                         </div>
                     </div>
-
-                    <!-- Section 5: Bukti Bayar -->
-                    <div class="form-section mb-5">
-                        <div class="section-header mb-4">
-                            <div class="d-flex align-items-center">
-                                <div class="section-icon">
-                                    <i class="fa fa-camera"></i>
-                                </div>&nbsp;
-                                <h5 class="section-title mb-0 ms-3">Bukti Bayar</h5>
-                            </div>
-                            <div class="section-divider"></div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-semibold">
-                                <i class="fa fa-image me-1"></i>Upload Bukti Bayar (Opsional)
-                            </label>
-                            <input type="file" name="bukti_bayar" class="form-control" accept="image/*">
-                            <small class="form-text text-muted">Format: JPG, PNG, JPEG. Maksimal 2MB</small>
-                        </div>
-                    </div>
-
+                    
                     <!-- Action Buttons -->
                     <div class="form-actions mt-5 pt-4 border-top">
                         <div class="d-flex justify-content-between align-items-center">

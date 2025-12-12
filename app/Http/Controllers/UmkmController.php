@@ -72,6 +72,11 @@ class UmkmController extends Controller
         return view('page.Layanan.app');
     }
 
+    public function creator()
+    {
+        return view('page.creator.app');
+    }
+
     public function about()
     {
         return view('page.about.app');

@@ -22,7 +22,7 @@
                          <a href="">
                              <i class="fas fa-envelope"></i>
                              <span>
-                                 amelia24si@mahasiswa.pcr.ac.id
+                                 umkmkami@gmail.com
                              </span>
                          </a>
                      </div>

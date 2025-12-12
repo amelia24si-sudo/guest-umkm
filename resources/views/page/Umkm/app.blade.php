@@ -11,9 +11,9 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="{{ asset('assets-admin/img/favicon.png') }}" type="">
+    <link rel="shortcut icon" href="{{ asset('assets-admin/img/Untitled12_20251212083352.png') }}" type="">
 
-    <title> BinaDesa </title>
+    <title> UMKM Kami </title>
 
     {{-- START CSS --}}
     @include('layout.users.css')
@@ -74,8 +74,8 @@
                                     <div>
                                         <div class="img-box">
                                             @if ($umkm->media->count() > 0)
-                                                <img src="{{ asset('storage/' . $umkm->media->first()->file_url) }}"
-                                                    alt="{{ $umkm->nama_usaha }}"
+                                                <img src="{{ asset('storage/' . $umkm->media->first()->file_nama) }}"
+                                                    class="card-img-top" alt="{{ $umkm->nama_usaha }}"
                                                     style="height: 200px; object-fit: cover; width: 100%;">
                                             @else
                                                 <div class="bg-light d-flex align-items-center justify-content-center"

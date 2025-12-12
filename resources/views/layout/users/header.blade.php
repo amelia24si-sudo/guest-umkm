@@ -3,7 +3,8 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="/">
                 <span>
-                    <img src="{{asset('assets-admin/img/Untitled12_20251212083352.png')}}" width="178" height="63"></img>
+                    <img src="{{ asset('assets-admin/img/Untitled12_20251212083352.png') }}" width="178"
+                        height="63"></img>
                 </span>
             </a>
 
@@ -20,13 +21,12 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">Tentang</a>
                     </li>
+                   <li class="nav-item">
+                        <a class="nav-link {{ request()->is('creator') ? 'active' : '' }}" href="/creator">Creator</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('layanan') ? 'active' : '' }}"
                             href="{{ route('layanan') }}">Layanan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}"
-                            href="{{ route('kontak') }}">Kontak</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('umkm') ? 'active' : '' }}"

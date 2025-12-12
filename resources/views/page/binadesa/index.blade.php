@@ -69,15 +69,13 @@
                 <!-- Search -->
                 <section class="col-md-4">
                     <div class="input-group">
-                        <input type="text" name="search" class="form-control"
-                               value="{{ request('search') }}"
-                               placeholder="Cari nama UMKM, alamat...">
+                        <input type="text" name="search" class="form-control" value="{{ request('search') }}"
+                            placeholder="Cari nama UMKM, alamat...">
                         <button type="submit" class="input-group-text">
                             <i class="fa fa-search"></i>
                         </button>
-                        @if(request('search'))
-                            <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
-                               class="btn-clear ms-2">
+                        @if (request('search'))
+                            <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}" class="btn-clear ms-2">
                                 Clear
                             </a>
                         @endif
@@ -88,11 +86,31 @@
                 <section class="col-md-3">
                     <select name="kategori" class="form-select" onchange="this.form.submit()">
                         <option value="">Semua Kategori</option>
-                        @foreach ($kategoriList as $kategori)
-                            <option value="{{ $kategori }}" {{ request('kategori') == $kategori ? 'selected' : '' }}>
-                                {{ $kategori }}
-                            </option>
-                        @endforeach
+                        <option value="Makanan & Minuman"
+                            {{ old('kategori') == 'Makanan & Minuman' ? 'selected' : '' }}>
+                            Makanan & Minuman
+                        </option>
+                        <option value="Kerajinan Tangan" {{ old('kategori') == 'Kerajinan Tangan' ? 'selected' : '' }}>
+                            Kerajinan Tangan
+                        </option>
+                        <option value="Pertanian" {{ old('kategori') == 'Pertanian' ? 'selected' : '' }}>
+                            Pertanian
+                        </option>
+                        <option value="Peternakan" {{ old('kategori') == 'Peternakan' ? 'selected' : '' }}>
+                            Peternakan
+                        </option>
+                        <option value="Jasa" {{ old('kategori') == 'Jasa' ? 'selected' : '' }}>
+                            Jasa
+                        </option>
+                        <option value="Perdagangan" {{ old('kategori') == 'Perdagangan' ? 'selected' : '' }}>
+                            Perdagangan
+                        </option>
+                        <option value="Industri Kecil" {{ old('kategori') == 'Industri Kecil' ? 'selected' : '' }}>
+                            Industri Kecil
+                        </option>
+                        <option value="Lainnya" {{ old('kategori') == 'Lainnya' ? 'selected' : '' }}>
+                            Lainnya
+                        </option>
                     </select>
                 </section>
 
@@ -101,8 +119,10 @@
                     <select name="sort" class="form-select" onchange="this.form.submit()">
                         <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Terbaru</option>
                         <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Terlama</option>
-                        <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Nama A-Z</option>
-                        <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Nama Z-A</option>
+                        <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Nama A-Z
+                        </option>
+                        <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Nama Z-A
+                        </option>
                     </select>
                 </section>
             </section>
@@ -116,7 +136,7 @@
                         <!-- Logo/Gambar UMKM -->
                         <section class="position-relative">
                             @if ($b->media && $b->media->count() > 0)
-                                <img src="{{ asset('storage/' . $b->media->first()->file_nama)}}" class="card-img-top"
+                                <img src="{{ asset('storage/' . $b->media->first()->file_nama) }}" class="card-img-top"
                                     alt="{{ $b->nama_usaha }}" style="height: 200px; object-fit: cover;">
                             @else
                                 <section
@@ -168,7 +188,8 @@
                                         title="Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('binadesa.destroy', $b) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('binadesa.destroy', $b) }}" method="POST"
+                                        class="d-inline">
                                         @csrf @method('DELETE')
                                         <button type="submit" class="btn btn-outline-primary btn-sm" title="Hapus"
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus UMKM ini?')">
@@ -201,7 +222,7 @@
         </section>
 
         <!-- Pagination -->
-        @if($binadesa->hasPages())
+        @if ($binadesa->hasPages())
             <section class="mt-3">
                 {{ $binadesa->links('pagination::bootstrap-5') }}
             </section>

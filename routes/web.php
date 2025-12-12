@@ -32,6 +32,7 @@ Route::get('/layanan', [UmkmController::class, 'layanan'])->name('layanan');
 Route::get('/kontak', [UmkmController::class, 'kontak'])->name('kontak');
 Route::get('/about', [UmkmController::class, 'about'])->name('about');
 Route::post('/kirim-pesan', [UmkmController::class, 'kirimPesan'])->name('kirim.pesan');
+Route::get('/creator', [UmkmController::class, 'creator'])->name('creator');
 
 // Routes untuk Auth (Public)
 Route::get('/login', [AuthController::class, 'index'])->name('login');
