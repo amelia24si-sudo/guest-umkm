@@ -49,11 +49,11 @@
                     <div class="detail-box">
                         <div class="heading_container">
                             <h2>
-                                We Are BinaDesa
+                                UMKM Kami
                             </h2>
                         </div>
                         <p>
-                            UMKM BinaDesa hadir sebagai solusi atas tantangan yang dihadapi oleh pelaku usaha di
+                            UMKM Kami hadir sebagai solusi atas tantangan yang dihadapi oleh pelaku usaha di
                             pedesaan,
                             seperti keterbatasan akses pasar, modal, dan pengetahuan digital. Website ini bukan sekadar
                             marketplace,

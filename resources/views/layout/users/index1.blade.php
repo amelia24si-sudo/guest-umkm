@@ -10,7 +10,7 @@
                                     BinaDesa
                                 </h1>
                                 <p >
-                                    UMKM Bina Desa adalah platform yang didedikasikan untuk memberdayakan
+                                    UMKM Kami adalah platform yang didedikasikan untuk memberdayakan
                                     Usaha Mikro, Kecil, dan Menengah (UMKM) di pedesaan Indonesia.
                                 </p>
                                 <div class="btn-box">
