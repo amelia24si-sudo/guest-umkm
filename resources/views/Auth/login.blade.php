@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('assets-admin/img/Untitled12_20251212083352.png') }}" type="">
     <title>Login UMKM</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('assets-admin/css/font-awesome.min.css') }}" rel="stylesheet" />
+
     @include('layout.users.css')
     <style>
         /* Variabel dan Import Font - SAMA PERSIS dengan CSS utama */
@@ -31,7 +33,8 @@
         }
 
 
-        h1, h2 {
+        h1,
+        h2 {
             font-family: 'Dancing Script', cursive;
         }
 
@@ -159,7 +162,16 @@
         }
 
         /* Pastikan semua elemen menggunakan font yang benar */
-        p, span, small, div, ul, li, a, input, button, label {
+        p,
+        span,
+        small,
+        div,
+        ul,
+        li,
+        a,
+        input,
+        button,
+        label {
             font-family: "Open Sans", sans-serif;
         }
 
@@ -185,7 +197,8 @@
             <div class="col-md-6 col-lg-5">
                 <div class="card login-card">
                     <div class="login-header">
-                        <h2>Login UMKM Desa</h2>
+                        <img src="{{ asset('assets-admin/img/Untitled12_20251212083352.png') }}" width="268"
+                            height="95" alt=".">
                         <p class="mb-0">Masuk ke akun UMKM Anda</p>
                     </div>
                     <div class="card-body p-4">

@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="/">
                 <span>
-                    UMKM Kami
+                    <img src="{{asset('assets-admin/img/Untitled12_20251212083352.png')}}" width="178" height="63"></img>
                 </span>
             </a>
 

@@ -124,7 +124,7 @@
                         <!-- Gambar Produk -->
                         <section class="position-relative">
                             @if ($p->media && $p->media->count() > 0)
-                                <img src="{{ Storage::url($p->media->first()->file_nama) }}" class="card-img-top"
+                                <img src="{{ asset('storage/' . $p->media->first()->file_nama)}}" class="card-img-top"
                                     alt="{{ $p->nama_produk }}" style="height: 200px; object-fit: cover;">
                             @else
                                 <section

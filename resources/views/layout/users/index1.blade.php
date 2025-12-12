@@ -7,7 +7,7 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                    BinaDesa
+                                    UMKM Kami
                                 </h1>
                                 <p >
                                     UMKM Kami adalah platform yang didedikasikan untuk memberdayakan
@@ -29,12 +29,12 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                    BinaDesa
+                                    UMKM Kami
                                 </h1>
                                 <p>
                                     Kami percaya bahwa setiap desa memiliki potensi ekonomi
                                     yang luar biasa, dan dengan dukungan yang tepat,
-                                    UMKM desa dapat menjadi penggerak utama perekonomian lokal.
+                                    UMKM Kami dapat menjadi penggerak utama perekonomian lokal.
                                 </p>
                                 <div class="btn-box">
                                     <a href="/register" class="btn1">
@@ -52,7 +52,7 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                    BinaDesa
+                                    UMKM Kami
                                 </h1>
                                 <p>
                                     Sejak didirikan pada tahun 2020, kami telah membantu lebih dari 500

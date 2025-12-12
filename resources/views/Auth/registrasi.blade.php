@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('assets-admin/img/Untitled12_20251212083352.png') }}" type="">
     <title>Daftar - UMKM Bina Desa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('assets-admin/css/font-awesome.min.css') }}" rel="stylesheet" />
@@ -30,7 +32,8 @@
         }
 
 
-        h1, h2 {
+        h1,
+        h2 {
             font-family: 'Dancing Script', cursive;
         }
 
@@ -147,7 +150,16 @@
         }
 
         /* Pastikan semua elemen menggunakan font yang benar */
-        p, span, small, div, ul, li, a, input, button, label {
+        p,
+        span,
+        small,
+        div,
+        ul,
+        li,
+        a,
+        input,
+        button,
+        label {
             font-family: "Open Sans", sans-serif;
         }
 
@@ -166,26 +178,27 @@
         }
     </style>
 </head>
+
 <body>
     <div class="register-container">
         <div class="register-header">
             <h2>Daftar Akun</h2>
-            <p class="mb-0">Bergabung dengan UMKM Bina Desa</p>
+            <p class="mb-0">Bergabung dengan UMKM Kami</p>
         </div>
 
         <div class="register-content">
-            @if($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-triangle me-2"></i>
                     <ul class="mb-0">
-                        @foreach($errors->all() as $error)
+                        @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
             @endif
 
-            @if(session('success'))
+            @if (session('success'))
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle me-2"></i>
                     {{ session('success') }}
@@ -198,28 +211,32 @@
                     <label for="name" class="form-label">
                         <i class="fas fa-user me-2"></i>Nama Lengkap
                     </label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap" value="{{ old('name') }}" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap"
+                        value="{{ old('name') }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="email" class="form-label">
                         <i class="fas fa-envelope me-2"></i>Alamat Email
                     </label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                        value="{{ old('email') }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label">
                         <i class="fas fa-lock me-2"></i>Password
                     </label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                        required>
                 </div>
 
                 <div class="mb-3">
                     <label for="password_confirmation" class="form-label">
                         <i class="fas fa-lock me-2"></i>Konfirmasi Password
                     </label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi Password" required>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
+                        placeholder="Konfirmasi Password" required>
                 </div>
 
                 <button type="submit" class="btn-register">
@@ -241,4 +258,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

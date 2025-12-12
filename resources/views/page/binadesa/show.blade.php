@@ -86,7 +86,7 @@
                     </section>
                     <section class="card-body text-center">
                         @if ($binadesa->media->count() > 0)
-                            <img src="{{ asset('storage/' . $binadesa->media->first()->file_url) }}"
+                            <img src="{{ asset('storage/' . $binadesa->media->first()->file_nama)}}"
                                 alt="Logo {{ $binadesa->nama_usaha }}" style="max-width: 100%; max-height: 200px;"
                                 class="img-fluid rounded">
                         @else

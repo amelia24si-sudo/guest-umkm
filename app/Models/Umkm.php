@@ -28,7 +28,9 @@ class Umkm extends Model
 
     public function media()
     {
-        return $this->morphMany(Media::class, 'ref', 'ref_table', 'ref_id');
+        return $this->hasMany(Media::class, 'ref_id', 'umkm_id')
+            ->where('ref_table', 'umkm')
+            ->orderBy('sort_order', 'asc');
     }
 
     // Scope untuk filter

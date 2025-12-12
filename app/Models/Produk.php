@@ -1,11 +1,11 @@
 <?php
 namespace App\Models;
 
-use App\Models\Umkm;
 use App\Models\Media;
 use App\Models\UlasanProduk;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Umkm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
@@ -22,7 +22,9 @@ class Produk extends Model
 
     public function media()
     {
-        return $this->morphMany(Media::class, 'ref', 'ref_table', 'ref_id');
+        return $this->hasMany(Media::class, 'ref_id', 'produk_id')
+            ->where('ref_table', 'produk')
+            ->orderBy('sort_order', 'asc');
     }
 
     public function ulasan()
@@ -31,20 +33,20 @@ class Produk extends Model
     }
 
     public function detailPesanan()
-{
-    return $this->hasMany(DetailPesanan::class, 'produk_id', 'produk_id');
-}
+    {
+        return $this->hasMany(DetailPesanan::class, 'produk_id', 'produk_id');
+    }
 
     /**
      * Relasi ke Pesanan melalui Detail Pesanan (BARU)
      */
     public function pesanan()
-{
-    return $this->belongsToMany(Pesanan::class, 'detail_pesanan', 'produk_id', 'pesanan_id')
-                ->withPivot('qty', 'harga_satuan', 'subtotal')
-                ->withTimestamps()
-                ->using(DetailPesanan::class);
-}
+    {
+        return $this->belongsToMany(Pesanan::class, 'detail_pesanan', 'produk_id', 'pesanan_id')
+            ->withPivot('qty', 'harga_satuan', 'subtotal')
+            ->withTimestamps()
+            ->using(DetailPesanan::class);
+    }
 
     public function getAverageRatingAttribute()
     {
@@ -82,18 +84,23 @@ class Produk extends Model
     // Scope untuk search (optional, bisa digunakan di controller)
     public function scopeSearch($query, $keyword)
     {
-        if (!$keyword) return $query;
+        if (! $keyword) {
+            return $query;
+        }
 
-        return $query->where(function($q) use ($keyword) {
+        return $query->where(function ($q) use ($keyword) {
             $q->where('nama_produk', 'like', '%' . $keyword . '%')
-              ->orWhere('deskripsi', 'like', '%' . $keyword . '%');
+                ->orWhere('deskripsi', 'like', '%' . $keyword . '%');
         });
     }
 
     // Scope untuk filter status (optional)
     public function scopeByStatus($query, $status)
     {
-        if (!$status) return $query;
+        if (! $status) {
+            return $query;
+        }
+
         return $query->where('status', $status);
     }
 

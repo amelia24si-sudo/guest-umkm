@@ -43,7 +43,7 @@ class BinadesaController extends Controller
         }
 
         $binadesa = $umkmQuery->paginate(12)->onEachSide(2)->withQueryString();
-
+        
         // Hitung statistik untuk dashboard
         $totalUsaha        = Umkm::count();
         $usahaAktif        = Umkm::count(); // Sesuaikan jika ada field status
@@ -97,7 +97,7 @@ class BinadesaController extends Controller
 
             // Simpan dengan nama unik
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path     = $file->storeAs('umkm', $filename, 'public');
+            $path     = $file->storeAs('images','umkm', $filename, 'public');
 
             Media::create([
                 'ref_table'  => 'umkm',
@@ -151,7 +151,7 @@ class BinadesaController extends Controller
             }
 
             $file = $request->file('logo');
-            $path = $file->store('umkm', 'public');
+            $path = $file->store('images','umkm', 'public');
             Media::create([
                 'ref_table' => 'umkm',
                 'ref_id'    => $binadesa->umkm_id,

@@ -85,45 +85,6 @@
                         </table>
                     </section>
                 </section>
-
-                <!-- Statistik Produk -->
-                <section class="card mb-4">
-                    <section class="card-header bg-info text-white">
-                        <h6 class="mb-0">Statistik Produk</h6>
-                    </section>
-                    <section class="card-body">
-                        <div class="row text-center">
-                            <div class="col-md-3 col-6 mb-3">
-                                <div class="p-3 bg-light rounded">
-                                    <i class="fa fa-eye fa-2x text-info mb-2"></i>
-                                    <h5 class="mb-1">0</h5>
-                                    <p class="text-muted small mb-0">Dilihat</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 mb-3">
-                                <div class="p-3 bg-light rounded">
-                                    <i class="fa fa-shopping-cart fa-2x text-success mb-2"></i>
-                                    <h5 class="mb-1">0</h5>
-                                    <p class="text-muted small mb-0">Terjual</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 mb-3">
-                                <div class="p-3 bg-light rounded">
-                                    <i class="fa fa-star fa-2x text-warning mb-2"></i>
-                                    <h5 class="mb-1">0</h5>
-                                    <p class="text-muted small mb-0">Rating</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 mb-3">
-                                <div class="p-3 bg-light rounded">
-                                    <i class="fa fa-heart fa-2x text-danger mb-2"></i>
-                                    <h5 class="mb-1">0</h5>
-                                    <p class="text-muted small mb-0">Favorit</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </section>
             </section>
 
             <section class="col-md-4">
@@ -181,16 +142,6 @@
                                 <td>
                                     {{ $produk->umkm->alamat }},
                                     RT {{ $produk->umkm->rt }}/RW {{ $produk->umkm->rw }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Status UMKM</strong></td>
-                                <td>
-                                    @if($produk->umkm->status == 'active')
-                                        <span class="badge bg-success">Aktif</span>
-                                    @else
-                                        <span class="badge bg-secondary">Non-Aktif</span>
-                                    @endif
                                 </td>
                             </tr>
                         </table>

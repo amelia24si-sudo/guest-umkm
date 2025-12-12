@@ -31,7 +31,7 @@
              <div class="col-md-4 footer-col">
                  <div class="footer_detail">
                      <a href="" class="footer-logo">
-                         BinaDesa
+                         UMKM Kami
                      </a>
                      <p>
                          Kami adalah mitra bagi para perajin dan pelaku usaha desa dalam mewujudkan mimpi dan
