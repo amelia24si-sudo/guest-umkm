@@ -11,15 +11,15 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="{{ asset('assets-admin/img/favicon.png') }}" type="">
+    <link rel="shortcut icon" href="{{ asset('assets-admin/img/Untitled12_20251212083352.png') }}" type="">
 
-    <title> BinaDesa </title>
+    <title> UMKM Kami </title>
 
 
     {{-- START CSS --}}
     @include('layout.users.css')
     {{-- END CSS --}}
-   
+
 </head>
 
 <body class="sub_page">

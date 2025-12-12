@@ -11,9 +11,9 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="{{ asset('assets-admin/img/favicon.png') }}" type="">
+    <link rel="shortcut icon" href="{{ asset('assets-admin/img/Untitled12_20251212083352.png') }}" type="">
 
-    <title> BinaDesa </title>
+    <title> UMKM Kami </title>
 
 
     {{-- START CSS --}}
@@ -55,7 +55,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="nama" class="form-label fw-bold">Nama Lengkap</label>
                                     <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                        id="nama" name="nama" value="{{ old('nama') }}" 
+                                        id="nama" name="nama" value="{{ old('nama') }}"
                                         placeholder="Nama Lengkap">
                                     @error('nama')
                                         <div class="invalid-feedback">{{ $message }}</div>
