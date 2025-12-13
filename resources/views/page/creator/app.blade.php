@@ -490,12 +490,12 @@
                         <div class="education-item">
                             <div class="education-title">Politeknik Caltex Riau</div>
                             <div class="education-detail">Mahasiswa Politeknik Caltex Riau</div>
-                            <div class="education-year">2021 - Sekarang</div>
+                            <div class="education-year">2024 - Sekarang</div>
                         </div>
                         <div class="education-item">
                             <div class="education-title">SMA Kristen Kalam Kudus Pekanbaru</div>
                             <div class="education-detail">Jurusan Bahasa</div>
-                            <div class="education-year">2018 - 2021</div>
+                            <div class="education-year">2021 - 2024</div>
                         </div>
                     </div>
 
