@@ -350,7 +350,7 @@
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         <i class="fa fa-times me-1"></i>Batal
                     </button>
-                    <form action="{{ route('produk.delete-photo', $produk) }}" method="POST" class="d-inline">
+                    <form action="{{ route('produk.edit', $produk) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">
