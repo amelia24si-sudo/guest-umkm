@@ -82,7 +82,7 @@
             <section class="card umkm-profile-card">
                 <section class="card-body">
                     @if ($umkm->media->count() > 0)
-                        <img src="{{ asset('storage/' . $umkm->media->first()->file_url) }}" class="card-img"
+                        <img src="{{ asset('storage/' . $umkm->media->first()->file_nama) }}" class="card-img"
                             alt="{{ $umkm->nama_usaha }}">
                     @else
                         <section class="bg-custom-light rounded d-flex align-items-center justify-content-center"
